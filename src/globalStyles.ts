@@ -1,6 +1,6 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
-const GlobalStyles = createGlobalStyle`
+export const globalStyles = createGlobalStyle`
     *,
     *::before,
     *::after {
@@ -23,5 +23,3 @@ const GlobalStyles = createGlobalStyle`
         cursor: pointer;
     }
 `;
-
-export default GlobalStyles;

@@ -1,4 +1,4 @@
-import GlobalStyles from "./globalStyles";
+import { globalStyles as GlobalStyles } from './globalStyles';
 
 function App() {
   return (
