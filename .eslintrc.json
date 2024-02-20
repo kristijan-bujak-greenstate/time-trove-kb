@@ -7,14 +7,22 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react-hooks/recommended",
-    "prettier"
+    "prettier",
+    "plugin:storybook/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react-refresh", "@typescript-eslint", "import", "unused-imports", "check-file", "prettier"],
+  "plugins": [
+    "react-refresh",
+    "@typescript-eslint",
+    "import",
+    "unused-imports",
+    "check-file",
+    "prettier"
+  ],
   "rules": {
     "react-refresh/only-export-components": "warn",
     "@typescript-eslint/explicit-module-boundary-types": "off",
@@ -34,7 +42,9 @@
           "order": "asc"
         },
         "newlines-between": "always",
-        "pathGroupsExcludedImportTypes": ["builtin"]
+        "pathGroupsExcludedImportTypes": [
+          "builtin"
+        ]
       }
     ],
     "unused-imports/no-unused-imports": "error",
@@ -42,42 +52,63 @@
       "error",
       {
         "selector": "default",
-        "format": ["strictCamelCase"],
+        "format": [
+          "strictCamelCase"
+        ],
         "leadingUnderscore": "allow",
         "trailingUnderscore": "forbid"
       },
       {
         "selector": "function",
-        "format": ["strictCamelCase", "StrictPascalCase"],
+        "format": [
+          "strictCamelCase",
+          "StrictPascalCase"
+        ],
         "leadingUnderscore": "allow",
         "trailingUnderscore": "forbid"
       },
       {
         "selector": "variable",
-        "format": ["strictCamelCase", "StrictPascalCase", "UPPER_CASE"],
+        "format": [
+          "strictCamelCase",
+          "StrictPascalCase",
+          "UPPER_CASE"
+        ],
         "leadingUnderscore": "allow",
         "trailingUnderscore": "forbid"
       },
       {
         "selector": "typeLike",
-        "format": ["StrictPascalCase"]
+        "format": [
+          "StrictPascalCase"
+        ]
       },
       {
         "selector": "method",
-        "modifiers": ["static"],
-        "format": ["strictCamelCase"]
+        "modifiers": [
+          "static"
+        ],
+        "format": [
+          "strictCamelCase"
+        ]
       },
       {
         "selector": "enumMember",
-        "format": ["UPPER_CASE"]
+        "format": [
+          "UPPER_CASE"
+        ]
       },
       {
         "selector": "enum",
-        "format": ["StrictPascalCase"]
+        "format": [
+          "StrictPascalCase"
+        ]
       },
       {
         "selector": "interface",
-        "format": ["StrictPascalCase"],
+        "format": [
+          "StrictPascalCase"
+        ],
         "custom": {
           "regex": "^I[A-Z]",
           "match": false
@@ -85,11 +116,17 @@
       },
       {
         "selector": "objectLiteralProperty",
-        "format": ["UPPER_CASE", "strictCamelCase"]
+        "format": [
+          "UPPER_CASE",
+          "strictCamelCase"
+        ]
       },
       {
         "selector": "parameter",
-        "format": ["strictCamelCase", "StrictPascalCase"],
+        "format": [
+          "strictCamelCase",
+          "StrictPascalCase"
+        ],
         "leadingUnderscore": "allow",
         "trailingUnderscore": "forbid"
       }
@@ -113,7 +150,10 @@
   },
   "overrides": [
     {
-      "files": ["**/*.cjs", "**/*.js"],
+      "files": [
+        "**/*.cjs",
+        "**/*.js"
+      ],
       "env": {
         "node": true
       }
