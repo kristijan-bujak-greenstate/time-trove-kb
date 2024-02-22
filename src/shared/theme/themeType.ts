@@ -5,27 +5,26 @@ export type Theme = {
       inter: string;
     };
     fontSize: {
-      xSm: string;
-      sm: string;
-      md: string;
-      lg: string;
-      xLg: string;
+      extraLarge: string;
+      small: string;
+      medium: string;
+      large: string;
     };
     fontWeight: {
       extraBold: string;
       bold: string;
-      semiBold: string;
       regular: string;
     };
     lineHeight: {
-      xSm: string;
-      sm: string;
-      md: string;
-      lg: string;
-      xLg: string;
+      extraSmall: string;
+      small: string;
+      medium: string;
+      large: string;
+      extraLarge: string;
     };
   };
   colors: {
+    lightGrey: string;
     grey: string;
     black: string;
   };

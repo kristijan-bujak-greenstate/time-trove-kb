@@ -15,17 +15,15 @@ export type TextProps = {
   fontFamily?: TypographyFontFamily;
   color?: Color;
   children: string;
-  noWrap?: boolean;
 };
 
 export const Text = ({
-  fontSize = 'sm',
-  lineHeight = 'sm',
+  fontSize = 'small',
+  lineHeight = 'small',
   fontWeight = 'regular',
   fontFamily = 'inter',
   color = 'grey',
   children,
-  noWrap = false,
 }: TextProps) => {
   return (
     <StyledText
@@ -34,7 +32,6 @@ export const Text = ({
       $fontWeight={fontWeight}
       $fontFamily={fontFamily}
       $color={color}
-      $noWrap={noWrap}
     >
       {children}
     </StyledText>
