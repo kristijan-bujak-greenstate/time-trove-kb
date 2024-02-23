@@ -13,6 +13,7 @@ export type Theme = {
     fontWeight: {
       extraBold: string;
       bold: string;
+      semiBold: string;
       regular: string;
     };
     lineHeight: {
@@ -21,11 +22,37 @@ export type Theme = {
       medium: string;
       large: string;
       extraLarge: string;
+      maxLarge: string;
     };
   };
   colors: {
-    lightGrey: string;
-    grey: string;
-    black: string;
+    neutrals: {
+      hue400: string;
+      hue300: string;
+      hue200: string;
+      hue100: string;
+      hue50: string;
+      hue0: string;
+    };
+    primary: {
+      hue0: string;
+      hue50: string;
+      hue100: string;
+    };
+    success: {
+      hue0: string;
+      hue50: string;
+      hue100: string;
+    };
+    warning: {
+      hue0: string;
+      hue50: string;
+      hue100: string;
+    };
+    danger: {
+      hue0: string;
+      hue50: string;
+      hue100: string;
+    };
   };
 };

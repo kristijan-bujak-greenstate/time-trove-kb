@@ -5,7 +5,6 @@ import {
   TypographyFontWeight,
   TypographyLineHeight,
   TypographyFontFamily,
-  Color,
 } from '../../shared/theme/theme';
 
 export const StyledText = styled.p<{
@@ -13,11 +12,11 @@ export const StyledText = styled.p<{
   $fontWeight: TypographyFontWeight;
   $lineHeight: TypographyLineHeight;
   $fontFamily: TypographyFontFamily;
-  $color: Color;
+  $color: string;
 }>`
   font-size: ${({ theme, $fontSize }) => theme.typography.fontSize[$fontSize]};
   font-weight: ${({ theme, $fontWeight }) => theme.typography.fontWeight[$fontWeight]};
   line-height: ${({ theme, $lineHeight }) => theme.typography.lineHeight[$lineHeight]};
   font-family: ${({ theme, $fontFamily }) => theme.typography.fontFamily[$fontFamily]};
-  color: ${({ theme, $color }) => theme.colors[$color]};
+  color: ${({ $color }) => $color};
 `;

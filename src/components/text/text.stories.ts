@@ -16,6 +16,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Base: Story = {
   args: {
+    color: 'hue100',
     children: 'Create an account for your TimeTrove Dashboard.',
   },
 };
