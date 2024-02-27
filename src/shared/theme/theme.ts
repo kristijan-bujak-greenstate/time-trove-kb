@@ -44,16 +44,19 @@ export const defaultTheme: Theme = {
     },
     success: {
       hue0: '#5FEA7D',
+      hue25: '#EEFFE6',
       hue50: '#2FC850',
       hue100: '#2BAA47',
     },
     warning: {
       hue0: '#FFA666',
+      hue25: '#FFF2E6',
       hue50: '#FF9142',
       hue100: '#EC873D',
     },
     error: {
       hue0: '#FF5E5E',
+      hue25: '#FFE6E6',
       hue50: '#FF4242',
       hue100: '#DF3838',
     },
@@ -83,6 +86,16 @@ export const defaultTheme: Theme = {
       },
       medium: {
         size: '1.5rem',
+      },
+    },
+    chip: {
+      large: {
+        padding: '0.5rem 0.75rem',
+        borderRadius: '0.75rem',
+      },
+      small: {
+        padding: '0.25rem 0.5rem',
+        borderRadius: '0.5rem',
       },
     },
   },

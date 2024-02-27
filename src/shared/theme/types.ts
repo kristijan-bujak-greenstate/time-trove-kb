@@ -12,6 +12,7 @@ export type Palette = keyof Theme['colors'];
 export type Colors<T extends Palette> = keyof Theme['colors'][T];
 export type ButtonSize = keyof Theme['dimensions']['button'];
 export type IconSize = keyof Theme['dimensions']['icon'];
+export type ChipSize = keyof Theme['dimensions']['chip'];
 
 export type Theme = {
   typography: {
@@ -57,16 +58,19 @@ export type Theme = {
     };
     success: {
       hue0: string;
+      hue25: string;
       hue50: string;
       hue100: string;
     };
     warning: {
       hue0: string;
+      hue25: string;
       hue50: string;
       hue100: string;
     };
     error: {
       hue0: string;
+      hue25: string;
       hue50: string;
       hue100: string;
     };
@@ -96,6 +100,16 @@ export type Theme = {
       };
       medium: {
         size: RemSize;
+      };
+    };
+    chip: {
+      large: {
+        padding: RemSize;
+        borderRadius: RemSize;
+      };
+      small: {
+        padding: RemSize;
+        borderRadius: RemSize;
       };
     };
   };
