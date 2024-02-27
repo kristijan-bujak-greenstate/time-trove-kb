@@ -1,0 +1,102 @@
+export type RemSize =
+  | `${number}rem`
+  | `${number}rem ${number}rem`
+  | `${number}rem ${number}rem ${number}rem`
+  | `${number}rem ${number}rem ${number}rem ${number}rem`;
+
+export type TypographyFontSize = keyof Theme['typography']['fontSize'];
+export type TypographyFontFamily = keyof Theme['typography']['fontFamily'];
+export type TypographyFontWeight = keyof Theme['typography']['fontWeight'];
+export type TypographyLineHeight = keyof Theme['typography']['lineHeight'];
+export type Palette = keyof Theme['colors'];
+export type Colors<T extends Palette> = keyof Theme['colors'][T];
+export type ButtonSize = keyof Theme['dimensions']['button'];
+export type IconSize = keyof Theme['dimensions']['icon'];
+
+export type Theme = {
+  typography: {
+    fontFamily: {
+      montserrat: string;
+      inter: string;
+    };
+    fontSize: {
+      extraLarge: string;
+      small: string;
+      medium: string;
+      large: string;
+      extraSmall: string;
+    };
+    fontWeight: {
+      extraBold: string;
+      bold: string;
+      semiBold: string;
+      regular: string;
+    };
+    lineHeight: {
+      extraSmall: string;
+      small: string;
+      medium: string;
+      large: string;
+      extraLarge: string;
+      maxLarge: string;
+    };
+  };
+  colors: {
+    neutrals: {
+      hue400: string;
+      hue300: string;
+      hue200: string;
+      hue100: string;
+      hue50: string;
+      hue0: string;
+    };
+    primary: {
+      hue0: string;
+      hue50: string;
+      hue100: string;
+    };
+    success: {
+      hue0: string;
+      hue50: string;
+      hue100: string;
+    };
+    warning: {
+      hue0: string;
+      hue50: string;
+      hue100: string;
+    };
+    error: {
+      hue0: string;
+      hue50: string;
+      hue100: string;
+    };
+  };
+  dimensions: {
+    button: {
+      small: {
+        padding: RemSize;
+        borderRadius: RemSize;
+      };
+      medium: {
+        padding: RemSize;
+        borderRadius: RemSize;
+      };
+      large: {
+        padding: RemSize;
+        borderRadius: RemSize;
+      };
+      extraLarge: {
+        padding: RemSize;
+        borderRadius: RemSize;
+      };
+    };
+    icon: {
+      small: {
+        size: RemSize;
+      };
+      medium: {
+        size: RemSize;
+      };
+    };
+  };
+};

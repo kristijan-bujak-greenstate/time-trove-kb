@@ -7,7 +7,7 @@ import {
   TypographyFontFamily,
   Palette,
   Colors,
-} from '../../shared/theme/theme';
+} from '../../shared/theme/types';
 
 import { StyledText } from './text.styles';
 

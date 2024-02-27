@@ -5,7 +5,7 @@ import {
   TypographyFontWeight,
   TypographyLineHeight,
   TypographyFontFamily,
-} from '../../shared/theme/theme';
+} from '../../shared/theme/types';
 
 export const StyledText = styled.p<{
   $fontSize: TypographyFontSize;

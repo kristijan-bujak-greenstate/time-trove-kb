@@ -1,10 +1,4 @@
-import { Theme } from './themeType';
-export type TypographyFontSize = keyof Theme['typography']['fontSize'];
-export type TypographyFontFamily = keyof Theme['typography']['fontFamily'];
-export type TypographyFontWeight = keyof Theme['typography']['fontWeight'];
-export type TypographyLineHeight = keyof Theme['typography']['lineHeight'];
-export type Palette = keyof Theme['colors'];
-export type Colors<T extends Palette> = keyof Theme['colors'][T];
+import { Theme } from './types';
 
 export const defaultTheme: Theme = {
   typography: {
@@ -17,11 +11,12 @@ export const defaultTheme: Theme = {
       large: '1.5rem',
       medium: '1rem',
       small: '0.875rem',
+      extraSmall: '0.75rem',
     },
     fontWeight: {
       extraBold: '700',
-      bold: '600',
       semiBold: '500',
+      bold: '600',
       regular: '400',
     },
     lineHeight: {
@@ -39,7 +34,7 @@ export const defaultTheme: Theme = {
       hue300: '#434346',
       hue200: '#7B828A',
       hue100: '#C9D2DE',
-      hue50: 'F3F4F8',
+      hue50: '#F3F4F8',
       hue0: '#FFFFFF',
     },
     primary: {
@@ -57,10 +52,38 @@ export const defaultTheme: Theme = {
       hue50: '#FF9142',
       hue100: '#EC873D',
     },
-    danger: {
+    error: {
       hue0: '#FF5E5E',
       hue50: '#FF4242',
       hue100: '#DF3838',
+    },
+  },
+  dimensions: {
+    button: {
+      small: {
+        padding: '0.5rem 1rem',
+        borderRadius: '0.5rem',
+      },
+      medium: {
+        padding: '0.625rem 1.375rem',
+        borderRadius: '0.75rem',
+      },
+      large: {
+        padding: '0.75rem 1.75rem',
+        borderRadius: '0.75rem',
+      },
+      extraLarge: {
+        padding: '1rem 2.25rem',
+        borderRadius: '0.75rem',
+      },
+    },
+    icon: {
+      small: {
+        size: '1.25rem',
+      },
+      medium: {
+        size: '1.5rem',
+      },
     },
   },
 };
