@@ -95,12 +95,9 @@ export type Theme = {
       };
     };
     icon: {
-      small: {
-        size: RemSize;
-      };
-      medium: {
-        size: RemSize;
-      };
+      small: RemSize;
+      medium: RemSize;
+      large: RemSize;
     };
     chip: {
       large: {

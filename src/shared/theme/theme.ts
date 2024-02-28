@@ -81,12 +81,9 @@ export const defaultTheme: Theme = {
       },
     },
     icon: {
-      small: {
-        size: '1.25rem',
-      },
-      medium: {
-        size: '1.5rem',
-      },
+      small: '1.25rem',
+      medium: '1.5rem',
+      large: '3rem',
     },
     chip: {
       large: {
