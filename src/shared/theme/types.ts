@@ -52,27 +52,29 @@ export type Theme = {
       hue0: string;
     };
     primary: {
-      hue0: string;
       hue50: string;
       hue100: string;
+      hue200: string;
     };
     success: {
-      hue0: string;
       hue25: string;
       hue50: string;
       hue100: string;
+      hue200: string;
     };
     warning: {
-      hue0: string;
       hue25: string;
       hue50: string;
       hue100: string;
+      hue200: string;
     };
     error: {
       hue0: string;
       hue25: string;
       hue50: string;
+      hue75: string;
       hue100: string;
+      hue200: string;
     };
   };
   dimensions: {

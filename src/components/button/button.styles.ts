@@ -12,7 +12,7 @@ export const StyledButton = styled.button<{
   padding: ${({ theme, $size }) => theme.dimensions.button[$size].padding};
   border-radius: ${({ theme, $size }) => theme.dimensions.button[$size].borderRadius};
   background-color: ${({ theme, $palette }) =>
-    $palette === 'neutrals' ? theme.colors[$palette].hue0 : theme.colors[$palette].hue50};
+    $palette === 'neutrals' ? theme.colors[$palette].hue0 : theme.colors[$palette].hue100};
   width: ${({ $fill }) => ($fill ? '100%' : 'fit-content')};
   display: flex;
   justify-content: center;
@@ -23,12 +23,12 @@ export const StyledButton = styled.button<{
 
   &:hover {
     background-color: ${({ theme, $palette }) =>
-      $palette === 'neutrals' ? theme.colors[$palette].hue50 : theme.colors[$palette].hue0};
+      $palette === 'neutrals' ? theme.colors[$palette].hue50 : theme.colors[$palette].hue50};
   }
 
   &:active {
     background-color: ${({ theme, $palette }) =>
-      $palette === 'neutrals' ? theme.colors[$palette].hue0 : theme.colors[$palette].hue100};
+      $palette === 'neutrals' ? theme.colors[$palette].hue0 : theme.colors[$palette].hue200};
   }
 
   &:disabled {

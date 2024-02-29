@@ -1,19 +1,20 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { AlertIcon } from './../../../public/icons/AlertIcon';
-import { DeleteIcon } from './../../../public/icons/DeleteIcon';
-import { EditIcon } from './../../../public/icons/EditIcon';
-import { FileIcon } from './../../../public/icons/FileIcon';
-import { LoadingIcon } from './../../../public/icons/LoadingIcon';
-import { LogoutIcon } from './../../../public/icons/LogoutIcon';
-import { RemoveIcon } from './../../../public/icons/RemoveIcon';
-import { SuccessCheckIcon } from './../../../public/icons/SuccessCheckIcon';
-import { ValidateIcon } from './../../../public/icons/ValidateIcon';
-import { Xicon } from './../../../public/icons/XIcon';
+import { AlertIcon } from '../../icons/AlertIcon';
+import { DeleteIcon } from '../../icons/DeleteIcon';
+import { EditIcon } from '../../icons/EditIcon';
+import { FileIcon } from '../../icons/FileIcon';
+import { LoadingIcon } from '../../icons/LoadingIcon';
+import { LogoutIcon } from '../../icons/LogoutIcon';
+import { RemoveIcon } from '../../icons/RemoveIcon';
+import { SuccessCheckIcon } from '../../icons/SuccessCheckIcon';
+import { ValidateIcon } from '../../icons/ValidateIcon';
+import { Xicon } from '../../icons/XIcon';
+
 import { ThemedIcon } from './ThemedIcon';
 
 const meta = {
-  title: 'Example/ThemedIcon',
+  title: 'Example/Themed Icon',
   component: ThemedIcon,
   tags: ['autodocs'],
   parameters: {

@@ -1,6 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/naming-convention
-import React from 'react';
-
 export const RemoveIcon = () => {
   return (
     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

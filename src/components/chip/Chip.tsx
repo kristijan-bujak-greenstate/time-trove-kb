@@ -14,7 +14,7 @@ export const Chip = ({ size = 'large', children, status = 'success' }: ChipProps
   const { fontSize, lineHeight } = getFontDetails(size);
   return (
     <StyledChipContainer $size={size} $status={status}>
-      <Text fontSize={fontSize} fontWeight={'bold'} lineHeight={lineHeight} palette={status} color={'hue50'}>
+      <Text fontSize={fontSize} fontWeight={'bold'} lineHeight={lineHeight} palette={status} color={'hue100'}>
         {children}
       </Text>
     </StyledChipContainer>
