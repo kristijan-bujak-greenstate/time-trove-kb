@@ -44,6 +44,7 @@ export type Theme = {
   };
   colors: {
     neutrals: {
+      hue900: string;
       hue400: string;
       hue300: string;
       hue200: string;

@@ -30,6 +30,7 @@ export const defaultTheme: Theme = {
   },
   colors: {
     neutrals: {
+      hue900: '#000000',
       hue400: '#181E25',
       hue300: '#434346',
       hue200: '#7B828A',
