@@ -4,6 +4,8 @@ export type RemSize =
   | `${number}rem ${number}rem ${number}rem`
   | `${number}rem ${number}rem ${number}rem ${number}rem`;
 
+export type PxSize = `${number}px`;
+
 export type TypographyFontSize = keyof Theme['typography']['fontSize'];
 export type TypographyFontFamily = keyof Theme['typography']['fontFamily'];
 export type TypographyFontWeight = keyof Theme['typography']['fontWeight'];
@@ -13,6 +15,7 @@ export type Colors<T extends Palette> = keyof Theme['colors'][T];
 export type ButtonSize = keyof Theme['dimensions']['button'];
 export type IconSize = keyof Theme['dimensions']['icon'];
 export type ChipSize = keyof Theme['dimensions']['chip'];
+export type BorderRadius = keyof Theme['borderRadius'];
 
 export type Theme = {
   typography: {
@@ -77,6 +80,10 @@ export type Theme = {
       hue100: string;
       hue200: string;
     };
+  };
+  borderRadius: {
+    small: RemSize;
+    medium: RemSize;
   };
   dimensions: {
     button: {

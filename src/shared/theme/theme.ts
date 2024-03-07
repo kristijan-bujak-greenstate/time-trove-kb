@@ -64,6 +64,10 @@ export const defaultTheme: Theme = {
       hue200: '#DF3838',
     },
   },
+  borderRadius: {
+    small: '0.75rem',
+    medium: '1rem',
+  },
   dimensions: {
     button: {
       small: {

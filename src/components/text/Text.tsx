@@ -22,8 +22,8 @@ export type TextProps<T extends Palette> = {
 };
 
 export const Text = <T extends Palette>({
-  fontSize = 'small',
-  lineHeight = 'small',
+  fontSize = 'medium',
+  lineHeight = 'medium',
   fontWeight = 'regular',
   fontFamily = 'inter',
   palette,
