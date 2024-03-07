@@ -27,6 +27,7 @@ export type Theme = {
       extraLarge: string;
       small: string;
       medium: string;
+      extraMedium: string;
       large: string;
       extraSmall: string;
     };

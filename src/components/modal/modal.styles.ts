@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { keyframes } from 'styled-components';
+import { RemSize } from '../../shared/theme/types';
 
 const modalShrinkAnimation = keyframes`
   0% {
@@ -35,7 +36,9 @@ export const StyledModalOverlay = styled.div<{ $isOpen: boolean }>`
   padding: 0 1rem;
 `;
 
-export const StyledModalContent = styled.div<{ $isOpen: boolean }>`
+export const StyledModalContent = styled.div<{ $isOpen: boolean; $maxWidth?: RemSize }>`
+  max-width: ${({ $maxWidth }) => ($maxWidth ? $maxWidth : 'none')};
+  width: ${({ $maxWidth }) => ($maxWidth ? '100%' : 'auto')};
   background-color: ${({ theme }) => theme.colors.neutrals.hue0};
   padding: 1rem;
   border: 1px solid ${({ theme }) => theme.colors.neutrals.hue100};

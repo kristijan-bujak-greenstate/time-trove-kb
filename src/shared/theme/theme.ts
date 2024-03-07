@@ -9,6 +9,7 @@ export const defaultTheme: Theme = {
     fontSize: {
       extraLarge: '2rem',
       large: '1.5rem',
+      extraMedium: '1.25rem',
       medium: '1rem',
       small: '0.875rem',
       extraSmall: '0.75rem',

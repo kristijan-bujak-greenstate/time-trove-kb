@@ -1,15 +1,18 @@
 import { StyledModalOverlay, StyledModalContent } from './modal.styles';
 
+import { RemSize } from '../../shared/theme/types';
+
 export type ModalProps = {
   isOpen: boolean;
   onOverlayClick: () => void;
   children: React.ReactNode;
+  maxWidth?: RemSize;
 };
 
-export const Modal = ({ isOpen = false, onOverlayClick, children }: ModalProps) => {
+export const Modal = ({ isOpen = false, onOverlayClick, maxWidth, children }: ModalProps) => {
   return (
     <StyledModalOverlay $isOpen={isOpen} onClick={onOverlayClick}>
-      <StyledModalContent $isOpen={isOpen} onClick={(e) => e.stopPropagation()}>
+      <StyledModalContent $maxWidth={maxWidth} $isOpen={isOpen} onClick={(e) => e.stopPropagation()}>
         {children}
       </StyledModalContent>
     </StyledModalOverlay>

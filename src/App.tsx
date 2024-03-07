@@ -5,11 +5,9 @@ import { defaultTheme } from './shared/theme/theme';
 
 function App() {
   return (
-    <>
-      <ThemeProvider theme={defaultTheme}>
-        <GlobalStyles />
-      </ThemeProvider>
-    </>
+    <ThemeProvider theme={defaultTheme}>
+      <GlobalStyles />
+    </ThemeProvider>
   );
 }
 

@@ -19,7 +19,8 @@ export const StyledButton = styled.button<{
   align-items: center;
   position: relative;
 
-  border: ${({ theme, $palette }) => ($palette === 'neutrals' ? `1px solid ${theme.colors.neutrals.hue100}` : 'none')};
+  border: ${({ theme, $palette }) =>
+    `1px solid ${$palette === 'neutrals' ? theme.colors.neutrals.hue100 : 'transparent'}`};
 
   &:hover {
     background-color: ${({ theme, $palette }) =>
