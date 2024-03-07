@@ -12,6 +12,7 @@
     "chromatic": "chromatic --exit-zero-on-changes"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.3.4",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-check-file": "^2.7.0",
     "eslint-plugin-import": "^2.29.1",
@@ -22,7 +23,9 @@
     "prettier": "^3.2.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "styled-components": "^6.1.8"
+    "react-hook-form": "^7.51.0",
+    "styled-components": "^6.1.8",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.6.17",
