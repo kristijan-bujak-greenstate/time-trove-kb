@@ -8,12 +8,13 @@ export type ChipProps = {
   size?: ChipSize;
   children: string;
   status: 'success' | 'warning' | 'error';
+  onClick?: () => void;
 };
 
-export const Chip = ({ size = 'large', children, status = 'success' }: ChipProps) => {
+export const Chip = ({ size = 'large', children, status = 'success', onClick }: ChipProps) => {
   const { fontSize, lineHeight } = getFontDetails(size);
   return (
-    <StyledChipContainer $size={size} $status={status}>
+    <StyledChipContainer $size={size} $status={status} onClick={onClick}>
       <Text fontSize={fontSize} fontWeight={'bold'} lineHeight={lineHeight} palette={status} color={'hue100'}>
         {children}
       </Text>
