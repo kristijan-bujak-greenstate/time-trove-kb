@@ -1,10 +1,10 @@
+export type PxSize = `${number}px`;
+
 export type RemSize =
   | `${number}rem`
   | `${number}rem ${number}rem`
   | `${number}rem ${number}rem ${number}rem`
   | `${number}rem ${number}rem ${number}rem ${number}rem`;
-
-export type PxSize = `${number}px`;
 
 export type TypographyFontSize = keyof Theme['typography']['fontSize'];
 export type TypographyFontFamily = keyof Theme['typography']['fontFamily'];
@@ -15,6 +15,7 @@ export type Colors<T extends Palette> = keyof Theme['colors'][T];
 export type ButtonSize = keyof Theme['dimensions']['button'];
 export type IconSize = keyof Theme['dimensions']['icon'];
 export type ChipSize = keyof Theme['dimensions']['chip'];
+export type LogoSize = keyof Theme['logo'];
 export type BorderRadius = keyof Theme['borderRadius'];
 
 export type Theme = {
@@ -119,6 +120,18 @@ export type Theme = {
         padding: RemSize;
         borderRadius: RemSize;
       };
+    };
+  };
+  logo: {
+    large: {
+      width: RemSize;
+      height: RemSize;
+      source: string;
+    };
+    small: {
+      width: RemSize;
+      height: RemSize;
+      source: string;
     };
   };
 };

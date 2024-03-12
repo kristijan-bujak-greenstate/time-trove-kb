@@ -104,4 +104,16 @@ export const defaultTheme: Theme = {
       },
     },
   },
+  logo: {
+    large: {
+      width: '10.25rem',
+      height: '3.5rem',
+      source: 'https://i.postimg.cc/8PjrndBz/LogoFull.png',
+    },
+    small: {
+      width: '3.5rem',
+      height: '3.5rem',
+      source: 'https://i.postimg.cc/RC3HgQTV/Logo-Partial.png',
+    },
+  },
 };
