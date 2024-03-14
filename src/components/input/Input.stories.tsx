@@ -2,9 +2,9 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useForm } from 'react-hook-form';
 
-import { TaskData } from '../../shared/schema/taskSchema';
-import { taskFieldNames } from '../../shared/schema/taskSchema';
-import { taskSchema } from '../../shared/schema/taskSchema';
+import { TaskData } from '../../shared/schemas/taskSchema';
+import { taskFieldNames } from '../../shared/schemas/taskSchema';
+import { taskSchema } from '../../shared/schemas/taskSchema';
 
 import { Input } from './Input';
 import { InputProps } from './Input';

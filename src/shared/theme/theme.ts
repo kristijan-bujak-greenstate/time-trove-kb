@@ -23,6 +23,7 @@ export const defaultTheme: Theme = {
     lineHeight: {
       maxLarge: '2.5rem',
       extraLarge: '2.25rem',
+      larger: '2rem',
       large: '1.75rem',
       medium: '1.5rem',
       small: '1.25rem',
@@ -68,6 +69,7 @@ export const defaultTheme: Theme = {
   borderRadius: {
     small: '0.75rem',
     medium: '1rem',
+    large: '1.25rem',
   },
   dimensions: {
     button: {

@@ -43,6 +43,7 @@ export type Theme = {
       small: string;
       medium: string;
       large: string;
+      larger: string;
       extraLarge: string;
       maxLarge: string;
     };
@@ -86,6 +87,7 @@ export type Theme = {
   borderRadius: {
     small: RemSize;
     medium: RemSize;
+    large: RemSize;
   };
   dimensions: {
     button: {
