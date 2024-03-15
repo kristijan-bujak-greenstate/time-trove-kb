@@ -13,12 +13,7 @@ export const StyledButtonWrapper = styled.div`
 
 export const StyledBottomTextContainer = styled.div`
   display: flex;
-  gap: 0.25rem;
   margin-top: 1.25rem;
-`;
-
-export const StyledLinkContainer = styled.div`
-  cursor: pointer;
 `;
 
 export const StyledPublicForm = styled.div`
@@ -52,4 +47,11 @@ export const StyledCircleIcon = styled.div`
   padding: 0.625rem;
   border-radius: 50%;
   width: fit-content;
+`;
+
+export const StyledTextButton = styled.button`
+  font-size: ${({ theme }) => theme.typography.fontSize.small};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.extraBold};
+  line-height: ${({ theme }) => theme.typography.lineHeight.small};
+  color: ${({ theme }) => theme.colors.primary.hue100};
 `;

@@ -8,10 +8,10 @@ import { Logo } from '../logo/Logo';
 import { Text } from '../text/Text';
 
 import { CircleIcon } from './components/circle-icon/CircleIcon';
+import { TextButton } from './components/text-button/TextButton';
 import {
   StyledForm,
   StyledBottomTextContainer,
-  StyledLinkContainer,
   StyledPublicForm,
   StyledHeadingWrapper,
   StyledButtonWrapper,
@@ -23,11 +23,12 @@ export type PublicFormProps = {
   title: string;
   description: string;
   buttonText: string;
-  bottomDescriptionText: string;
-  bottomTitleText: string;
+  footerDescriptionText: string;
+  footerButtonText: string;
   firstInputProps: InputProps;
   secondInputProps: InputProps;
   onSubmit: () => void;
+  onFooterButtonClick: () => void;
 };
 
 export const PublicForm = ({
@@ -35,11 +36,12 @@ export const PublicForm = ({
   title,
   description,
   buttonText,
-  bottomDescriptionText,
-  bottomTitleText,
+  footerDescriptionText,
+  footerButtonText,
   firstInputProps,
   secondInputProps,
   onSubmit,
+  onFooterButtonClick,
 }: PublicFormProps) => {
   return (
     <StyledPublicForm>
@@ -66,13 +68,10 @@ export const PublicForm = ({
       </Card>
       <StyledBottomTextContainer>
         <Text fontSize={'small'} lineHeight={'small'}>
-          {bottomDescriptionText}
+          {footerDescriptionText}
         </Text>
-        <StyledLinkContainer>
-          <Text fontSize={'small'} lineHeight={'small'} fontWeight={'extraBold'} palette={'primary'} color={'hue100'}>
-            {bottomTitleText}
-          </Text>
-        </StyledLinkContainer>
+        &nbsp;
+        <TextButton onClick={onFooterButtonClick}>{footerButtonText}</TextButton>
       </StyledBottomTextContainer>
     </StyledPublicForm>
   );

@@ -57,8 +57,9 @@ export const Base: Story = {
     title: 'Log in',
     description: 'Use your email to log in to your TimeTrove Dashboard.',
     buttonText: 'Log in',
-    bottomDescriptionText: 'Don’t have an account yet?',
-    bottomTitleText: 'Sign up',
+    footerDescriptionText: 'Don’t have an account yet?',
+    footerButtonText: 'Sign up',
+    onFooterButtonClick: () => console.log('Bottom button clicked!'),
     firstInputProps: {
       label: 'Email',
       type: 'text',
