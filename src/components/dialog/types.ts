@@ -1,4 +1,4 @@
-export type DialogBaseProps = {
+type DialogBaseProps = {
   isOpen: boolean;
   onOverlayClick: () => void;
   status: 'warning' | 'error' | 'success';
@@ -8,14 +8,14 @@ export type DialogBaseProps = {
   title: string;
 };
 
-export type DialogWithSecondaryButtonProps = DialogBaseProps & {
-  showSecondaryButton?: true;
+type DialogWithSecondaryButtonProps = DialogBaseProps & {
   onSecondaryButtonClick: () => void;
   secondaryButtonText: string;
 };
 
-export type DialogWithoutSecondaryButtonProps = DialogBaseProps & {
-  showSecondaryButton?: false;
+type DialogWithoutSecondaryButtonProps = DialogBaseProps & {
+  onSecondaryButtonClick?: never;
+  secondaryButtonText?: never;
 };
 
 export type DialogProps = DialogWithSecondaryButtonProps | DialogWithoutSecondaryButtonProps;

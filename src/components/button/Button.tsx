@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import { Palette, ButtonSize } from '../../shared/theme/types';
+import { Palette, ButtonSize, TypographyFontWeight } from '../../shared/theme/types';
 import { Spinner } from '../spinner/Spinner';
 import { Text } from '../text/Text';
 
@@ -15,6 +15,7 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   size?: ButtonSize;
   palette?: Palette;
   fill?: boolean;
+  fontWeight?: TypographyFontWeight;
 };
 
 export const Button = memo(
@@ -25,6 +26,7 @@ export const Button = memo(
     palette = 'success',
     isLoading = false,
     disabled,
+    fontWeight = 'extraBold',
     ...restProps
   }: ButtonProps) => {
     const { fontSize, lineHeight } = getFontDetails(size);
@@ -44,7 +46,7 @@ export const Button = memo(
         </StyledSpinnerWrapper>
         <Text
           fontSize={fontSize}
-          fontWeight={'extraBold'}
+          fontWeight={fontWeight}
           lineHeight={lineHeight}
           fontFamily={'inter'}
           palette={'neutrals'}

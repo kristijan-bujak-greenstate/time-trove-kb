@@ -32,8 +32,3 @@ export const StyledTextContainer = styled.div`
   flex-direction: column;
   gap: 0.5rem;
 `;
-
-export const StyledButtonWrapper = styled.div<{ $show?: boolean }>`
-  display: ${({ $show }) => ($show ? 'block' : 'none')};
-  width: 100%;
-`;

@@ -17,7 +17,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const StatefulDialog = ({ isOpen = false, onPrimaryButtonClick, ...restProps }: DialogProps) => {
+const StatefulDialog = ({ isOpen = false, ...restProps }: DialogProps) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(isOpen);
 
   const openModal = () => {
@@ -35,27 +35,28 @@ const StatefulDialog = ({ isOpen = false, onPrimaryButtonClick, ...restProps }: 
   return (
     <>
       <button onClick={openModal}>Open Modal</button>
-      <Dialog
-        {...restProps}
-        isOpen={isModalOpen}
-        onPrimaryButtonClick={onPrimaryButtonClick}
-        onOverlayClick={closeModal}
-      />
+      <Dialog {...restProps} isOpen={isModalOpen} onOverlayClick={closeModal} />
     </>
   );
 };
 
-export const Base: Story = {
+export const DialogWithoutSecondaryButton: Story = {
   args: {
     isOpen: false,
     onPrimaryButtonClick: () => console.log('Primary button clicked'),
     title: 'Warning title',
     description: 'Are you sure you want to?',
     status: 'warning',
-    showSecondaryButton: true,
     primaryButtonText: 'Confirm',
+  },
+  render: (args) => <StatefulDialog {...args} />,
+};
+
+export const DialogWithSecondaryButton: Story = {
+  args: {
+    ...DialogWithoutSecondaryButton.args,
     secondaryButtonText: 'Cancel',
     onSecondaryButtonClick: () => console.log('Secondary button clicked'),
   },
-  render: ({ ...args }) => <StatefulDialog {...args} />,
+  render: (args) => <StatefulDialog {...args} />,
 };
