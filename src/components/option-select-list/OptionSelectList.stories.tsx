@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState, useEffect } from 'react';
 
+import { ChipStatus } from '../../shared/enums/chipStatus';
+
 import { OptionSelectList, OptionSelectListProps, OptionSelectPriority } from './OptionSelectList';
 
 const meta = {
@@ -18,17 +20,17 @@ type Story = StoryObj<typeof meta>;
 const selectOptionsItems: OptionSelectPriority[] = [
   {
     id: '1',
-    status: 'success',
+    status: ChipStatus.SUCCESS,
     value: 'Low',
   },
   {
     id: '2',
-    status: 'warning',
+    status: ChipStatus.WARNING,
     value: 'Medium',
   },
   {
     id: '3',
-    status: 'error',
+    status: ChipStatus.ERROR,
     value: 'High',
   },
 ];
@@ -68,5 +70,5 @@ export const Base: Story = {
     isDisabled: false,
     selectOptionList: selectOptionsItems,
   },
-  render: ({ ...args }) => <StatefulOptionSelectList {...args} />,
+  render: (args) => <StatefulOptionSelectList {...args} />,
 };

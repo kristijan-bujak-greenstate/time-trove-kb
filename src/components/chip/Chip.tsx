@@ -1,3 +1,4 @@
+import { ChipStatus } from '../../shared/enums/chipStatus';
 import { ChipSize } from '../../shared/theme/types';
 import { Text } from '../text/Text';
 
@@ -7,11 +8,11 @@ import { getFontDetails } from './getFontDetailsChip';
 export type ChipProps = {
   size?: ChipSize;
   children: string;
-  status: 'success' | 'warning' | 'error';
+  status: ChipStatus;
   onClick?: () => void;
 };
 
-export const Chip = ({ size = 'large', children, status = 'success', onClick }: ChipProps) => {
+export const Chip = ({ size = 'large', children, status, onClick }: ChipProps) => {
   const { fontSize, lineHeight } = getFontDetails(size);
   return (
     <StyledChipContainer $size={size} $status={status} onClick={onClick}>

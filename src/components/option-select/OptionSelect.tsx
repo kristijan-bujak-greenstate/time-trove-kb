@@ -1,11 +1,12 @@
-import { Chip, ChipProps } from '../chip/Chip';
+import { ChipStatus } from '../../shared/enums/chipStatus';
+import { Chip } from '../chip/Chip';
 import { RadioButton } from '../radio-button/RadioButton';
 
 import { StyledOptionSelect } from './optionSelect.styles';
 
 export type OptionSelectProps = {
   chipText: string;
-  chipStatus: ChipProps['status'];
+  chipStatus: ChipStatus;
   isSelected?: boolean;
   isDisabled?: boolean;
   hasError?: boolean;

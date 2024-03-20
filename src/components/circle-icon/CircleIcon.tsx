@@ -1,7 +1,8 @@
 import { ComponentType } from 'react';
 
-import { ThemedIcon } from '../../../themed-icon/ThemedIcon';
-import { StyledCircleIcon } from '../../publicForm.styles';
+import { ThemedIcon } from '../themed-icon/ThemedIcon';
+
+import { StyledCircleIcon } from './circleIcon.styles';
 
 export type CircleIconProps = {
   icon: ComponentType;

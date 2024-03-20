@@ -42,13 +42,6 @@ export const StyledHeadingWrapper = styled.div`
   margin: 0.75rem 0;
 `;
 
-export const StyledCircleIcon = styled.div`
-  background-color: ${({ theme }) => theme.colors.neutrals.hue50};
-  padding: 0.625rem;
-  border-radius: 50%;
-  width: fit-content;
-`;
-
 export const StyledTextButton = styled.button`
   font-size: ${({ theme }) => theme.typography.fontSize.small};
   font-weight: ${({ theme }) => theme.typography.fontWeight.extraBold};

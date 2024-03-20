@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useEffect, useState } from 'react';
 
+import { ChipStatus } from '../../shared/enums/chipStatus';
+
 import { OptionSelect, OptionSelectProps } from './OptionSelect';
 
 const meta = {
@@ -34,10 +36,10 @@ export const Base: Story = {
     isDisabled: false,
     isSelected: false,
     hasError: false,
-    chipStatus: 'success',
+    chipStatus: ChipStatus.SUCCESS,
     chipText: 'Low',
   },
-  render: ({ ...args }) => <StatefulOptionSelect {...args} />,
+  render: (args) => <StatefulOptionSelect {...args} />,
 };
 
 export const Error: Story = {

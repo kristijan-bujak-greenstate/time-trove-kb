@@ -1,4 +1,4 @@
-import { ChipProps } from '../chip/Chip';
+import { ChipStatus } from '../../shared/enums/chipStatus';
 import { OptionSelect } from '../option-select/OptionSelect';
 
 import { StyledOptionSelectList } from './optionSelectList.styles';
@@ -13,7 +13,7 @@ export type OptionSelectListProps = {
 
 export type OptionSelectPriority = {
   id: string;
-  status: ChipProps['status'];
+  status: ChipStatus;
   value: string;
 };
 

@@ -19,6 +19,10 @@ export const RadioButton = ({
   hasError = false,
   onClick,
 }: RadioProps) => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    onClick();
+  };
   return (
     <StyledRadioButton
       $size={size}
@@ -26,7 +30,7 @@ export const RadioButton = ({
       $isSelected={isSelected}
       $hasError={hasError}
       disabled={disabled}
-      onClick={onClick}
+      onClick={handleClick}
     />
   );
 };

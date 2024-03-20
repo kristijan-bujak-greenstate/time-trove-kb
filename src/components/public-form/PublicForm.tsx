@@ -2,12 +2,12 @@ import { ComponentType } from 'react';
 
 import { Button } from '../button/Button';
 import { Card } from '../card/Card';
+import { CircleIcon } from '../circle-icon/CircleIcon';
 import { Heading } from '../heading/Heading';
 import { Input, InputProps } from '../input/Input';
 import { Logo } from '../logo/Logo';
 import { Text } from '../text/Text';
 
-import { CircleIcon } from './components/circle-icon/CircleIcon';
 import { TextButton } from './components/text-button/TextButton';
 import {
   StyledForm,

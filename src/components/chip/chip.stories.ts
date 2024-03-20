@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { ChipStatus } from '../../shared/enums/chipStatus';
+
 import { Chip } from './Chip';
 
 const meta = {
@@ -17,7 +19,7 @@ type Story = StoryObj<typeof meta>;
 export const Base: Story = {
   args: {
     size: 'large',
-    status: 'success',
+    status: ChipStatus.SUCCESS,
     children: 'Chip',
   },
 };

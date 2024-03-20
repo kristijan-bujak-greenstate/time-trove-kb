@@ -34,7 +34,6 @@ export const StyledButton = styled.button<{
 
   &:disabled {
     background-color: ${({ theme }) => theme.colors.neutrals.hue50};
-    border: none;
     cursor: default;
   }
   ${StyledText} {
