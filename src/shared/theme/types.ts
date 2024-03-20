@@ -54,6 +54,7 @@ export type Theme = {
       hue400: string;
       hue300: string;
       hue200: string;
+      hue150: string;
       hue100: string;
       hue50: string;
       hue0: string;
@@ -62,6 +63,8 @@ export type Theme = {
       hue50: string;
       hue100: string;
       hue200: string;
+      hue250: string;
+      hue300: string;
     };
     success: {
       hue25: string;

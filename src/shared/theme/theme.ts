@@ -36,14 +36,18 @@ export const defaultTheme: Theme = {
       hue400: '#181E25',
       hue300: '#434346',
       hue200: '#7B828A',
+      hue150: '#6F7492',
       hue100: '#C9D2DE',
       hue50: '#F3F4F8',
+
       hue0: '#FFFFFF',
     },
     primary: {
       hue50: '#9867FF',
       hue100: '#7E44F8',
       hue200: '#733CE5',
+      hue250: '#F9F9FB',
+      hue300: '#3381FF',
     },
     success: {
       hue25: '#e6ffe6',
