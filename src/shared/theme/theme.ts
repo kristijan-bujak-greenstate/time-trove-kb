@@ -122,4 +122,5 @@ export const defaultTheme: Theme = {
       source: 'https://i.postimg.cc/RC3HgQTV/Logo-Partial.png',
     },
   },
+  pageWidth: '77.5rem',
 };

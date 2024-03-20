@@ -17,6 +17,7 @@ export type IconSize = keyof Theme['dimensions']['icon'];
 export type ChipSize = keyof Theme['dimensions']['chip'];
 export type LogoSize = keyof Theme['logo'];
 export type BorderRadius = keyof Theme['borderRadius'];
+export type PageWidth = keyof Theme['pageWidth'];
 
 export type Theme = {
   typography: {
@@ -139,4 +140,5 @@ export type Theme = {
       source: string;
     };
   };
+  pageWidth: RemSize;
 };
