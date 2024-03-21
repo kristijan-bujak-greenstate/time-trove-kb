@@ -3,12 +3,12 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { useForm } from 'react-hook-form';
 
 import { EditIcon } from '../../icons/EditIcon';
+import { ChipStatus } from '../../shared/enums/chipStatus';
 import { TaskData, taskFieldNames, taskSchema } from '../../shared/schemas/taskSchema';
 import { OptionSelectPriority } from '../option-select-list/OptionSelectList';
 
 import { TaskForm } from './TaskForm';
 import { TaskFormProps } from './types';
-import { ChipStatus } from '../../shared/enums/chipStatus';
 
 const meta = {
   title: 'Example/Task Form',

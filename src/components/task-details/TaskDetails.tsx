@@ -1,5 +1,6 @@
 import { ComponentType } from 'react';
 
+import { ChipStatus } from '../../shared/enums/chipStatus';
 import { Button } from '../button/Button';
 import { Chip } from '../chip/Chip';
 import { CircleIcon } from '../circle-icon/CircleIcon';
@@ -13,7 +14,6 @@ import {
   StyledIconHeadingContainer,
   StyledTaskDetailsContainer,
 } from './taskDetails.styles';
-import { ChipStatus } from '../../shared/enums/chipStatus';
 
 export type TaskDetailsProps = {
   headerIcon: ComponentType;

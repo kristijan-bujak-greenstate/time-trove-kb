@@ -43,6 +43,7 @@ export const defaultTheme: Theme = {
       hue0: '#FFFFFF',
     },
     primary: {
+      hue0: '#FFFFFF',
       hue50: '#9867FF',
       hue100: '#7E44F8',
       hue200: '#733CE5',
@@ -50,12 +51,14 @@ export const defaultTheme: Theme = {
       hue300: '#3381FF',
     },
     success: {
+      hue0: '#FFFFFF',
       hue25: '#e6ffe6',
       hue50: '#5FEA7D',
       hue100: '#2FC850',
       hue200: '#2BAA47',
     },
     warning: {
+      hue0: '#FFFFFF',
       hue25: '#fff5e6',
       hue50: '#FFA666',
       hue100: '#FF9142',

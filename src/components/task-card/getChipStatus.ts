@@ -1,15 +1,15 @@
-import { ChipProps } from '../chip/Chip';
+import { ChipStatus } from '../../shared/enums/chipStatus';
 
 import { PriorityLevel } from './enum';
 
-export const getChipStatus = (priority: PriorityLevel): ChipProps['status'] => {
+export const getChipStatus = (priority: PriorityLevel): ChipStatus => {
   switch (priority) {
     case 'High':
-      return 'success';
+      return ChipStatus.SUCCESS;
     case 'Medium':
-      return 'warning';
+      return ChipStatus.WARNING;
     case 'Low':
-      return 'error';
+      return ChipStatus.ERROR;
     default:
       throw new Error(`Invalid priority level: ${priority}`);
   }

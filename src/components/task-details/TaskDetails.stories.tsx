@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { FileIcon } from '../../icons/FileIcon';
+import { ChipStatus } from '../../shared/enums/chipStatus';
 
 import { TaskDetails } from './TaskDetails';
-import { ChipStatus } from '../../shared/enums/chipStatus';
 
 const meta = {
   title: 'Example/Task Details',
