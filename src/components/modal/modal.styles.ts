@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { keyframes } from 'styled-components';
+
 import { RemSize } from '../../shared/theme/types';
 
 const modalShrinkAnimation = keyframes`

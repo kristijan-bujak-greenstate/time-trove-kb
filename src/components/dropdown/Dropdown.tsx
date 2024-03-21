@@ -1,7 +1,6 @@
 import { useRef, useState } from 'react';
 
 import { useOutsideClick } from '../../hooks/useOutsideClick';
-import { ArrowDown } from '../../icons/ArrowDown';
 import { ArrowUp } from '../../icons/ArrowUp';
 import { Success } from '../../icons/Success';
 import { Text } from '../text/Text';
@@ -15,6 +14,8 @@ import {
   StyledOption,
   StyledSelectedOptionContainer,
   StyledSelect,
+  StyledArrowWrapper,
+  StyledTextWrapper,
 } from './dropdown.styles';
 import { DropdownOption } from './types';
 
@@ -58,15 +59,19 @@ export const Dropdown = ({
               <StyledImage src={selectedOption.imageUrl} />
             </StyledImageWrapper>
           )}
-          <Text
-            palette={'neutrals'}
-            color={isDisabled ? 'hue150' : 'hue400'}
-            fontWeight={!selectedOption || isOpenDropdown ? 'regular' : 'bold'}
-          >
-            {selectedOption?.value || defaultText}
-          </Text>
+          <StyledTextWrapper>
+            <Text
+              palette={'neutrals'}
+              color={isDisabled ? 'hue150' : 'hue400'}
+              fontWeight={!selectedOption || isOpenDropdown ? 'regular' : 'bold'}
+            >
+              {selectedOption?.value || defaultText}
+            </Text>
+          </StyledTextWrapper>
         </StyledSelectedOptionContainer>
-        <ThemedIcon icon={isOpenDropdown ? ArrowUp : ArrowDown} size={'medium'} palette={'neutrals'} color={'hue400'} />
+        <StyledArrowWrapper $isOpenDropdown={isOpenDropdown}>
+          <ThemedIcon icon={ArrowUp} size={'medium'} palette={'neutrals'} color={'hue400'} />
+        </StyledArrowWrapper>
       </StyledSelect>
 
       <StyledDropdownOptions $isOpen={isOpenDropdown} $type={type}>

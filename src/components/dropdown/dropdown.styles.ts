@@ -6,6 +6,7 @@ export const StyledSelect = styled.div<{ $type: DropdownProps['type']; $isDisabl
   padding: 0.5rem 0.75rem;
   display: flex;
   justify-content: space-between;
+  gap: 0.5rem;
   align-items: center;
   border: 1px solid ${({ theme }) => theme.colors.neutrals.hue50};
   border-radius: 0.5rem;
@@ -15,14 +16,15 @@ export const StyledSelect = styled.div<{ $type: DropdownProps['type']; $isDisabl
 `;
 
 export const StyledDropdownOptions = styled.div<{ $isOpen: boolean; $type: DropdownProps['type'] }>`
-  display: ${({ $isOpen }) => ($isOpen ? 'block' : 'none')};
   border: 1px solid ${({ theme }) => theme.colors.neutrals.hue50};
   border-radius: 0.5rem;
   width: 100%;
   position: absolute;
   z-index: 100;
   background-color: ${({ theme }) => theme.colors.neutrals.hue0};
-  transform: translateY(0.5rem);
+  transform-origin: top;
+  transform: scale(${({ $isOpen }) => ($isOpen ? '1' : '0')});
+  transition: transform 150ms ease-out;
 `;
 
 export const StyledOption = styled.div<{ $isSelected: boolean }>`
@@ -34,6 +36,7 @@ export const StyledOption = styled.div<{ $isSelected: boolean }>`
   &:hover {
     background-color: ${({ theme, $isSelected }) => ($isSelected ? 'none' : theme.colors.primary.hue250)};
   }
+  transform: translateY(0.5rem);
 `;
 
 export const StyledImageWrapper = styled.div`
@@ -51,6 +54,18 @@ export const StyledSelectedOptionContainer = styled.div`
   display: flex;
 `;
 
+export const StyledTextWrapper = styled.div`
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+`;
+
 export const StyledDropdown = styled.div`
   position: relative;
+`;
+
+export const StyledArrowWrapper = styled.div<{ $isOpenDropdown: boolean }>`
+  transform: ${({ $isOpenDropdown }) => ($isOpenDropdown ? 'rotate(0)' : 'rotate(-180deg)')};
+  transition: transform 150ms ease-out;
 `;
