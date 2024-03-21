@@ -11,3 +11,6 @@ export * from './Success';
 export * from './SuccessCheckIcon';
 export * from './ValidateIcon';
 export * from './XIcon';
+export * from './Error404';
+export * from './NothingHereYetIcon';
+export * from './SomethingWentWrongIcon';
