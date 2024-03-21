@@ -1,5 +1,6 @@
 import { DeleteIcon } from '../../icons/DeleteIcon';
 import { EditIcon } from '../../icons/EditIcon';
+import { ChipStatus } from '../../shared/enums/chipStatus';
 import { Card } from '../card/Card';
 import { Chip } from '../chip/Chip';
 import { IconButton } from '../icon-button/IconButton';
@@ -41,7 +42,7 @@ export const TaskCard = ({
     <Card hasHoverActiveStyles={true}>
       <StyledHeaderContainer>
         <Text fontWeight={'extraBold'}>{title}</Text>
-        <Chip status={isDone ? 'success' : 'warning'}>{chipText}</Chip>
+        <Chip status={isDone ? ChipStatus.SUCCESS : ChipStatus.WARNING}>{chipText}</Chip>
       </StyledHeaderContainer>
       <Text fontSize={'small'} lineHeight={'small'} palette={'neutrals'} color={'hue300'}>
         {description}
