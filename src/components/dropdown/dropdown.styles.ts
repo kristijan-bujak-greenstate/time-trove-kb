@@ -8,7 +8,7 @@ export const StyledSelect = styled.div<{ $type: DropdownProps['type']; $isDisabl
   justify-content: space-between;
   gap: 0.5rem;
   align-items: center;
-  border: 1px solid ${({ theme }) => theme.colors.neutrals.hue50};
+  border: 1px solid ${({ theme }) => theme.colors.neutrals.hue100};
   border-radius: 0.5rem;
   cursor: pointer;
   background-color: ${({ theme, $isDisabled }) =>
@@ -16,7 +16,7 @@ export const StyledSelect = styled.div<{ $type: DropdownProps['type']; $isDisabl
 `;
 
 export const StyledDropdownOptions = styled.div<{ $isOpen: boolean; $type: DropdownProps['type'] }>`
-  border: 1px solid ${({ theme }) => theme.colors.neutrals.hue50};
+  border: 1px solid ${({ theme }) => theme.colors.neutrals.hue100};
   border-radius: 0.5rem;
   width: 100%;
   position: absolute;
@@ -25,6 +25,11 @@ export const StyledDropdownOptions = styled.div<{ $isOpen: boolean; $type: Dropd
   transform-origin: top;
   transform: scale(${({ $isOpen }) => ($isOpen ? '1' : '0')});
   transition: transform 150ms ease-out;
+  margin-top: 0.5rem;
+  box-shadow:
+    0px 4px 6px -2px #00000008,
+    0px 12px 16px -4px #00000014;
+  overflow: hidden;
 `;
 
 export const StyledOption = styled.div<{ $isSelected: boolean }>`
@@ -36,7 +41,6 @@ export const StyledOption = styled.div<{ $isSelected: boolean }>`
   &:hover {
     background-color: ${({ theme, $isSelected }) => ($isSelected ? 'none' : theme.colors.primary.hue250)};
   }
-  transform: translateY(0.5rem);
 `;
 
 export const StyledImageWrapper = styled.div`

@@ -40,6 +40,7 @@ export const StyledInputWrapper = styled.div`
 
 export const StyledHeadingWrapper = styled.div`
   margin: 0.75rem 0;
+  text-align: center;
 `;
 
 export const StyledTextButton = styled.button`
@@ -47,4 +48,9 @@ export const StyledTextButton = styled.button`
   font-weight: ${({ theme }) => theme.typography.fontWeight.extraBold};
   line-height: ${({ theme }) => theme.typography.lineHeight.small};
   color: ${({ theme }) => theme.colors.primary.hue100};
+  white-space: nowrap;
+`;
+
+export const StyledDescriptionWrapper = styled.div`
+  text-align: center;
 `;

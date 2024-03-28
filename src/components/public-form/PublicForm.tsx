@@ -16,6 +16,7 @@ import {
   StyledHeadingWrapper,
   StyledButtonWrapper,
   StyledInputWrapper,
+  StyledDescriptionWrapper,
 } from './publicForm.styles';
 
 export type PublicFormProps = {
@@ -51,9 +52,11 @@ export const PublicForm = ({
         <StyledHeadingWrapper>
           <Heading size={'large'}>{title}</Heading>
         </StyledHeadingWrapper>
-        <Text fontSize={'small'} lineHeight={'small'} palette={'neutrals'} color={'hue200'}>
-          {description}
-        </Text>
+        <StyledDescriptionWrapper>
+          <Text fontSize={'small'} lineHeight={'small'} palette={'neutrals'} color={'hue200'}>
+            {description}
+          </Text>
+        </StyledDescriptionWrapper>
         <StyledForm onSubmit={onSubmit}>
           <StyledInputWrapper>
             <Input {...firstInputProps} />
