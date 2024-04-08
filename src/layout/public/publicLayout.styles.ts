@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { breakpoints } from '../shared/breakpoints/breakpoints';
+import { breakpoints } from '../../shared/breakpoints/breakpoints';
 
 export const StyledPublicLayout = styled.div`
   position: relative;

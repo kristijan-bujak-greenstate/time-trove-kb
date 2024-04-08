@@ -1,13 +1,15 @@
 import styled from 'styled-components';
 
-import { IconSize } from '../../shared/theme/types';
+import { IconSize, Palette } from '../../shared/theme/types';
 
 export const StyledLoadingSpinner = styled.span<{
   $size: IconSize;
+  $palette: Palette;
 }>`
   width: ${({ theme, $size }) => theme.dimensions.icon[$size]};
   height: ${({ theme, $size }) => theme.dimensions.icon[$size]};
-  border: 2px solid ${({ theme }) => theme.colors.neutrals.hue0};
+  border: 2px solid
+    ${({ theme, $palette }) => ($palette === 'neutrals' ? theme.colors.neutrals.hue0 : theme.colors[$palette].hue100)};
   border-bottom-color: transparent;
   border-radius: 50%;
   display: inline-block;

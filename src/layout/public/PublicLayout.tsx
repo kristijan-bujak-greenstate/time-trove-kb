@@ -1,9 +1,9 @@
 import { Outlet } from 'react-router-dom';
 
-import { Dropdown } from '../components';
-import { DropdownOption } from '../components/dropdown/types';
-import { useLanguageContext } from '../context/LanguageContext';
-import { languageOptions } from '../shared/data/languageOptions';
+import { Dropdown } from '../../components';
+import { DropdownOption } from '../../components/dropdown/types';
+import { useLanguageContext } from '../../context/LanguageContext';
+import { languageOptions } from '../../shared/data/languageOptions';
 
 import { StyledDropdownWrapper, StyledOutletWrapper, StyledPublicLayout } from './publicLayout.styles';
 

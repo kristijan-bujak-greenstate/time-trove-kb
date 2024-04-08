@@ -1,19 +1,8 @@
-import { ComponentType } from 'react';
-
 import { Button } from '..';
 import { Text } from '..';
-import { Palette } from '../../shared/theme/types';
 
 import { ButtonWrapper, StyledDataStatusContainer } from './dataStatus.styles';
-
-type DataStatusProps = {
-  icon: ComponentType;
-  onClick: () => void;
-  title: string;
-  description: string;
-  buttonText: string;
-  buttonPalette?: Palette;
-};
+import { DataStatusProps } from './types';
 
 export const DataStatus = ({
   onClick,
@@ -32,11 +21,13 @@ export const DataStatus = ({
       <Text lineHeight={'medium'} fontSize={'medium'} palette={'neutrals'} color={'hue300'}>
         {description}
       </Text>
-      <ButtonWrapper>
-        <Button palette={buttonPalette} fill={true} size={'extraLarge'} onClick={onClick}>
-          {buttonText}
-        </Button>
-      </ButtonWrapper>
+      {buttonText && (
+        <ButtonWrapper>
+          <Button palette={buttonPalette} fill={true} size={'extraLarge'} onClick={onClick}>
+            {buttonText}
+          </Button>
+        </ButtonWrapper>
+      )}
     </StyledDataStatusContainer>
   );
 };

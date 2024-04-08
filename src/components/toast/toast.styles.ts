@@ -16,6 +16,7 @@ export const StyledTostContainer = styled.div<{ $palette: Palette; $isOpen: bool
   width: calc(100% - 2rem);
   border: 1px solid ${({ theme }) => theme.colors.neutrals.hue100};
   border-bottom: 0;
+  background-color: ${({ theme }) => theme.colors.neutrals.hue0};
   box-shadow:
     0px 1px 12px 0px #00000014,
     0px -3px 0px 0px ${({ theme, $palette }) => theme.colors[$palette].hue100} inset;
