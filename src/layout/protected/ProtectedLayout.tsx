@@ -1,10 +1,12 @@
 import { Outlet, useNavigate } from 'react-router-dom';
 
 import { Navigation } from '../../components';
-import { removeToken } from '../../helpers/tokenHelpers';
+import { PageShell } from '../../components/page-shell/PageShell';
 import { useTranslation } from '../../hooks/useTranslation';
 import { LogoutIcon } from '../../icons';
 import { routes } from '../../router/routes';
+
+import { StyledPageShellWrapper } from './protectedLayout.styles';
 
 export const ProtectedLayout = () => {
   const navigate = useNavigate();
@@ -12,7 +14,8 @@ export const ProtectedLayout = () => {
   const { t } = useTranslation();
 
   const handleLogout = () => {
-    removeToken();
+    // TO DO when rebased
+    // removeToken();
     navigate(routes.login);
   };
 
@@ -29,7 +32,11 @@ export const ProtectedLayout = () => {
         onButtonClick={handleCreateTask}
         onIconButtonClick={handleLogout}
       />
-      <Outlet />
+      <StyledPageShellWrapper>
+        <PageShell>
+          <Outlet />
+        </PageShell>
+      </StyledPageShellWrapper>
     </>
   );
 };
