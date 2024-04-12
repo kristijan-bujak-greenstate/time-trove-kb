@@ -1,6 +1,6 @@
-import { StyledModalOverlay, StyledModalContent } from './modal.styles';
-
 import { RemSize } from '../../shared/theme/types';
+
+import { StyledModalOverlay, StyledModalContent } from './modal.styles';
 
 export type ModalProps = {
   isOpen: boolean;

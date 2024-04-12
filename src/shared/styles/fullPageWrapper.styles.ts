@@ -8,3 +8,14 @@ export const StyledSpinnerWrapperFullPage = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+export const StyledFullPageWrapper = styled.div`
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  overflow: auto;
+`;

@@ -1,7 +1,7 @@
 export const NothingHereYetIcon = () => {
   return (
     <svg width="180" height="192" viewBox="0 0 180 192" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <g clip-path="url(#clip0_3477_14468)">
+      <g clipPath="url(#clip0_3477_14468)">
         <path
           opacity="0.1"
           d="M89.9964 180.222C139.101 180.222 178.909 139.878 178.909 90.1108C178.909 40.344 139.101 0 89.9964 0C40.8914 0 1.08398 40.344 1.08398 90.1108C1.08398 139.878 40.8914 180.222 89.9964 180.222Z"

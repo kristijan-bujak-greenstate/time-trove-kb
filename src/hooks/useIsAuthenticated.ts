@@ -1,5 +1,4 @@
 // eslint-disable-next-line @typescript-eslint/naming-convention, import/order
-import { AxiosResponse } from 'axios';
 
 import { useQuery } from 'react-query';
 
@@ -17,7 +16,7 @@ export const useIsAuthenticated = () => {
     data: tasks,
     isLoading: isLoadingTasks,
     isError: isErrorTasks,
-  } = useQuery<AxiosResponse<TasksResponse>>({
+  } = useQuery<TasksResponse>({
     enabled: !!token,
     queryKey: getQueryKey(QueryKeys.TASKS),
     queryFn: () => axiosInstance.get(endpoints.getTasks),

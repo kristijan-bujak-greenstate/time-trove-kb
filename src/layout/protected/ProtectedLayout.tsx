@@ -1,7 +1,9 @@
+import { useQueryClient } from 'react-query';
 import { Outlet, useNavigate } from 'react-router-dom';
 
 import { Navigation } from '../../components';
 import { PageShell } from '../../components/page-shell/PageShell';
+import { removeToken } from '../../helpers/tokenHelpers';
 import { useTranslation } from '../../hooks/useTranslation';
 import { LogoutIcon } from '../../icons';
 import { routes } from '../../router/routes';
@@ -13,9 +15,11 @@ export const ProtectedLayout = () => {
 
   const { t } = useTranslation();
 
+  const queryClient = useQueryClient();
+
   const handleLogout = () => {
-    // TO DO when rebased
-    // removeToken();
+    removeToken();
+    queryClient.clear();
     navigate(routes.login);
   };
 

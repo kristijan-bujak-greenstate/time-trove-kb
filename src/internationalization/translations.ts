@@ -52,6 +52,22 @@ export const translations: TranslationLanguages = {
 
     /* TRANSLATION MISSING */
     translationMissing: 'Translation missing',
+
+    /* SOMETHING WENT WRONG */
+    backendErrorTitle: 'Something went wrong',
+    backendErrorDescription: 'Ann error occured while attempting to retrieve data from the server',
+    backendErrorButtonText: 'Try again',
+
+    /* NOTHING HERE YET */
+    emptyTasksTitle: 'Nothing here yet!',
+    emptyTasksDescription: 'There are no tasks created',
+    emptyTasksButtonText: 'Create task',
+
+    /* NOT FOUND 404 PAGE */
+    notFoundPageTitle: 'Page not found',
+    notFoundPageDescription:
+      'We apologize for the inconvenience, but it appears that the page you are attempting to access is currently unavailable. This might be due to a temporary technical issue or an outdated link.',
+    notFoundPageButtonText: 'Back home',
   },
 
   de: {
@@ -102,5 +118,21 @@ export const translations: TranslationLanguages = {
 
     /* TRANSLATION MISSING */
     translationMissing: 'Übersetzung fehlt',
+
+    /* SOMETHING WENT WRONG */
+    backendErrorTitle: 'Etwas ist schiefgegangen',
+    backendErrorDescription: 'Ein Fehler ist aufgetreten, während versucht wurde, Daten vom Server abzurufen',
+    backendErrorButtonText: 'Erneut versuchen',
+
+    /* NOTHING HERE YET */
+    emptyTasksTitle: 'Hier ist noch nichts!',
+    emptyTasksDescription: 'Es wurden noch keine Aufgaben erstellt',
+    emptyTasksButtonText: 'Aufgabe erstellen',
+
+    /* NOT FOUND 404 PAGE */
+    notFoundPageTitle: 'Seite nicht gefunden',
+    notFoundPageDescription:
+      'Wir entschuldigen uns für die Unannehmlichkeiten, aber es scheint, dass die von Ihnen gesuchte Seite derzeit nicht verfügbar ist. Dies könnte auf ein vorübergehendes technisches Problem oder einen veralteten Link zurückzuführen sein.',
+    notFoundPageButtonText: 'Zurück zur Startseite',
   },
 };

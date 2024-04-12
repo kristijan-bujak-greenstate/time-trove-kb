@@ -4,9 +4,9 @@ import { ProtectedLayout } from '../layout/protected/ProtectedLayout';
 import { ProtectedRoute } from '../layout/protected/ProtectedRoute';
 import { PublicLayout } from '../layout/public/PublicLayout';
 import { PublicRoute } from '../layout/public/PublicRoute';
+import { NotFound } from '../pages/not-found/NotFound';
 import { Home } from '../pages/protected/home/Home';
 import { Login } from '../pages/public/login/Login';
-import { NotFound } from '../pages/public/not-found/NotFound';
 import { SignUp } from '../pages/public/sign-up/SignUp';
 
 import { routes } from './routes';
