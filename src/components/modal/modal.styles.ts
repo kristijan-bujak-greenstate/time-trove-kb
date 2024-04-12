@@ -35,6 +35,7 @@ export const StyledModalOverlay = styled.div<{ $isOpen: boolean }>`
   justify-content: center;
   align-items: center;
   padding: 0 1rem;
+  z-index: 1;
 `;
 
 export const StyledModalContent = styled.div<{ $isOpen: boolean; $maxWidth?: RemSize }>`

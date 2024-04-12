@@ -23,6 +23,12 @@ export const translations: TranslationLanguages = {
     loginToastTitle: 'Error!',
     loginToastDescription: 'Something went wrong! Please try again',
 
+    //logout dialog
+    logoutDialogTitle: 'Log out',
+    logoutDialogDescription: 'Are you sure you want to log out?',
+    logoutDialogPrimaryButton: 'Log out',
+    logoutDialogSecondaryButton: 'Cancel',
+
     //signup
     signupTitle: 'Sign up',
     signupDescription: 'Use your work email to log in to your team workspace.',
@@ -88,6 +94,12 @@ export const translations: TranslationLanguages = {
     // login toast
     loginToastTitle: 'Fehler!',
     loginToastDescription: 'Etwas ist schief gelaufen! Bitte versuchen Sie es erneut',
+
+    //logout dialog
+    logoutDialogTitle: 'Abmelden',
+    logoutDialogDescription: 'Möchten Sie sich wirklich abmelden?',
+    logoutDialogPrimaryButton: 'Abmelden',
+    logoutDialogSecondaryButton: 'Abbrechen',
 
     // signup
     signupTitle: 'Registrieren',
