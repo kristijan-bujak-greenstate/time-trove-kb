@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { RemoveIcon } from '../../icons/RemoveIcon';
 import { Text } from '../text/Text';
@@ -14,20 +14,32 @@ import {
 
 export type ToastProps = {
   status: 'warning' | 'success' | 'error';
-  isOpen: boolean;
-  onCloseClick: () => void;
+  removeFromQueue: () => void;
   title: string;
   description: string;
 };
 
-export const Toast = ({ status, isOpen, title, description, onCloseClick }: ToastProps) => {
+export const Toast = ({ status, title, description, removeFromQueue }: ToastProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const closeToast = useCallback(() => {
+    setIsOpen(false);
+    setTimeout(removeFromQueue, 600);
+  }, [removeFromQueue]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsOpen(true);
+    }, 25);
+  }, []);
+
   useEffect(() => {
     if (isOpen) {
       setTimeout(() => {
-        onCloseClick();
+        closeToast();
       }, 4000);
     }
-  }, [isOpen, onCloseClick]);
+  }, [isOpen, closeToast]);
 
   return (
     <StyledTostContainer $palette={status} $isOpen={isOpen}>
@@ -36,7 +48,7 @@ export const Toast = ({ status, isOpen, title, description, onCloseClick }: Toas
         <Text fontWeight={'extraBold'} fontSize={'medium'} lineHeight={'medium'} palette={status} color={'hue100'}>
           {title}
         </Text>
-        <StyledCloseIconContainer onClick={onCloseClick}>
+        <StyledCloseIconContainer onClick={closeToast}>
           <ThemedIcon size={'medium'} icon={RemoveIcon} palette={'neutrals'} color={'hue200'} />
         </StyledCloseIconContainer>
       </StyledHeaderContainer>

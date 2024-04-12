@@ -7,7 +7,7 @@ import { PublicRoute } from '../layout/public/PublicRoute';
 import { Home } from '../pages/protected/home/Home';
 import { Login } from '../pages/public/login/Login';
 import { NotFound } from '../pages/public/not-found/NotFound';
-import { SignUp } from '../pages/public/sign-up/SingUp';
+import { SignUp } from '../pages/public/sign-up/SignUp';
 
 import { routes } from './routes';
 

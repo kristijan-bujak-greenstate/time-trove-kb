@@ -30,6 +30,7 @@ export type PublicFormProps = {
   secondInputProps: InputProps;
   onSubmit: () => void;
   onFooterButtonClick: () => void;
+  isLoadingButton: boolean;
 };
 
 export const PublicForm = ({
@@ -43,6 +44,7 @@ export const PublicForm = ({
   secondInputProps,
   onSubmit,
   onFooterButtonClick,
+  isLoadingButton,
 }: PublicFormProps) => {
   return (
     <StyledPublicForm>
@@ -63,7 +65,14 @@ export const PublicForm = ({
             <Input {...secondInputProps} />
           </StyledInputWrapper>
           <StyledButtonWrapper>
-            <Button type="submit" size={'extraLarge'} palette={'primary'} color={'hue100'} fill={true}>
+            <Button
+              isLoading={isLoadingButton}
+              type="submit"
+              size={'extraLarge'}
+              palette={'primary'}
+              color={'hue100'}
+              fill={true}
+            >
               {buttonText}
             </Button>
           </StyledButtonWrapper>

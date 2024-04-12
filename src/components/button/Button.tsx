@@ -42,7 +42,7 @@ export const Button = memo(
         {...restProps}
       >
         <StyledSpinnerWrapper $isLoading={isLoading}>
-          <Spinner size={spinnerIconSize} />
+          <Spinner size={spinnerIconSize} palette={'neutrals'} />
         </StyledSpinnerWrapper>
         <Text
           fontSize={fontSize}

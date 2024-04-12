@@ -1,13 +1,13 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 
 import { axiosInstance } from '../../../api/axiosInstance';
 import { endpoints } from '../../../api/endpoints/endpoints';
-import { PublicForm, Toast } from '../../../components';
+import { PublicForm } from '../../../components';
 import { useLanguageFormValidation } from '../../../hooks/useLanguageFormValidation';
+import { useToastQueue } from '../../../hooks/useToastQueue';
 import { useTranslation } from '../../../hooks/useTranslation';
 import { LogoutIcon } from '../../../icons';
 import { routes } from '../../../router/routes';
@@ -18,29 +18,20 @@ export const SignUp = () => {
 
   const navigate = useNavigate();
 
-  const [isToastOpenSuccess, setIsToastOpenSuccess] = useState<boolean>(false);
-
-  const [isToastOpenError, setIsToastOpenError] = useState<boolean>(false);
-
-  const closeToastSuccess = () => {
-    setIsToastOpenSuccess(false);
-  };
-
-  const closeToastError = () => {
-    setIsToastOpenError(false);
-  };
+  const { addToQueue, toastComponents } = useToastQueue();
 
   const {
     handleSubmit,
     register,
     trigger,
+    reset,
     formState: { errors },
   } = useForm<AuthData>({
     mode: 'onChange',
     resolver: zodResolver(authSchema(t)),
   });
 
-  const { mutate: registrationMutation } = useMutation({
+  const { mutate: registrationMutation, isLoading } = useMutation({
     mutationFn: (data: AuthData) =>
       axiosInstance.post(endpoints.registration, {
         username: data.email,
@@ -48,11 +39,21 @@ export const SignUp = () => {
       }),
 
     onSuccess: () => {
-      setIsToastOpenSuccess(true);
+      addToQueue({
+        status: 'success',
+        titleKey: 'signupToastTitleSuccess',
+        descriptionKey: 'signupToastDescriptionSuccess',
+      });
+
+      reset();
     },
 
     onError: () => {
-      setIsToastOpenError(true);
+      addToQueue({
+        status: 'error',
+        titleKey: 'loginToastTitle',
+        descriptionKey: 'loginToastDescription',
+      });
     },
   });
 
@@ -68,21 +69,7 @@ export const SignUp = () => {
 
   return (
     <>
-      <Toast
-        isOpen={isToastOpenSuccess}
-        title={t('signupToastTitleSuccess')}
-        status={'success'}
-        description={t('signupToastDescriptionSuccess')}
-        onCloseClick={closeToastSuccess}
-      />
-
-      <Toast
-        isOpen={isToastOpenError}
-        title={t('signupToastTitleError')}
-        status={'error'}
-        description={t('signupToastDescriptionError')}
-        onCloseClick={closeToastError}
-      />
+      {toastComponents}
 
       <PublicForm
         title={t('signupTitle')}
@@ -107,6 +94,7 @@ export const SignUp = () => {
         }}
         onSubmit={handleSubmit(onSubmit)}
         icon={LogoutIcon}
+        isLoadingButton={isLoading}
       />
     </>
   );

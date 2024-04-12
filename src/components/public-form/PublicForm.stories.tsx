@@ -2,6 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useForm } from 'react-hook-form';
 
+import { useTranslation } from '../../hooks/useTranslation';
 import { LogoutIcon } from '../../icons/LogoutIcon';
 import { AuthData, authFieldNames, authSchema } from '../../shared/schemas/authSchema';
 
@@ -20,13 +21,15 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const StatefulPublicForm = ({ firstInputProps, secondInputProps, ...props }: PublicFormProps) => {
+  const { t } = useTranslation();
+
   const {
     handleSubmit,
     register,
     formState: { errors },
   } = useForm<AuthData>({
     mode: 'onChange',
-    resolver: zodResolver(authSchema),
+    resolver: zodResolver(authSchema(t)),
   });
 
   const onSubmit = (data: AuthData) => {
@@ -70,6 +73,7 @@ export const Base: Story = {
       type: 'password',
       placeholder: 'Password',
     },
+    isLoadingButton: false,
   },
   render: ({ ...args }) => <StatefulPublicForm {...args} />,
 };

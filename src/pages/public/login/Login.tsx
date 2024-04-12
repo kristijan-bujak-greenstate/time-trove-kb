@@ -1,5 +1,4 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
@@ -7,9 +6,10 @@ import { useNavigate } from 'react-router-dom';
 import { axiosInstance } from '../../../api/axiosInstance';
 import { endpoints } from '../../../api/endpoints/endpoints';
 import { LoginResponse } from '../../../api/responses/loginResponse';
-import { PublicForm, Toast } from '../../../components';
+import { PublicForm } from '../../../components';
 import { setToken } from '../../../helpers/tokenHelpers';
 import { useLanguageFormValidation } from '../../../hooks/useLanguageFormValidation';
+import { useToastQueue } from '../../../hooks/useToastQueue';
 import { useTranslation } from '../../../hooks/useTranslation';
 import { LogoutIcon } from '../../../icons';
 import { routes } from '../../../router/routes';
@@ -20,11 +20,7 @@ export const Login = () => {
 
   const navigate = useNavigate();
 
-  const [isToastOpen, setIsToastOpen] = useState<boolean>(false);
-
-  const closeToast = () => {
-    setIsToastOpen(false);
-  };
+  const { addToQueue, toastComponents } = useToastQueue();
 
   const {
     handleSubmit,
@@ -36,7 +32,7 @@ export const Login = () => {
     resolver: zodResolver(authSchema(t)),
   });
 
-  const { mutate: loginMutation } = useMutation<LoginResponse, unknown, AuthData>({
+  const { mutate: loginMutation, isLoading } = useMutation<LoginResponse, unknown, AuthData>({
     mutationFn: (data) =>
       axiosInstance.post(endpoints.login, {
         username: data.email,
@@ -47,8 +43,13 @@ export const Login = () => {
       setToken(accessToken);
       navigate(routes.root);
     },
+
     onError: () => {
-      setIsToastOpen(true);
+      addToQueue({
+        status: 'error',
+        titleKey: 'loginToastTitle',
+        descriptionKey: 'loginToastDescription',
+      });
     },
   });
 
@@ -64,13 +65,7 @@ export const Login = () => {
 
   return (
     <>
-      <Toast
-        isOpen={isToastOpen}
-        title={t('loginToastTitle')}
-        status={'error'}
-        description={t('loginToastDescription')}
-        onCloseClick={closeToast}
-      />
+      {toastComponents}
 
       <PublicForm
         title={t('loginTitle')}
@@ -95,6 +90,7 @@ export const Login = () => {
         }}
         onSubmit={handleSubmit(onSubmit)}
         icon={LogoutIcon}
+        isLoadingButton={isLoading}
       />
     </>
   );
