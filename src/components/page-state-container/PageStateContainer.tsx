@@ -32,7 +32,7 @@ export const PageStateContainer = ({
           title={t('emptyTasksTitle')}
           description={t('emptyTasksDescription')}
           buttonText={t('emptyTasksButtonText')}
-          buttonPalette={'neutrals'}
+          buttonPalette={'primary'}
         />
       </StyledPageStateContainer>
     );

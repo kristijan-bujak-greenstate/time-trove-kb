@@ -20,8 +20,9 @@ export const StyledTostContainer = styled.div<{ $palette: Palette; $isOpen: bool
   box-shadow:
     0px 1px 12px 0px #00000014,
     0px -3px 0px 0px ${({ theme, $palette }) => theme.colors[$palette].hue100} inset;
-  transform: translateY(${({ $isOpen }) => ($isOpen ? '4.75rem' : 'calc(-100% - 1rem)')});
+  transform: translateY(${({ $isOpen }) => ($isOpen ? '1.25rem' : 'calc(-100% - 1rem)')});
   transition: transform 0.6s cubic-bezier(0.11, 1.22, 0.53, 1.11);
+  z-index: 1;
 `;
 
 export const StyledHeaderContainer = styled.div`

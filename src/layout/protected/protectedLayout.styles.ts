@@ -6,6 +6,7 @@ export const StyledPageShellWrapper = styled.div`
   height: calc(100vh - 4.75rem);
   padding: 0 1rem;
   overflow-y: auto;
+  background-color: ${({ theme }) => theme.colors.neutrals.hue50};
   @media ${breakpoints.laptopSmall} {
     padding: 0 1.25rem;
   }

@@ -1,5 +1,5 @@
 export const endpoints = {
-  getTasks: '/tasks',
+  tasks: '/tasks',
   login: '/auth/login',
   registration: '/auth/registration',
 };

@@ -20,4 +20,5 @@ export type TaskFormProps = {
   isButtonDisabled?: boolean;
   onSubmitForm: () => void;
   optionSelectTitle: string;
+  isLoadingButton: boolean;
 };

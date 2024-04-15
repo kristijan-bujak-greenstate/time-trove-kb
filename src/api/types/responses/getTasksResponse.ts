@@ -1,4 +1,4 @@
-import { PriorityLevel } from './../../components/task-card/enum';
+import { PriorityLevel } from '../../../components/task-card/enum';
 
 export type Item = {
   id: string;

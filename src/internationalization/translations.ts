@@ -48,6 +48,31 @@ export const translations: TranslationLanguages = {
     emailValidationMessage: 'Invalid email address',
     passwordValidationMessage: 'Password should be at least 5 characters long',
 
+    /* CREATE TASK */
+    createTaskModalTitle: 'Create task',
+    createTaskModalDescription: 'Please provide the required details to create the task',
+    createTaskModalSubTitle: 'Task details',
+    createTaskModalLabelInput: 'Task details',
+    createTaskModalPlaceholderInput: 'Title',
+    createTaskModalLabelTextarea: 'Description',
+    createTaskModalPlaceholderTextarea: 'Description',
+    createTaskOptionSelectTitle: 'Priority',
+    createTaskButtonText: 'Create task',
+
+    // create task toast success
+    createTaskToastTitleSuccess: 'Success!',
+    createTaskToastDescriptionSuccess: 'Task successfully created.',
+
+    // create task toast error
+    createTaskToastTitleError: 'Error!',
+    createTaskToastDescriptionError: 'Something went wrong! Please try again',
+
+    // discard changes dialog
+    discardChangesDialogTitle: 'Discard changes',
+    discardChangesDialogDescription: 'Are you sure you want to discard all changes',
+    discardChangesPrimaryButtonText: 'Discard',
+    discardChangesSecondaryButtonText: 'Cancel',
+
     /* NAVIGATION */
     navigationTitle: 'Dashboard',
     navigationButtonText: 'Create task',
@@ -119,6 +144,31 @@ export const translations: TranslationLanguages = {
     // validation
     emailValidationMessage: 'Ungültige E-Mail-Adresse',
     passwordValidationMessage: 'Das Passwort sollte mindestens 5 Zeichen lang sein',
+
+    /* CREATE TASK */
+    createTaskModalTitle: 'Aufgabe erstellen',
+    createTaskModalDescription: 'Bitte geben Sie die erforderlichen Details ein, um die Aufgabe zu erstellen',
+    createTaskModalSubTitle: 'Aufgabendetails',
+    createTaskModalLabelInput: 'Aufgabendetails',
+    createTaskModalPlaceholderInput: 'Titel',
+    createTaskModalLabelTextarea: 'Beschreibung',
+    createTaskModalPlaceholderTextarea: 'Beschreibung',
+    createTaskOptionSelectTitle: 'Priorität',
+    createTaskButtonText: 'Aufgabe erstellen',
+
+    // create task toast success
+    createTaskToastTitleSuccess: 'Erfolg!',
+    createTaskToastDescriptionSuccess: 'Aufgabe erfolgreich erstellt.',
+
+    // create task toast error
+    createTaskToastTitleError: 'Fehler!',
+    createTaskToastDescriptionError: 'Etwas ist schiefgelaufen! Bitte versuchen Sie es erneut.',
+
+    // discard changes dialog
+    discardChangesDialogTitle: 'Änderungen verwerfen',
+    discardChangesDialogDescription: 'Möchten Sie wirklich alle Änderungen verwerfen?',
+    discardChangesPrimaryButtonText: 'Verwerfen',
+    discardChangesSecondaryButtonText: 'Abbrechen',
 
     /* NAVIGATION */
     navigationTitle: 'Dashboard',

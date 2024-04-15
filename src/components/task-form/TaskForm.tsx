@@ -35,6 +35,7 @@ export const TaskForm = ({
   isButtonDisabled,
   onSubmitForm,
   optionSelectTitle,
+  isLoadingButton = false,
 }: TaskFormProps) => {
   return (
     <StyledTaskFormContainer>
@@ -75,7 +76,14 @@ export const TaskForm = ({
         </StyledOptionSelectWrapper>
 
         <StyledButtonWrapper>
-          <Button type={'submit'} size={'extraLarge'} disabled={isButtonDisabled} palette={'primary'} color={'hue100'}>
+          <Button
+            isLoading={isLoadingButton}
+            type={'submit'}
+            size={'extraLarge'}
+            disabled={isButtonDisabled}
+            palette={'primary'}
+            color={'hue100'}
+          >
             {buttonText}
           </Button>
         </StyledButtonWrapper>

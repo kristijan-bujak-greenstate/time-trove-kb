@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { axiosInstance } from '../../../api/axiosInstance';
 import { endpoints } from '../../../api/endpoints/endpoints';
-import { LoginResponse } from '../../../api/responses/loginResponse';
+import { LoginResponse } from '../../../api/types/responses/loginResponse';
 import { PublicForm } from '../../../components';
 import { setToken } from '../../../helpers/tokenHelpers';
 import { useLanguageFormValidation } from '../../../hooks/useLanguageFormValidation';

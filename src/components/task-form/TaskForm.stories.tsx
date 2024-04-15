@@ -103,6 +103,7 @@ export const EditTask: Story = {
     isButtonDisabled: false,
     optionSelectTitle: 'Priority',
     hasErrorOptionSelectList: false,
+    isLoadingButton: false,
   },
   render: (args) => <StatefulTaskForm {...args} />,
 };
