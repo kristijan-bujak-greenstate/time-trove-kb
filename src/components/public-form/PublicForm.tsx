@@ -31,6 +31,7 @@ export type PublicFormProps = {
   onSubmit: () => void;
   onFooterButtonClick: () => void;
   isLoadingButton: boolean;
+  isButtonDisabled?: boolean;
 };
 
 export const PublicForm = ({
@@ -45,6 +46,7 @@ export const PublicForm = ({
   onSubmit,
   onFooterButtonClick,
   isLoadingButton,
+  isButtonDisabled = false,
 }: PublicFormProps) => {
   return (
     <StyledPublicForm>
@@ -67,6 +69,7 @@ export const PublicForm = ({
           <StyledButtonWrapper>
             <Button
               isLoading={isLoadingButton}
+              disabled={isButtonDisabled}
               type="submit"
               size={'extraLarge'}
               palette={'primary'}

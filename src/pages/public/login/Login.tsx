@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
@@ -22,15 +23,20 @@ export const Login = () => {
 
   const { addToQueue, toastComponents } = useToastQueue();
 
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
   const {
     handleSubmit,
     register,
     trigger,
+    watch,
     formState: { errors },
   } = useForm<AuthData>({
     mode: 'onChange',
     resolver: zodResolver(authSchema(t)),
   });
+
+  const changeValues = watch();
 
   const { mutate: loginMutation, isLoading } = useMutation<LoginResponse, unknown, AuthData>({
     mutationFn: (data) =>
@@ -50,6 +56,7 @@ export const Login = () => {
         titleKey: 'loginToastTitle',
         descriptionKey: 'loginToastDescription',
       });
+      setIsButtonDisabled(true);
     },
   });
 
@@ -62,6 +69,10 @@ export const Login = () => {
   };
 
   useLanguageFormValidation(errors, trigger);
+
+  useEffect(() => {
+    setIsButtonDisabled(false);
+  }, [changeValues.email, changeValues.password]);
 
   return (
     <>
@@ -91,6 +102,7 @@ export const Login = () => {
         onSubmit={handleSubmit(onSubmit)}
         icon={LogoutIcon}
         isLoadingButton={isLoading}
+        isButtonDisabled={isButtonDisabled}
       />
     </>
   );
