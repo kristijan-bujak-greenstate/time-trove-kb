@@ -12,5 +12,7 @@ export type Item = {
 
 export type TasksResponse = {
   items: Item[];
-  count: number;
+  totalItems: number;
+  totalPages: number;
+  page: number;
 };

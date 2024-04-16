@@ -4,8 +4,6 @@ import { ThemeProvider } from 'styled-components';
 import { defaultTheme } from '../src/shared/theme/theme';
 import { LanguageProvider } from '../src/context/LanguageContext';
 
-import { LanguageProvider } from '../src/context/LanguageContext';
-
 export const decorators = [
   (Story: ComponentType) => (
     <ThemeProvider theme={defaultTheme}>

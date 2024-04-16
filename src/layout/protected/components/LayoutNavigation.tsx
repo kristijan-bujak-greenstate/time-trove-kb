@@ -1,20 +1,21 @@
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { useMutation, useQueryClient } from 'react-query';
 import { useNavigate } from 'react-router';
 
-import { Dialog, Modal, Navigation, OptionSelectPriority, TaskForm } from '../../../components';
-import { removeToken } from '../../../helpers/tokenHelpers';
-import { useTranslation } from '../../../hooks/useTranslation';
-import { EditIcon, LogoutIcon } from '../../../icons';
-import { routes } from '../../../router/routes';
-import { TaskData, taskFieldNames, taskSchema } from '../../../shared/schemas/taskSchema';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import { ChipStatus } from '../../../shared/enums/chipStatus';
-import { useToastQueue } from '../../../hooks/useToastQueue';
 import { axiosInstance } from '../../../api/axiosInstance';
 import { endpoints } from '../../../api/endpoints/endpoints';
 import { PostTaskResponse } from '../../../api/types/responses/postTaskResponse';
+import { Dialog, Modal, Navigation, OptionSelectPriority, TaskForm } from '../../../components';
+import { removeToken } from '../../../helpers/tokenHelpers';
+import { useToastQueue } from '../../../hooks/useToastQueue';
+import { useTranslation } from '../../../hooks/useTranslation';
+import { EditIcon, LogoutIcon } from '../../../icons';
+import { routes } from '../../../router/routes';
+import { ChipStatus } from '../../../shared/enums/chipStatus';
+import { QueryKeys } from '../../../shared/enums/queryKeys';
+import { TaskData, taskFieldNames, taskSchema } from '../../../shared/schemas/taskSchema';
 
 const mockedSelectOptionsItems: OptionSelectPriority[] = [
   {
@@ -123,6 +124,7 @@ export const LayoutNavigation = () => {
         titleKey: 'createTaskToastTitleSuccess',
         descriptionKey: 'createTaskToastDescriptionSuccess',
       });
+      queryClient.invalidateQueries(QueryKeys.TASKS);
     },
 
     onError: () => {

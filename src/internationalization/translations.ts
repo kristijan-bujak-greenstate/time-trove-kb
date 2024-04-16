@@ -99,6 +99,10 @@ export const translations: TranslationLanguages = {
     notFoundPageDescription:
       'We apologize for the inconvenience, but it appears that the page you are attempting to access is currently unavailable. This might be due to a temporary technical issue or an outdated link.',
     notFoundPageButtonText: 'Back home',
+
+    /* TASK CARD */
+    taskCardPriority: 'Priority',
+    taskCardChipText: 'In Progress',
   },
 
   de: {
@@ -196,5 +200,9 @@ export const translations: TranslationLanguages = {
     notFoundPageDescription:
       'Wir entschuldigen uns für die Unannehmlichkeiten, aber es scheint, dass die von Ihnen gesuchte Seite derzeit nicht verfügbar ist. Dies könnte auf ein vorübergehendes technisches Problem oder einen veralteten Link zurückzuführen sein.',
     notFoundPageButtonText: 'Zurück zur Startseite',
+
+    /* TASK CARD */
+    taskCardPriority: 'Priorität',
+    taskCardChipText: 'In Bearbeitung',
   },
 };
