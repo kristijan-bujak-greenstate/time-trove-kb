@@ -1,6 +1,5 @@
-import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import { useMutation, useQueryClient } from 'react-query';
 import { useNavigate } from 'react-router';
 
@@ -15,7 +14,7 @@ import { EditIcon, LogoutIcon } from '../../../icons';
 import { routes } from '../../../router/routes';
 import { ChipStatus } from '../../../shared/enums/chipStatus';
 import { QueryKeys } from '../../../shared/enums/queryKeys';
-import { TaskData, taskFieldNames, taskSchema } from '../../../shared/schemas/taskSchema';
+import { TaskData, taskFieldNames } from '../../../shared/schemas/taskSchema';
 
 const mockedSelectOptionsItems: OptionSelectPriority[] = [
   {
@@ -88,21 +87,13 @@ export const LayoutNavigation = () => {
   };
 
   const {
-    handleSubmit,
     register,
-    setValue,
+    handleSubmit,
     formState: { isValid, errors, isDirty },
-    getValues,
+    setValue,
     reset,
-  } = useForm<TaskData>({
-    mode: 'onChange',
-    resolver: zodResolver(taskSchema),
-    defaultValues: {
-      title: '',
-      description: '',
-      selectedOption: { value: '', id: '', status: undefined },
-    },
-  });
+    getValues,
+  } = useFormContext<TaskData>();
 
   const handleOptionSelectClick = (option: OptionSelectPriority) => {
     setValue(taskFieldNames.selectedOption, option, { shouldValidate: true });

@@ -1,6 +1,5 @@
-import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 
@@ -14,7 +13,7 @@ import { useToastQueue } from '../../../hooks/useToastQueue';
 import { useTranslation } from '../../../hooks/useTranslation';
 import { LogoutIcon } from '../../../icons';
 import { routes } from '../../../router/routes';
-import { AuthData, authFieldNames, authSchema } from '../../../shared/schemas/authSchema';
+import { AuthData, authFieldNames } from '../../../shared/schemas/authSchema';
 
 export const Login = () => {
   const { t } = useTranslation();
@@ -26,15 +25,12 @@ export const Login = () => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   const {
-    handleSubmit,
     register,
-    trigger,
-    watch,
+    handleSubmit,
     formState: { errors },
-  } = useForm<AuthData>({
-    mode: 'onChange',
-    resolver: zodResolver(authSchema(t)),
-  });
+    watch,
+    trigger,
+  } = useFormContext<AuthData>();
 
   const changeValues = watch();
 
