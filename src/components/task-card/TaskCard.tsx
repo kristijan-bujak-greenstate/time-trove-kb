@@ -25,6 +25,7 @@ type TaskCardProps = {
   priorityText: string;
   onEditClick: () => void;
   onDeleteClick: () => void;
+  onClick: () => void;
 };
 
 export const TaskCard = ({
@@ -37,9 +38,10 @@ export const TaskCard = ({
   priorityTitle,
   onEditClick,
   onDeleteClick,
+  onClick,
 }: TaskCardProps) => {
   return (
-    <Card hasHoverActiveStyles={true}>
+    <Card hasHoverActiveStyles={true} onClick={onClick}>
       <StyledHeaderContainer>
         <Text fontWeight={'extraBold'}>{title}</Text>
         <Chip status={isDone ? ChipStatus.SUCCESS : ChipStatus.WARNING}>{chipText}</Chip>

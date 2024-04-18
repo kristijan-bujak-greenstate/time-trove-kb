@@ -11,6 +11,7 @@ type CardProps = {
   borderRadius?: BorderRadius;
   palette?: Palette;
   hasHoverActiveStyles?: boolean;
+  onClick?: () => void;
 };
 
 export const Card = ({
@@ -22,6 +23,7 @@ export const Card = ({
   borderWidth = '1px',
   borderRadius = 'medium',
   hasHoverActiveStyles = false,
+  onClick,
 }: CardProps) => {
   return (
     <StyledCard
@@ -32,6 +34,7 @@ export const Card = ({
       $borderColor={borderColor}
       $borderRadius={borderRadius}
       $hasHoverActiveStyles={hasHoverActiveStyles}
+      onClick={onClick}
     >
       {children}
     </StyledCard>

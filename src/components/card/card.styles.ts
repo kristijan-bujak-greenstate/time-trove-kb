@@ -16,6 +16,7 @@ export const StyledCard = styled.div<{
   border: ${({ $borderWidth }) => $borderWidth} solid
     ${({ theme, $borderColor, $palette }) => theme.colors[$palette][$borderColor]};
   background-color: ${({ theme, $backgroundColor, $palette }) => theme.colors[$palette][$backgroundColor]};
+  cursor: pointer;
   ${({ $hasHoverActiveStyles }) =>
     $hasHoverActiveStyles &&
     css`

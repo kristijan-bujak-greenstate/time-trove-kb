@@ -67,6 +67,13 @@ export const translations: TranslationLanguages = {
     createTaskToastTitleError: 'Error!',
     createTaskToastDescriptionError: 'Something went wrong! Please try again',
 
+    // task details mark as done
+    taskDetailsToastTitleSuccess: 'Success!',
+    taskDetailsToastDescriptionSuccess: 'Task successfully marked as done',
+
+    taskDetailsToastTitleError: 'Error!',
+    taskDetailsToastDescriptionError: 'Something went wrong! Please try again',
+
     // discard changes dialog
     discardChangesDialogTitle: 'Discard changes',
     discardChangesDialogDescription: 'Are you sure you want to discard all changes',
@@ -103,6 +110,14 @@ export const translations: TranslationLanguages = {
     /* TASK CARD */
     taskCardPriority: 'Priority',
     taskCardChipText: 'In Progress',
+
+    /* TASK DETAILS */
+    taskDetailsTitle: 'Task details',
+    taskDetailsButtonText: 'Mark as done',
+
+    /* Chip text */
+    chipTextDone: 'Done',
+    chipTextInProgress: 'In progress',
   },
 
   de: {
@@ -168,6 +183,13 @@ export const translations: TranslationLanguages = {
     createTaskToastTitleError: 'Fehler!',
     createTaskToastDescriptionError: 'Etwas ist schiefgelaufen! Bitte versuchen Sie es erneut.',
 
+    // task details mark as done
+    taskDetailsToastTitleSuccess: 'Erfolg!',
+    taskDetailsToastDescriptionSuccess: 'Aufgabe erfolgreich als erledigt markiert',
+
+    taskDetailsToastTitleError: 'Fehler!',
+    taskDetailsToastDescriptionError: 'Etwas ist schiefgegangen! Bitte versuche es erneut',
+
     // discard changes dialog
     discardChangesDialogTitle: 'Änderungen verwerfen',
     discardChangesDialogDescription: 'Möchten Sie wirklich alle Änderungen verwerfen?',
@@ -204,5 +226,13 @@ export const translations: TranslationLanguages = {
     /* TASK CARD */
     taskCardPriority: 'Priorität',
     taskCardChipText: 'In Bearbeitung',
+
+    /* TASK DETAILS */
+    taskDetailsTitle: 'Aufgabendetails',
+    taskDetailsButtonText: 'Als erledigt markieren',
+
+    /* Chip text */
+    chipTextDone: 'Erledigt',
+    chipTextInProgress: 'In Bearbeitung',
   },
 };

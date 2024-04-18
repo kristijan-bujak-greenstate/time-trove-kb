@@ -1,6 +1,6 @@
 import { PriorityLevel } from '../../../components/task-card/enum';
 
-export type PostTaskResponse = {
+export type TaskResponse = {
   id: string;
   title: string;
   description: string;

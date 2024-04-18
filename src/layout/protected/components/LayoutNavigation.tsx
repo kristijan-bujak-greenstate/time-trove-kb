@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router';
 
 import { axiosInstance } from '../../../api/axiosInstance';
 import { endpoints } from '../../../api/endpoints/endpoints';
-import { PostTaskResponse } from '../../../api/types/responses/postTaskResponse';
+import { TaskResponse } from '../../../api/types/responses/postTaskResponse';
 import { Dialog, Modal, Navigation, OptionSelectPriority, TaskForm } from '../../../components';
 import { removeToken } from '../../../helpers/tokenHelpers';
 import { useToastQueue } from '../../../hooks/useToastQueue';
@@ -99,7 +99,7 @@ export const LayoutNavigation = () => {
     setValue(taskFieldNames.selectedOption, option, { shouldValidate: true });
   };
 
-  const { mutate: createTaskMutation, isLoading } = useMutation<PostTaskResponse, unknown, TaskData>({
+  const { mutate: createTaskMutation, isLoading } = useMutation<TaskResponse, unknown, TaskData>({
     mutationFn: (data) =>
       axiosInstance.post(endpoints.tasks, {
         title: data.title,
