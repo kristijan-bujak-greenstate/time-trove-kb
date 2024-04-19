@@ -21,7 +21,7 @@ const modalExpandAnimation = keyframes`
   }
 `;
 
-export const StyledModalOverlay = styled.div<{ $isOpen: boolean }>`
+export const StyledModalOverlay = styled.div<{ $isOpen: boolean; $zIndex: number }>`
   position: fixed;
   top: 0;
   left: 0;
@@ -35,10 +35,10 @@ export const StyledModalOverlay = styled.div<{ $isOpen: boolean }>`
   justify-content: center;
   align-items: center;
   padding: 0 1rem;
-  z-index: 1;
+  z-index: ${({ $zIndex }) => $zIndex};
 `;
 
-export const StyledModalContent = styled.div<{ $isOpen: boolean; $maxWidth?: RemSize }>`
+export const StyledModalContent = styled.div<{ $isOpen: boolean; $maxWidth?: RemSize; $zIndex: number }>`
   max-width: ${({ $maxWidth }) => ($maxWidth ? $maxWidth : 'none')};
   width: ${({ $maxWidth }) => ($maxWidth ? '100%' : 'auto')};
   background-color: ${({ theme }) => theme.colors.neutrals.hue0};
@@ -46,4 +46,5 @@ export const StyledModalContent = styled.div<{ $isOpen: boolean; $maxWidth?: Rem
   border: 1px solid ${({ theme }) => theme.colors.neutrals.hue100};
   border-radius: 1rem;
   animation: ${({ $isOpen }) => ($isOpen ? modalExpandAnimation : modalShrinkAnimation)} 0.1s ease-out;
+  z-index: ${({ $zIndex }) => $zIndex};
 `;

@@ -40,6 +40,15 @@ export const TaskCard = ({
   onDeleteClick,
   onClick,
 }: TaskCardProps) => {
+  const handleEditButtonClick = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    onEditClick();
+  };
+
+  const handleDeleteButtonClick = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    onDeleteClick();
+  };
   return (
     <Card hasHoverActiveStyles={true} onClick={onClick}>
       <StyledHeaderContainer>
@@ -59,8 +68,8 @@ export const TaskCard = ({
           </Chip>
         </StyledPriorityContainer>
         <StyledIconButtonsContainer>
-          <IconButton icon={EditIcon} onClick={onEditClick} />
-          <IconButton icon={DeleteIcon} onClick={onDeleteClick} palette={'error'} />
+          <IconButton icon={EditIcon} onClick={handleEditButtonClick} />
+          <IconButton icon={DeleteIcon} onClick={handleDeleteButtonClick} palette={'error'} />
         </StyledIconButtonsContainer>
       </StyledFooterContainer>
     </Card>

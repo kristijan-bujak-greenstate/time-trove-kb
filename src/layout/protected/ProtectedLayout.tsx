@@ -15,13 +15,17 @@ export const ProtectedLayout = () => {
   };
 
   return (
-    <ControlledForm schema={taskSchema} defaultValues={defaultValues}>
-      <LayoutNavigation />
+    <>
+      <ControlledForm schema={taskSchema} defaultValues={defaultValues}>
+        <LayoutNavigation />
+      </ControlledForm>
       <StyledPageShellWrapper>
         <PageShell>
-          <Outlet />
+          <ControlledForm schema={taskSchema} defaultValues={defaultValues}>
+            <Outlet />
+          </ControlledForm>
         </PageShell>
       </StyledPageShellWrapper>
-    </ControlledForm>
+    </>
   );
 };

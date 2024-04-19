@@ -12,27 +12,9 @@ import { useToastQueue } from '../../../hooks/useToastQueue';
 import { useTranslation } from '../../../hooks/useTranslation';
 import { EditIcon, LogoutIcon } from '../../../icons';
 import { routes } from '../../../router/routes';
-import { ChipStatus } from '../../../shared/enums/chipStatus';
+import { mockedSelectOptionsItems } from '../../../shared/data/selectOptionsItems';
 import { QueryKeys } from '../../../shared/enums/queryKeys';
 import { TaskData, taskFieldNames } from '../../../shared/schemas/taskSchema';
-
-const mockedSelectOptionsItems: OptionSelectPriority[] = [
-  {
-    id: '1',
-    status: ChipStatus.SUCCESS,
-    value: 'Low',
-  },
-  {
-    id: '2',
-    status: ChipStatus.WARNING,
-    value: 'Medium',
-  },
-  {
-    id: '3',
-    status: ChipStatus.ERROR,
-    value: 'High',
-  },
-];
 
 export const LayoutNavigation = () => {
   const navigate = useNavigate();

@@ -7,7 +7,7 @@ import { StyledIconButton } from './iconButton.styles';
 export type IconButtonProps = {
   icon: React.ComponentType;
   iconShape?: 'square' | 'circle';
-  onClick: () => void;
+  onClick: (event: React.MouseEvent) => void;
   palette?: Palette;
 };
 

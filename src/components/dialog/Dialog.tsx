@@ -22,7 +22,7 @@ export const Dialog = (props: DialogProps) => {
   } = props;
 
   return (
-    <Modal maxWidth={'32.5rem'} isOpen={isOpen} onOverlayClick={onOverlayClick}>
+    <Modal maxWidth={'32.5rem'} isOpen={isOpen} onOverlayClick={onOverlayClick} zIndex={2}>
       <StyledIconTextContainer>
         <StyledAlertIcon $status={status}>
           <ThemedIcon size={'large'} icon={getDialogIcon(status)} />

@@ -59,6 +59,16 @@ export const translations: TranslationLanguages = {
     createTaskOptionSelectTitle: 'Priority',
     createTaskButtonText: 'Create task',
 
+    /* EDIT TASK */
+    editTaskModalTitle: 'Edit task',
+    editTaskModalSubTitle: 'Task details',
+    editTaskModalLabelInput: 'Task details',
+    editTaskModalPlaceholderInput: 'Title',
+    editTaskModalLabelTextarea: 'Description',
+    editTaskModalPlaceholderTextarea: 'Description',
+    editTaskOptionSelectTitle: 'Priority',
+    editTaskButtonText: 'Save changes',
+
     // create task toast success
     createTaskToastTitleSuccess: 'Success!',
     createTaskToastDescriptionSuccess: 'Task successfully created.',
@@ -66,6 +76,14 @@ export const translations: TranslationLanguages = {
     // create task toast error
     createTaskToastTitleError: 'Error!',
     createTaskToastDescriptionError: 'Something went wrong! Please try again',
+
+    //edit task toast success
+    editTaskToastTitleSuccess: 'Success!',
+    editTaskToastDescriptionSuccess: 'Task successfully edited.',
+
+    //edit task toast error
+    editTaskToastTitleError: 'Error',
+    editTaskToastDescriptionError: 'Something went wrong! Please try again',
 
     // task details mark as done
     taskDetailsToastTitleSuccess: 'Success!',
@@ -174,6 +192,24 @@ export const translations: TranslationLanguages = {
     createTaskModalPlaceholderTextarea: 'Beschreibung',
     createTaskOptionSelectTitle: 'Priorität',
     createTaskButtonText: 'Aufgabe erstellen',
+
+    /* EDIT TASK */
+    editTaskModalTitle: 'Aufgabe bearbeiten',
+    editTaskModalSubTitle: 'Aufgabendetails',
+    editTaskModalLabelInput: 'Aufgabendetails',
+    editTaskModalPlaceholderInput: 'Titel',
+    editTaskModalLabelTextarea: 'Beschreibung',
+    editTaskModalPlaceholderTextarea: 'Beschreibung',
+    editTaskOptionSelectTitle: 'Priorität',
+    editTaskButtonText: 'Änderungen speichern',
+
+    //edit task toast success
+    editTaskToastTitleSuccess: 'Erfolg!',
+    editTaskToastDescriptionSuccess: 'Aufgabe erfolgreich bearbeitet.',
+
+    //edit task toast error
+    editTaskToastTitleError: 'Fehler',
+    editTaskToastDescriptionError: 'Etwas ist schiefgelaufen! Bitte versuchen Sie es erneut.',
 
     // create task toast success
     createTaskToastTitleSuccess: 'Erfolg!',
