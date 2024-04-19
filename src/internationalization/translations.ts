@@ -98,6 +98,20 @@ export const translations: TranslationLanguages = {
     discardChangesPrimaryButtonText: 'Discard',
     discardChangesSecondaryButtonText: 'Cancel',
 
+    // delete task dialog
+    deleteTaskTitleDialog: 'Delete task',
+    deleteTaskDescriptionDialog: 'Are you sure you want to delete task',
+    deleteTaskSecondaryButtonText: 'Cancel',
+    deleteTaskPrimaryButtonText: 'Delete',
+
+    //delete task toast success
+    deleteTaskToastTitleSuccess: 'Success',
+    deleteTaskToastDescriptionSuccess: 'Task successfully deleted',
+
+    //delete task toast error
+    deleteTaskToastTitleError: 'Error',
+    deleteTaskToastDescriptionError: 'Something went wrong! Please try again',
+
     /* NAVIGATION */
     navigationTitle: 'Dashboard',
     navigationButtonText: 'Create task',
@@ -210,6 +224,20 @@ export const translations: TranslationLanguages = {
     //edit task toast error
     editTaskToastTitleError: 'Fehler',
     editTaskToastDescriptionError: 'Etwas ist schiefgelaufen! Bitte versuchen Sie es erneut.',
+
+    // delete task dialog
+    deleteTaskTitleDialog: 'Aufgabe löschen',
+    deleteTaskDescriptionDialog: 'Sind Sie sicher, dass Sie die Aufgabe löschen möchten?',
+    deleteTaskSecondaryButtonText: 'Abbrechen',
+    deleteTaskPrimaryButtonText: 'Löschen',
+
+    //delete task toast success
+    deleteTaskToastTitleSuccess: 'Erfolg',
+    deleteTaskToastDescriptionSuccess: 'Aufgabe erfolgreich gelöscht',
+
+    //delete task toast error
+    deleteTaskToastTitleError: 'Fehler',
+    deleteTaskToastDescriptionError: 'Etwas ist schiefgegangen! Bitte versuchen Sie es erneut.',
 
     // create task toast success
     createTaskToastTitleSuccess: 'Erfolg!',

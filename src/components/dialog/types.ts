@@ -6,6 +6,7 @@ type DialogBaseProps = {
   primaryButtonText: string;
   description: string;
   title: string;
+  isPrimaryButtonLoading?: boolean;
 };
 
 type DialogWithSecondaryButtonProps = DialogBaseProps & {

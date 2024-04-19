@@ -19,6 +19,7 @@ export const Dialog = (props: DialogProps) => {
     onSecondaryButtonClick,
     secondaryButtonText,
     primaryButtonText = 'Confirm',
+    isPrimaryButtonLoading = false,
   } = props;
 
   return (
@@ -42,7 +43,13 @@ export const Dialog = (props: DialogProps) => {
             {secondaryButtonText}
           </Button>
         )}
-        <Button onClick={onPrimaryButtonClick} size={'extraLarge'} palette={status} color={'hue100'}>
+        <Button
+          onClick={onPrimaryButtonClick}
+          size={'extraLarge'}
+          palette={status}
+          color={'hue100'}
+          isLoading={isPrimaryButtonLoading}
+        >
           {primaryButtonText}
         </Button>
       </StyledButtonContainer>

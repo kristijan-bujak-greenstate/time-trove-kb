@@ -22,6 +22,7 @@ export const Home = () => {
   const [isOpenTaskDetailsModal, setIsOpenTaskDetailsModal] = useState(false);
   const [isOpenEditTaskModal, setIsOpenEditTaskModal] = useState(false);
   const [isOpenDiscardChangesDialog, setIsOpenDiscardChangesDialog] = useState(false);
+  const [isOpenDeleteTaskDialog, setIsOpenDeleteTaskDialog] = useState(false);
 
   const [isEditButtonDisabled, setIsEditButtonDisabled] = useState(true);
 
@@ -59,6 +60,11 @@ export const Home = () => {
     setIsOpenEditTaskModal(true);
   };
 
+  const handleDeleteTaskClick = (task: Item) => {
+    setSelectedTask(task);
+    setIsOpenDeleteTaskDialog(true);
+  };
+
   const closeTaskDetailsModal = () => {
     setIsOpenTaskDetailsModal(false);
   };
@@ -75,6 +81,10 @@ export const Home = () => {
     setIsOpenDiscardChangesDialog(false);
   };
 
+  const closeDeleteTaskDialog = () => {
+    setIsOpenDeleteTaskDialog(false);
+  };
+
   const keyExtractor = (task: Item) => task.id.toString();
 
   const renderTask = (task: Item) => {
@@ -88,7 +98,7 @@ export const Home = () => {
         priorityText={task.priority}
         priorityTitle={t('taskCardPriority')}
         onEditClick={() => handleEditTaskClick(task)}
-        onDeleteClick={() => console.log(`Delete task ${task.id}`)}
+        onDeleteClick={() => handleDeleteTaskClick(task)}
         onClick={() => handleTaskClick(task)}
       />
     );
@@ -115,6 +125,28 @@ export const Home = () => {
         status: 'error',
         titleKey: 'taskDetailsToastTitleError',
         descriptionKey: 'taskDetailsToastDescriptionError',
+      });
+    },
+  });
+
+  const { mutate: onDeleteTaskMutation, isLoading: isDeleteButtonLoading } = useMutation<TaskResponse, unknown>({
+    mutationFn: () => axiosInstance.delete(`${endpoints.tasks}/${selectedTask?.id}`),
+
+    onSuccess: () => {
+      closeDeleteTaskDialog();
+      addToQueue({
+        status: 'success',
+        titleKey: 'deleteTaskToastTitleSuccess',
+        descriptionKey: 'deleteTaskToastDescriptionSuccess',
+      });
+      queryClient.invalidateQueries(QueryKeys.TASKS);
+    },
+
+    onError: () => {
+      addToQueue({
+        status: 'error',
+        titleKey: 'deleteTaskToastTitleError',
+        descriptionKey: 'deleteTaskToastDescriptionError',
       });
     },
   });
@@ -199,6 +231,19 @@ export const Home = () => {
           reset();
         }}
         onSecondaryButtonClick={closeDiscardChangesDialog}
+      />
+
+      <Dialog
+        isOpen={isOpenDeleteTaskDialog}
+        status={'error'}
+        title={t('deleteTaskTitleDialog')}
+        description={t('deleteTaskDescriptionDialog')}
+        primaryButtonText={t('deleteTaskPrimaryButtonText')}
+        secondaryButtonText={t('deleteTaskSecondaryButtonText')}
+        onOverlayClick={closeDeleteTaskDialog}
+        onPrimaryButtonClick={onDeleteTaskMutation}
+        onSecondaryButtonClick={closeDiscardChangesDialog}
+        isPrimaryButtonLoading={isDeleteButtonLoading}
       />
 
       <TaskDetailsModal
