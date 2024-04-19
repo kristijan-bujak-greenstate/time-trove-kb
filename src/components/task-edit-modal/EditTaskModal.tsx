@@ -1,7 +1,6 @@
 import { useFormContext } from 'react-hook-form';
 
 import { Modal, OptionSelectPriority, TaskForm } from '..';
-import { Item } from '../../api/types/responses/getTasksResponse';
 import { EditIcon } from '../../icons';
 import { mockedSelectOptionsItems } from '../../shared/data/selectOptionsItems';
 import { TaskData, taskFieldNames } from '../../shared/schemas/taskSchema';
@@ -9,7 +8,6 @@ import { TaskData, taskFieldNames } from '../../shared/schemas/taskSchema';
 type EditTaskModalProps = {
   isOpen: boolean;
   onOverlayClick: () => void;
-  selectedTask?: Item;
   handleOptionSelectClick: (option: OptionSelectPriority) => void;
   isLoadingButton: boolean;
   t: (key: string) => string;

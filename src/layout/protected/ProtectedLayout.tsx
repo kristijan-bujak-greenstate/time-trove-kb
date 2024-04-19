@@ -16,9 +16,8 @@ export const ProtectedLayout = () => {
 
   return (
     <>
-      <ControlledForm schema={taskSchema} defaultValues={defaultValues}>
-        <LayoutNavigation />
-      </ControlledForm>
+      <LayoutNavigation />
+
       <StyledPageShellWrapper>
         <PageShell>
           <ControlledForm schema={taskSchema} defaultValues={defaultValues}>

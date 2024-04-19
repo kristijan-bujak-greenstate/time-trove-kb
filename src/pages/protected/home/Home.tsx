@@ -242,7 +242,7 @@ export const Home = () => {
         secondaryButtonText={t('deleteTaskSecondaryButtonText')}
         onOverlayClick={closeDeleteTaskDialog}
         onPrimaryButtonClick={onDeleteTaskMutation}
-        onSecondaryButtonClick={closeDiscardChangesDialog}
+        onSecondaryButtonClick={closeDeleteTaskDialog}
         isPrimaryButtonLoading={isDeleteButtonLoading}
       />
 
@@ -258,7 +258,6 @@ export const Home = () => {
       <EditTaskModal
         isOpen={isOpenEditTaskModal}
         onOverlayClick={handleOverlayClick}
-        selectedTask={selectedTask}
         handleOptionSelectClick={handleOptionSelectClick}
         isLoadingButton={isEditButtonLoading}
         isEditButtonDisabled={isEditButtonDisabled}
