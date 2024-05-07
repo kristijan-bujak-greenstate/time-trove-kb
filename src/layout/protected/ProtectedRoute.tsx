@@ -12,15 +12,11 @@ type ProtectedRouteProps = {
 };
 
 export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
-  const { tasks, isLoadingTasks, token } = useIsAuthenticated();
+  const { isLoading, loggedUser } = useIsAuthenticated();
 
   useControlNavigationRoutes();
 
-  if (!token) {
-    return <Navigate to={routes.login} />;
-  }
-
-  if (isLoadingTasks && token) {
+  if (isLoading) {
     return (
       <StyledSpinnerWrapperFullPage>
         <Spinner size={'large'} />
@@ -28,7 +24,7 @@ export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
     );
   }
 
-  if (!tasks && token) {
+  if (!loggedUser?.id) {
     return <Navigate to={routes.login} />;
   }
 

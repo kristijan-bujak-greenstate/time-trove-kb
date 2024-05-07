@@ -11,12 +11,13 @@ export const StyledCard = styled.div<{
   $borderRadius: BorderRadius;
   $hasHoverActiveStyles?: boolean;
 }>`
+  height: 100%;
   padding: ${({ $padding }) => $padding};
   border-radius: ${({ theme, $borderRadius }) => theme.borderRadius[$borderRadius]};
   border: ${({ $borderWidth }) => $borderWidth} solid
     ${({ theme, $borderColor, $palette }) => theme.colors[$palette][$borderColor]};
   background-color: ${({ theme, $backgroundColor, $palette }) => theme.colors[$palette][$backgroundColor]};
-  cursor: pointer;
+  cursor: ${({ $hasHoverActiveStyles }) => ($hasHoverActiveStyles ? 'pointer' : 'default')};
   ${({ $hasHoverActiveStyles }) =>
     $hasHoverActiveStyles &&
     css`

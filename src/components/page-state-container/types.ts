@@ -1,26 +1,24 @@
-import { ReactNode } from 'react';
-
 type PageStateContainerCustomProps = {
   t?: never;
-  onEmptyClick?: never;
-  onErrorClick?: never;
   isEmpty?: never;
   isLoading?: never;
   isError?: never;
   children?: never;
-  customComponent: ReactNode;
+  customComponent?: JSX.Element;
+  renderCustomEmptyComponent?: never;
+  renderCustomErrorComponent?: never;
   isFullPage?: boolean;
 };
 
 export type PageStateContainerNotCustomProps = {
   t: (key: string) => string;
-  onEmptyClick: () => void;
-  onErrorClick: () => void;
   isEmpty: boolean;
   isLoading: boolean;
   isError: boolean;
-  children: ReactNode;
+  children: JSX.Element;
   customComponent?: never;
+  renderCustomEmptyComponent?: JSX.Element;
+  renderCustomErrorComponent?: JSX.Element;
   isFullPage?: never;
 };
 

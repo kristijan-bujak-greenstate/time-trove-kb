@@ -1,71 +1,52 @@
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import { useMutation } from 'react-query';
-import { useNavigate } from 'react-router-dom';
-
 import { axiosInstance } from '../../../api/axiosInstance';
 import { endpoints } from '../../../api/endpoints/endpoints';
 import { PublicForm } from '../../../components';
-import { useLanguageFormValidation } from '../../../hooks/useLanguageFormValidation';
-import { useToastQueue } from '../../../hooks/useToastQueue';
-import { useTranslation } from '../../../hooks/useTranslation';
+import { ControlledForm } from '../../../components/controlled-form/ControlledForm';
+import { usePublicForm } from '../../../hooks/usePublicForm';
 import { LogoutIcon } from '../../../icons';
 import { routes } from '../../../router/routes';
-import { AuthData, authFieldNames, authSchema } from '../../../shared/schemas/authSchema';
+import { authFieldNames, authSchema } from '../../../shared/schemas/authSchema';
+
+const defaultValues = {
+  email: '',
+  password: '',
+};
 
 export const SignUp = () => {
-  const { t } = useTranslation();
+  return (
+    <ControlledForm schema={authSchema} defaultValues={defaultValues}>
+      <SignUpForm />
+    </ControlledForm>
+  );
+};
 
-  const navigate = useNavigate();
-
-  const { addToQueue, toastComponents } = useToastQueue();
+export const SignUpForm = () => {
+  const handleOnSuccess = () => {
+    addToQueue({
+      status: 'success',
+      titleKey: 'signupToastTitleSuccess',
+      descriptionKey: 'signupToastDescriptionSuccess',
+    });
+    reset(defaultValues);
+  };
 
   const {
-    handleSubmit,
+    addToQueue,
+    toastComponents,
+    navigate,
+    t,
+    errors,
     register,
-    trigger,
+    handleSubmit,
+    isButtonDisabled,
+    isLoading,
     reset,
-    formState: { errors },
-  } = useForm<AuthData>({
-    mode: 'onChange',
-    resolver: zodResolver(authSchema(t)),
+    onSubmit,
+  } = usePublicForm({
+    mutationFn: (requestData) => axiosInstance.post(endpoints.registration, requestData),
+    action: 'signup',
+    onSuccessFunction: handleOnSuccess,
   });
-
-  const { mutate: registrationMutation, isLoading } = useMutation({
-    mutationFn: (data: AuthData) =>
-      axiosInstance.post(endpoints.registration, {
-        username: data.email,
-        password: data.password,
-      }),
-
-    onSuccess: () => {
-      addToQueue({
-        status: 'success',
-        titleKey: 'signupToastTitleSuccess',
-        descriptionKey: 'signupToastDescriptionSuccess',
-      });
-
-      reset();
-    },
-
-    onError: () => {
-      addToQueue({
-        status: 'error',
-        titleKey: 'loginToastTitle',
-        descriptionKey: 'loginToastDescription',
-      });
-    },
-  });
-
-  const onSubmit = (data: AuthData) => {
-    registrationMutation(data);
-  };
-
-  const handleFooterButtonClick = () => {
-    navigate(routes.login);
-  };
-
-  useLanguageFormValidation(errors, trigger);
 
   return (
     <>
@@ -77,7 +58,7 @@ export const SignUp = () => {
         buttonText={t('signupButton')}
         footerDescriptionText={t('signupFooterDescription')}
         footerButtonText={t('signupFooterButton')}
-        onFooterButtonClick={handleFooterButtonClick}
+        onFooterButtonClick={() => navigate(routes.login)}
         firstInputProps={{
           label: t('emailLabel'),
           type: 'text',
@@ -95,6 +76,7 @@ export const SignUp = () => {
         onSubmit={handleSubmit(onSubmit)}
         icon={LogoutIcon}
         isLoadingButton={isLoading}
+        isButtonDisabled={isButtonDisabled}
       />
     </>
   );

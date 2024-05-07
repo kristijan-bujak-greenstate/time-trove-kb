@@ -9,9 +9,11 @@ import { Text } from '../text/Text';
 import { PriorityLevel } from './enum';
 import { getChipStatus } from './getChipStatus';
 import {
+  StyledDescriptionContainer,
   StyledFooterContainer,
   StyledHeaderContainer,
   StyledIconButtonsContainer,
+  StyledMainContainer,
   StyledPriorityContainer,
 } from './taskCard.styles';
 
@@ -49,29 +51,36 @@ export const TaskCard = ({
     event.stopPropagation();
     onDeleteClick();
   };
+
   return (
     <Card hasHoverActiveStyles={true} onClick={onClick}>
-      <StyledHeaderContainer>
-        <Text fontWeight={'extraBold'}>{title}</Text>
-        <Chip status={isDone ? ChipStatus.SUCCESS : ChipStatus.WARNING}>{chipText}</Chip>
-      </StyledHeaderContainer>
-      <Text fontSize={'small'} lineHeight={'small'} palette={'neutrals'} color={'hue300'}>
-        {description}
-      </Text>
-      <StyledFooterContainer>
-        <StyledPriorityContainer>
-          <Text fontWeight={'extraBold'} fontSize={'small'} lineHeight={'small'}>
-            {priorityTitle}
-          </Text>
-          <Chip size={'small'} status={getChipStatus(priority)}>
-            {priorityText}
-          </Chip>
-        </StyledPriorityContainer>
-        <StyledIconButtonsContainer>
-          <IconButton icon={EditIcon} onClick={handleEditButtonClick} />
-          <IconButton icon={DeleteIcon} onClick={handleDeleteButtonClick} palette={'error'} />
-        </StyledIconButtonsContainer>
-      </StyledFooterContainer>
+      <StyledMainContainer>
+        <div>
+          <StyledHeaderContainer>
+            <Text fontWeight={'extraBold'}>{title}</Text>
+            <Chip status={isDone ? ChipStatus.SUCCESS : ChipStatus.WARNING}>{chipText}</Chip>
+          </StyledHeaderContainer>
+          <StyledDescriptionContainer>
+            <Text fontSize={'small'} lineHeight={'small'} palette={'neutrals'} color={'hue300'}>
+              {description}
+            </Text>
+          </StyledDescriptionContainer>
+        </div>
+        <StyledFooterContainer>
+          <StyledPriorityContainer>
+            <Text fontWeight={'extraBold'} fontSize={'small'} lineHeight={'small'}>
+              {priorityTitle}
+            </Text>
+            <Chip size={'small'} status={getChipStatus(priority)}>
+              {priorityText}
+            </Chip>
+          </StyledPriorityContainer>
+          <StyledIconButtonsContainer>
+            <IconButton icon={EditIcon} onClick={handleEditButtonClick} />
+            <IconButton icon={DeleteIcon} onClick={handleDeleteButtonClick} palette={'error'} />
+          </StyledIconButtonsContainer>
+        </StyledFooterContainer>
+      </StyledMainContainer>
     </Card>
   );
 };

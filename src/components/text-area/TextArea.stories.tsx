@@ -2,6 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useForm } from 'react-hook-form';
 
+import { useTranslation } from '../../hooks/useTranslation';
 import { taskSchema } from '../../shared/schemas/taskSchema';
 import { TaskData } from '../../shared/schemas/taskSchema';
 import { taskFieldNames } from '../../shared/schemas/taskSchema';
@@ -22,12 +23,13 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const StatefulTextArea = (props: TextAreaProps) => {
+  const { t } = useTranslation();
   const {
     register,
     formState: { errors },
   } = useForm<TaskData>({
     mode: 'onChange',
-    resolver: zodResolver(taskSchema),
+    resolver: zodResolver(taskSchema(t)),
   });
 
   return (

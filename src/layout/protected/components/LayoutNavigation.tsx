@@ -3,12 +3,11 @@ import { useQueryClient } from 'react-query';
 import { useNavigate } from 'react-router';
 
 import { Dialog, Navigation } from '../../../components';
+import { CreateTaskForm } from '../../../components-logic/CreateTask';
 import { removeToken } from '../../../helpers/tokenHelpers';
 import { useTranslation } from '../../../hooks/useTranslation';
 import { LogoutIcon } from '../../../icons';
 import { routes } from '../../../router/routes';
-
-import { ControlledCreateTaskForm } from './CreateTask';
 
 export const LayoutNavigation = () => {
   const navigate = useNavigate();
@@ -18,7 +17,6 @@ export const LayoutNavigation = () => {
   const queryClient = useQueryClient();
 
   const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
-  const [isDiscardChangesDialogOpen, setIsDiscardChangesDialogOpen] = useState(false);
   const [isCreateTaskModalOpen, setIsCreateTaskModalOpen] = useState(false);
 
   const openCreateTaskModal = () => {
@@ -27,14 +25,6 @@ export const LayoutNavigation = () => {
 
   const closeCreateTaskModal = () => {
     setIsCreateTaskModalOpen(false);
-  };
-
-  const openDiscardChangesDialog = () => {
-    setIsDiscardChangesDialogOpen(true);
-  };
-
-  const closeDiscardChangesDialog = () => {
-    setIsDiscardChangesDialogOpen(false);
   };
 
   const openLogoutDialog = () => {
@@ -53,14 +43,7 @@ export const LayoutNavigation = () => {
 
   return (
     <>
-      <ControlledCreateTaskForm
-        openDiscardChangesDialog={openDiscardChangesDialog}
-        closeCreateTaskModal={closeCreateTaskModal}
-        isOpen={isCreateTaskModalOpen}
-        isDiscardChangesDialogOpen={isDiscardChangesDialogOpen}
-        closeDiscardChangesDialog={closeDiscardChangesDialog}
-        t={t}
-      />
+      <CreateTaskForm closeCreateTaskModal={closeCreateTaskModal} isOpen={isCreateTaskModalOpen} />
 
       <Dialog
         isOpen={isLogoutDialogOpen}

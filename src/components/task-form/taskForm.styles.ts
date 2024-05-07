@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 export const StyledTaskFormContainer = styled.div`
   width: 100%;
+  text-align: left;
 `;
 export const StyledHeaderContainer = styled.div`
   display: flex;

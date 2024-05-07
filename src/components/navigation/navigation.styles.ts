@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
+import { breakpoints } from '../../shared/breakpoints/breakpoints';
 import { Colors, Palette, PxSize, RemSize } from '../../shared/theme/types';
 import { StyledButton } from '../button/button.styles';
-
-import { breakpoints } from './../../shared/breakpoints/breakpoints';
 
 export const StyledNavigationContainer = styled.div<{
   $padding: RemSize;

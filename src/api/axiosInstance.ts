@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import axiosRetry from 'axios-retry';
 
 import { environmentVariables } from '../env/environmentVariables';
@@ -31,15 +31,17 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   (response: AxiosResponse) => response.data,
 
-  (error) => {
-    if (error.response.status === 401) {
+  (error: AxiosError) => {
+    const response = error.response!;
+
+    if (response.status === 401) {
       handleUnauthorizedStatus();
     }
-    if (error.response.status === 503) {
+    if (response.status === 503) {
       handleServiceUnavailable();
     }
 
-    return Promise.reject(error);
+    return Promise.reject(response.data);
   }
 );
 

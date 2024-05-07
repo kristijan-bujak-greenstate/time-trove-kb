@@ -12,11 +12,11 @@ type PublicRouteProps = {
 };
 
 export const PublicRoute = ({ children }: PublicRouteProps) => {
-  const { tasks, isLoadingTasks, token } = useIsAuthenticated();
+  const { loggedUser, isLoading } = useIsAuthenticated();
 
   useControlNavigationRoutes();
 
-  if (isLoadingTasks && token) {
+  if (isLoading) {
     return (
       <StyledSpinnerWrapperFullPage>
         <Spinner size={'large'} />
@@ -24,7 +24,7 @@ export const PublicRoute = ({ children }: PublicRouteProps) => {
     );
   }
 
-  if (tasks && token) {
+  if (loggedUser?.id) {
     return <Navigate to={routes.root} />;
   }
 

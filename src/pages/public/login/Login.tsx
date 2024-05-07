@@ -1,74 +1,38 @@
-import { useEffect, useState } from 'react';
-import { useFormContext } from 'react-hook-form';
-import { useMutation } from 'react-query';
-import { useNavigate } from 'react-router-dom';
-
 import { axiosInstance } from '../../../api/axiosInstance';
 import { endpoints } from '../../../api/endpoints/endpoints';
-import { LoginResponse } from '../../../api/types/responses/loginResponse';
 import { PublicForm } from '../../../components';
+import { ControlledForm } from '../../../components/controlled-form/ControlledForm';
 import { setToken } from '../../../helpers/tokenHelpers';
-import { useLanguageFormValidation } from '../../../hooks/useLanguageFormValidation';
-import { useToastQueue } from '../../../hooks/useToastQueue';
-import { useTranslation } from '../../../hooks/useTranslation';
+import { usePublicForm } from '../../../hooks/usePublicForm';
 import { LogoutIcon } from '../../../icons';
 import { routes } from '../../../router/routes';
-import { AuthData, authFieldNames } from '../../../shared/schemas/authSchema';
+import { authFieldNames, authSchema } from '../../../shared/schemas/authSchema';
+
+const defaultValues = {
+  email: '',
+  password: '',
+};
 
 export const Login = () => {
-  const { t } = useTranslation();
+  return (
+    <ControlledForm schema={authSchema} defaultValues={defaultValues}>
+      <LoginForm />
+    </ControlledForm>
+  );
+};
 
-  const navigate = useNavigate();
-
-  const { addToQueue, toastComponents } = useToastQueue();
-
-  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    watch,
-    trigger,
-  } = useFormContext<AuthData>();
-
-  const changeValues = watch();
-
-  const { mutate: loginMutation, isLoading } = useMutation<LoginResponse, unknown, AuthData>({
-    mutationFn: (data) =>
-      axiosInstance.post(endpoints.login, {
-        username: data.email,
-        password: data.password,
-      }),
-
-    onSuccess: ({ accessToken }) => {
-      setToken(accessToken);
-      navigate(routes.root);
-    },
-
-    onError: () => {
-      addToQueue({
-        status: 'error',
-        titleKey: 'loginToastTitle',
-        descriptionKey: 'loginToastDescription',
-      });
-      setIsButtonDisabled(true);
-    },
-  });
-
-  const onSubmit = (data: AuthData) => {
-    loginMutation(data);
+export const LoginForm = () => {
+  const handleOnSuccess = (accessToken: string) => {
+    setToken(accessToken);
+    navigate(routes.root);
   };
 
-  const handleFooterButtonClick = () => {
-    navigate(routes.signUp);
-  };
-
-  useLanguageFormValidation(errors, trigger);
-
-  useEffect(() => {
-    setIsButtonDisabled(false);
-  }, [changeValues.email, changeValues.password]);
+  const { toastComponents, navigate, t, errors, register, handleSubmit, onSubmit, isButtonDisabled, isLoading } =
+    usePublicForm({
+      mutationFn: (requestData) => axiosInstance.post(endpoints.login, requestData),
+      action: 'login',
+      onSuccessFunction: handleOnSuccess,
+    });
 
   return (
     <>
@@ -80,7 +44,7 @@ export const Login = () => {
         buttonText={t('loginButton')}
         footerDescriptionText={t('loginFooterDescription')}
         footerButtonText={t('loginFooterButton')}
-        onFooterButtonClick={handleFooterButtonClick}
+        onFooterButtonClick={() => navigate(routes.signUp)}
         firstInputProps={{
           label: t('emailLabel'),
           type: 'text',

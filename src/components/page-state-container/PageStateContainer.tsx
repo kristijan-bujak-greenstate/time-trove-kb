@@ -1,6 +1,5 @@
-import { Spinner } from '..';
+import { DataStatus, Spinner } from '..';
 import { NothingHereYetIcon, SomethingWentWrongIcon } from '../../icons';
-import { DataStatus } from '../data-status/DataStatus';
 
 import { StyledPageStateContainer } from './pageStateContainer.styles';
 import { PageStateContainerProps } from './types';
@@ -10,11 +9,11 @@ export const PageStateContainer = ({
   isError,
   children,
   isEmpty,
-  onErrorClick,
-  onEmptyClick,
-  t,
   customComponent,
+  renderCustomEmptyComponent,
+  renderCustomErrorComponent,
   isFullPage = false,
+  t,
 }: PageStateContainerProps) => {
   if (isLoading)
     return (
@@ -26,30 +25,25 @@ export const PageStateContainer = ({
   if (isEmpty) {
     return (
       <StyledPageStateContainer>
-        <DataStatus
-          icon={NothingHereYetIcon}
-          onClick={onEmptyClick}
-          title={t('emptyTasksTitle')}
-          description={t('emptyTasksDescription')}
-          buttonText={t('emptyTasksButtonText')}
-          buttonPalette={'primary'}
-        />
+        {renderCustomEmptyComponent || (
+          <DataStatus icon={NothingHereYetIcon} title={t('emptyTasksTitle')} description={t('emptyTasksDescription')} />
+        )}
       </StyledPageStateContainer>
     );
   }
 
   if (isError)
     return (
-      <StyledPageStateContainer>
-        <DataStatus
-          icon={SomethingWentWrongIcon}
-          onClick={onErrorClick}
-          title={t('backendErrorTitle')}
-          description={t('backendErrorDescription')}
-          buttonText={t('backendErrorButtonText')}
-          buttonPalette={'neutrals'}
-        />
-      </StyledPageStateContainer>
+      <>
+        <StyledPageStateContainer>
+          {renderCustomErrorComponent} ||
+          <DataStatus
+            icon={SomethingWentWrongIcon}
+            title={t('backendErrorTitle')}
+            description={t('backendErrorDescription')}
+          />
+        </StyledPageStateContainer>
+      </>
     );
 
   if (customComponent) {

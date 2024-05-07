@@ -1,26 +1,30 @@
-// eslint-disable-next-line @typescript-eslint/naming-convention, import/order
-
-import { useQuery } from 'react-query';
+import { useQuery, useQueryClient } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 
 import { axiosInstance } from '../api/axiosInstance';
 import { endpoints } from '../api/endpoints/endpoints';
-import { TasksResponse } from '../api/types/responses/getTasksResponse';
+import { AuthResponse } from '../api/types/responses/getAuthResponse';
 import { getQueryKey } from '../helpers/getQueryKey';
-import { getToken } from '../helpers/tokenHelpers';
+import { getToken, removeToken } from '../helpers/tokenHelpers';
+import { routes } from '../router/routes';
 import { QueryKeys } from '../shared/enums/queryKeys';
 
 export const useIsAuthenticated = () => {
   const token = getToken();
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
-  const {
-    data: tasks,
-    isLoading: isLoadingTasks,
-    isError: isErrorTasks,
-  } = useQuery<TasksResponse>({
+  const { data: loggedUser, isLoading } = useQuery<AuthResponse>({
     enabled: !!token,
-    queryKey: getQueryKey(QueryKeys.TASKS),
-    queryFn: () => axiosInstance.get(endpoints.tasks),
+    retry: false,
+    queryKey: getQueryKey(QueryKeys.AUTH),
+    queryFn: () => axiosInstance.get(endpoints.auth),
+    onError: () => {
+      removeToken();
+      queryClient.clear();
+      navigate(routes.login);
+    },
   });
 
-  return { tasks, isLoadingTasks, isErrorTasks, token };
+  return { loggedUser, isLoading };
 };

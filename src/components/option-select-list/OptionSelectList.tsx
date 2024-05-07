@@ -15,6 +15,7 @@ export type OptionSelectPriority = {
   id: string;
   status: ChipStatus;
   value: string;
+  optionTextValue?: string;
 };
 
 export const OptionSelectList = ({
@@ -29,7 +30,7 @@ export const OptionSelectList = ({
       {selectOptionList.map((option: OptionSelectPriority) => (
         <OptionSelect
           key={option.id}
-          chipText={option.value}
+          chipText={option.optionTextValue!}
           chipStatus={option.status}
           onClick={() => handleOptionSelectClick(option)}
           isSelected={selectedOption === option.value}

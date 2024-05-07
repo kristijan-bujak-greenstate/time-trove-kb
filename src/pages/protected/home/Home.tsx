@@ -1,53 +1,53 @@
-import { useEffect, useState } from 'react';
-import { useFormContext } from 'react-hook-form';
-import { useMutation, useQueryClient } from 'react-query';
+import { useState } from 'react';
+import { useQuery } from 'react-query';
 
 import { axiosInstance } from '../../../api/axiosInstance';
 import { endpoints } from '../../../api/endpoints/endpoints';
-import { Item } from '../../../api/types/responses/getTasksResponse';
-import { TaskResponse } from '../../../api/types/responses/postTaskResponse';
-import { TaskCard, FlatList, PageStateContainer, OptionSelectPriority, Dialog } from '../../../components';
-import { TaskDetailsModal } from '../../../components/task-details-modal/TaskDetailsModal';
-import { EditTaskModal } from '../../../components/task-edit-modal/EditTaskModal';
-import { useIsAuthenticated } from '../../../hooks/useIsAuthenticated';
-import { useToastQueue } from '../../../hooks/useToastQueue';
+import { Item, TasksResponse } from '../../../api/types/responses/getTasksResponse';
+import {
+  TaskCard,
+  FlatList,
+  PageStateContainer,
+  Text,
+  Dropdown,
+  OptionSelectList,
+  DataStatus,
+} from '../../../components';
+import { DropdownOption } from '../../../components/dropdown/types';
+import { CreateTaskForm } from '../../../components-logic/CreateTask';
+import { useLanguageContext } from '../../../context/LanguageContext';
+import { getQueryKey } from '../../../helpers/getQueryKey';
+import { useTranslatedOptions } from '../../../hooks/useTranslatedOptions';
 import { useTranslation } from '../../../hooks/useTranslation';
-import { mockedSelectOptionsItems } from '../../../shared/data/selectOptionsItems';
+import { NothingHereYetIcon, SomethingWentWrongIcon } from '../../../icons';
+import { languageOptions } from '../../../shared/data/languageOptions';
 import { QueryKeys } from '../../../shared/enums/queryKeys';
-import { TaskData, taskFieldNames } from '../../../shared/schemas/taskSchema';
+
+import { CompleteTask } from './components/CompleteTask';
+import { DeleteTask } from './components/DeleteTask';
+import { EditTaskForm } from './components/EditTask';
+import { StyledHeaderContainer, StyledTitleDropdownContainer } from './home.styles';
 
 export const Home = () => {
-  const { tasks, isErrorTasks, isLoadingTasks } = useIsAuthenticated();
-
   const [isOpenTaskDetailsModal, setIsOpenTaskDetailsModal] = useState(false);
   const [isOpenEditTaskModal, setIsOpenEditTaskModal] = useState(false);
-  const [isOpenDiscardChangesDialog, setIsOpenDiscardChangesDialog] = useState(false);
+  const [isOpenCreateTaskModal, setIsOpenCreateTaskModal] = useState(false);
   const [isOpenDeleteTaskDialog, setIsOpenDeleteTaskDialog] = useState(false);
-
-  const [isEditButtonDisabled, setIsEditButtonDisabled] = useState(true);
 
   const [selectedTask, setSelectedTask] = useState<Item>();
 
   const { t } = useTranslation();
 
-  const { addToQueue, toastComponents } = useToastQueue();
+  const { currentLanguage, setCurrentLanguage } = useLanguageContext();
 
-  const queryClient = useQueryClient();
+  const translatedOptions = useTranslatedOptions();
 
-  const {
-    setValue,
-    reset,
-    formState: { isDirty },
-  } = useFormContext<TaskData>();
-
-  const onButtonBackendErrorClick = () => {
-    // TO DO
-    console.log('something went wrong button clicked');
+  const handleLanguageDropdownClick = (option: DropdownOption) => {
+    setCurrentLanguage(option);
   };
 
   const onButtonEmptyTasksClick = () => {
-    // TO DO
-    console.log('empty tasks button clicked');
+    setIsOpenCreateTaskModal(true);
   };
 
   const handleTaskClick = (task: Item) => {
@@ -73,19 +73,23 @@ export const Home = () => {
     setIsOpenEditTaskModal(false);
   };
 
-  const openDiscardChangesDialog = () => {
-    setIsOpenDiscardChangesDialog(true);
-  };
-
-  const closeDiscardChangesDialog = () => {
-    setIsOpenDiscardChangesDialog(false);
+  const closeCreateTaskModal = () => {
+    setIsOpenCreateTaskModal(false);
   };
 
   const closeDeleteTaskDialog = () => {
     setIsOpenDeleteTaskDialog(false);
   };
 
-  const keyExtractor = (task: Item) => task.id.toString();
+  const {
+    data: tasks,
+    isLoading: isLoadingTasks,
+    isError: isErrorTasks,
+    refetch,
+  } = useQuery<TasksResponse>({
+    queryKey: getQueryKey(QueryKeys.TASKS),
+    queryFn: () => axiosInstance.get(endpoints.tasks),
+  });
 
   const renderTask = (task: Item) => {
     return (
@@ -95,7 +99,7 @@ export const Home = () => {
         description={task.description}
         priority={task.priority}
         chipText={task.done ? t('chipTextDone') : t('chipTextInProgress')}
-        priorityText={task.priority}
+        priorityText={t(task.priority)}
         priorityTitle={t('taskCardPriority')}
         onEditClick={() => handleEditTaskClick(task)}
         onDeleteClick={() => handleDeleteTaskClick(task)}
@@ -104,177 +108,84 @@ export const Home = () => {
     );
   };
 
-  const { mutate: onMarkAsDoneTaskMutation, isLoading: isButtonLoading } = useMutation<TaskResponse, unknown, string>({
-    mutationFn: (id) =>
-      axiosInstance.patch(`${endpoints.tasks}/${id}`, {
-        done: true,
-      }),
-
-    onSuccess: () => {
-      closeTaskDetailsModal();
-      addToQueue({
-        status: 'success',
-        titleKey: 'taskDetailsToastTitleSuccess',
-        descriptionKey: 'taskDetailsToastDescriptionSuccess',
-      });
-      queryClient.invalidateQueries(QueryKeys.TASKS);
-    },
-
-    onError: () => {
-      addToQueue({
-        status: 'error',
-        titleKey: 'taskDetailsToastTitleError',
-        descriptionKey: 'taskDetailsToastDescriptionError',
-      });
-    },
-  });
-
-  const { mutate: onDeleteTaskMutation, isLoading: isDeleteButtonLoading } = useMutation<TaskResponse, unknown>({
-    mutationFn: () => axiosInstance.delete(`${endpoints.tasks}/${selectedTask?.id}`),
-
-    onSuccess: () => {
-      closeDeleteTaskDialog();
-      addToQueue({
-        status: 'success',
-        titleKey: 'deleteTaskToastTitleSuccess',
-        descriptionKey: 'deleteTaskToastDescriptionSuccess',
-      });
-      queryClient.invalidateQueries(QueryKeys.TASKS);
-    },
-
-    onError: () => {
-      addToQueue({
-        status: 'error',
-        titleKey: 'deleteTaskToastTitleError',
-        descriptionKey: 'deleteTaskToastDescriptionError',
-      });
-    },
-  });
-
-  const { mutate: onEditTaskMutation, isLoading: isEditButtonLoading } = useMutation<TaskResponse, unknown, TaskData>({
-    mutationFn: (data) => {
-      return axiosInstance.patch(`${endpoints.tasks}/${selectedTask?.id}`, {
-        title: data.title,
-        description: data.description,
-        priority: data.selectedOption.value,
-      });
-    },
-    onSuccess: () => {
-      closeEditTaskModal();
-      addToQueue({
-        status: 'success',
-        titleKey: 'editTaskToastTitleSuccess',
-        descriptionKey: 'editTaskToastDescriptionSuccess',
-      });
-
-      queryClient.invalidateQueries(QueryKeys.TASKS);
-    },
-    onError: () => {
-      addToQueue({
-        status: 'error',
-        titleKey: 'editTaskToastTitleError',
-        descriptionKey: 'editTaskToastDescriptionSuccess',
-      });
-    },
-  });
-
-  const onSubmit = (data: TaskData) => {
-    onEditTaskMutation(data);
-  };
-
-  const handleOptionSelectClick = (option: OptionSelectPriority) => {
-    setValue(taskFieldNames.selectedOption, option, { shouldValidate: true, shouldDirty: true });
-  };
-
-  const handleOverlayClick = () => {
-    if (!isDirty) {
-      closeEditTaskModal();
-      reset();
-    } else {
-      openDiscardChangesDialog();
-    }
-  };
-
-  useEffect(() => {
-    if (isOpenEditTaskModal && selectedTask) {
-      reset({
-        title: selectedTask.title,
-        description: selectedTask.description,
-        selectedOption: mockedSelectOptionsItems.find((option) => option.value === selectedTask.priority),
-      });
-    }
-  }, [isOpenEditTaskModal, selectedTask, reset]);
-
-  useEffect(() => {
-    if (!isDirty) {
-      setIsEditButtonDisabled(true);
-    } else {
-      setIsEditButtonDisabled(false);
-    }
-  }, [isDirty]);
-
   return (
-    <>
-      {toastComponents}
+    <PageStateContainer
+      isEmpty={!tasks?.totalItems}
+      isError={isErrorTasks}
+      isLoading={isLoadingTasks}
+      t={t}
+      renderCustomEmptyComponent={
+        <>
+          <CreateTaskForm closeCreateTaskModal={closeCreateTaskModal} isOpen={isOpenCreateTaskModal} />
 
-      <Dialog
-        isOpen={isOpenDiscardChangesDialog}
-        status={'error'}
-        title={t('discardChangesDialogTitle')}
-        description={t('discardChangesDialogDescription')}
-        primaryButtonText={t('discardChangesPrimaryButtonText')}
-        secondaryButtonText={t('discardChangesSecondaryButtonText')}
-        onOverlayClick={closeDiscardChangesDialog}
-        onPrimaryButtonClick={() => {
-          closeDiscardChangesDialog();
-          closeEditTaskModal();
-          reset();
-        }}
-        onSecondaryButtonClick={closeDiscardChangesDialog}
-      />
+          <DataStatus
+            icon={NothingHereYetIcon}
+            onClick={onButtonEmptyTasksClick}
+            title={t('emptyTasksTitle')}
+            description={t('emptyTasksDescription')}
+            buttonText={t('emptyTasksButtonText')}
+            buttonPalette={'primary'}
+          />
+        </>
+      }
+      renderCustomErrorComponent={
+        <DataStatus
+          icon={SomethingWentWrongIcon}
+          onClick={() => refetch()}
+          title={t('backendErrorTitle')}
+          description={t('backendErrorDescription')}
+          buttonText={t('backendErrorButtonText')}
+          buttonPalette={'neutrals'}
+        />
+      }
+    >
+      <>
+        <DeleteTask
+          closeDeleteTaskDialog={closeDeleteTaskDialog}
+          isOpenDeleteTaskDialog={isOpenDeleteTaskDialog}
+          selectedTask={selectedTask!}
+        />
 
-      <Dialog
-        isOpen={isOpenDeleteTaskDialog}
-        status={'error'}
-        title={t('deleteTaskTitleDialog')}
-        description={t('deleteTaskDescriptionDialog')}
-        primaryButtonText={t('deleteTaskPrimaryButtonText')}
-        secondaryButtonText={t('deleteTaskSecondaryButtonText')}
-        onOverlayClick={closeDeleteTaskDialog}
-        onPrimaryButtonClick={onDeleteTaskMutation}
-        onSecondaryButtonClick={closeDeleteTaskDialog}
-        isPrimaryButtonLoading={isDeleteButtonLoading}
-      />
+        <CompleteTask
+          isOpenTaskDetailsModal={isOpenTaskDetailsModal}
+          closeTaskDetailsModal={closeTaskDetailsModal}
+          selectedTask={selectedTask!}
+        />
 
-      <TaskDetailsModal
-        isOpen={isOpenTaskDetailsModal}
-        onOverlayClick={closeTaskDetailsModal}
-        selectedTask={selectedTask}
-        onMarkAsDoneTaskMutation={onMarkAsDoneTaskMutation}
-        isButtonLoading={isButtonLoading}
-        t={t}
-      />
+        <EditTaskForm
+          closeEditTaskModal={closeEditTaskModal}
+          isOpenEditTaskModal={isOpenEditTaskModal}
+          selectedTask={selectedTask!}
+        />
 
-      <EditTaskModal
-        isOpen={isOpenEditTaskModal}
-        onOverlayClick={handleOverlayClick}
-        handleOptionSelectClick={handleOptionSelectClick}
-        isLoadingButton={isEditButtonLoading}
-        isEditButtonDisabled={isEditButtonDisabled}
-        onSubmit={onSubmit}
-        t={t}
-      />
+        <StyledHeaderContainer>
+          <StyledTitleDropdownContainer>
+            <Text fontWeight={'extraBold'} lineHeight={'extraSmall'}>
+              {t('headerTitle')}
+            </Text>
 
-      <PageStateContainer
-        onErrorClick={onButtonBackendErrorClick}
-        onEmptyClick={onButtonEmptyTasksClick}
-        isEmpty={tasks?.items.length === 0}
-        isError={isErrorTasks}
-        isLoading={isLoadingTasks}
-        t={t}
-      >
-        <FlatList data={tasks?.items} renderItem={renderTask} numColumns={2} keyExtractor={keyExtractor} gap={'1rem'} />
-      </PageStateContainer>
-    </>
+            <Dropdown
+              selectedOption={currentLanguage}
+              type={'textWithImage'}
+              dropdownOptions={languageOptions}
+              onOptionClick={handleLanguageDropdownClick}
+            />
+          </StyledTitleDropdownContainer>
+
+          <OptionSelectList
+            selectOptionList={translatedOptions}
+            handleOptionSelectClick={() => console.log('TO DO HANDLE OPTION SELECT CLICK')}
+          />
+        </StyledHeaderContainer>
+
+        <FlatList
+          data={tasks?.items}
+          renderItem={renderTask}
+          numColumns={2}
+          keyExtractor={(task) => task.id.toString()}
+          gap={'1rem'}
+        />
+      </>
+    </PageStateContainer>
   );
 };

@@ -10,7 +10,9 @@ export const StyledFlatList = styled.div<{
 }>`
   display: grid;
   gap: ${({ $gap }) => $gap};
+
   @media (${breakpoints.tablet}) {
+    grid-auto-rows: 1fr;
     grid-template-columns: ${({ $numColumns, $itemMinWidth }) =>
       $numColumns === 'auto-fill' ? `repeat(auto-fill, minmax(${$itemMinWidth}, 1fr))` : `repeat(${$numColumns}, 1fr)`};
   }

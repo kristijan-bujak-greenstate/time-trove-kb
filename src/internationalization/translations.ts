@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 export type TranslationLanguages = {
   [key: string]: {
     [key: string]: string;
@@ -87,7 +88,7 @@ export const translations: TranslationLanguages = {
 
     // task details mark as done
     taskDetailsToastTitleSuccess: 'Success!',
-    taskDetailsToastDescriptionSuccess: 'Task successfully marked as done',
+    taskDetailsToastDescriptionSuccess: 'Task successfully completed',
 
     taskDetailsToastTitleError: 'Error!',
     taskDetailsToastDescriptionError: 'Something went wrong! Please try again',
@@ -150,6 +151,27 @@ export const translations: TranslationLanguages = {
     /* Chip text */
     chipTextDone: 'Done',
     chipTextInProgress: 'In progress',
+
+    /* mocked select options priority */
+    Low: 'Low',
+    Medium: 'Medium',
+    High: 'High',
+
+    /* HOME */
+    headerTitle: 'Tasks',
+
+    /* task schema */
+    taskTitleErrorMessage: 'Title should be at least 3 characters long',
+    taskDescriptionErrorMessage: 'Description should be at least 10 characters long',
+
+    /* SERVER ERRORS */
+    // login, signup
+    loginbadRequest: 'Bad credentials',
+    signupbadRequest: 'User already exist',
+
+    //create, edit task
+    validationError: 'Validation error',
+    notFound: 'Task does not exist',
   },
 
   de: {
@@ -298,5 +320,22 @@ export const translations: TranslationLanguages = {
     /* Chip text */
     chipTextDone: 'Erledigt',
     chipTextInProgress: 'In Bearbeitung',
+
+    /* mocked select option */
+    Low: 'Niedrig',
+    Medium: 'Mittel',
+    High: 'Hoch',
+
+    /* HOME */
+    headerTitle: 'Aufgaben',
+
+    /* SERVER ERRORS */
+    // login, signup
+    loginbadRequest: 'Ungültige Anmeldeinformationen',
+    signupbadRequest: 'Benutzer existiert bereits',
+
+    //create, edit task
+    validationError: 'Validierungsfehler',
+    notFound: 'Aufgabe existiert nicht',
   },
 };

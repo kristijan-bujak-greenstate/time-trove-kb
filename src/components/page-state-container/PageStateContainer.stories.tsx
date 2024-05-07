@@ -30,8 +30,6 @@ export const Loading: Story = {
     isLoading: true,
     isEmpty: false,
     isError: false,
-    onEmptyClick: () => console.log('Empty button clicked'),
-    onErrorClick: () => console.log('Error button clicked'),
     children: <></>,
   },
   render: (args) => <StatefulPageStateContainer {...(args as PageStateContainerNotCustomProps)} />,

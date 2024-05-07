@@ -1,4 +1,4 @@
-import { StyledTextButton } from '../../publicForm.styles';
+import { StyledTextButton } from '../public-form/publicForm.styles';
 
 export type TextButtonProps = {
   children: string;

@@ -7,8 +7,8 @@ import { Heading } from '../heading/Heading';
 import { Input, InputProps } from '../input/Input';
 import { Logo } from '../logo/Logo';
 import { Text } from '../text/Text';
+import { TextButton } from '../text-button/TextButton';
 
-import { TextButton } from './components/text-button/TextButton';
 import {
   StyledForm,
   StyledBottomTextContainer,

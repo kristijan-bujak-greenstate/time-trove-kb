@@ -27,6 +27,7 @@ export const Card = ({
 }: CardProps) => {
   return (
     <StyledCard
+      onClick={onClick}
       $borderWidth={borderWidth}
       $backgroundColor={backgroundColor}
       $padding={padding}
@@ -34,7 +35,6 @@ export const Card = ({
       $borderColor={borderColor}
       $borderRadius={borderRadius}
       $hasHoverActiveStyles={hasHoverActiveStyles}
-      onClick={onClick}
     >
       {children}
     </StyledCard>

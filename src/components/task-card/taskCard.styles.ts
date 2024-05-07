@@ -16,6 +16,13 @@ export const StyledHeaderContainer = styled.div`
   }
 `;
 
+export const StyledMainContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+`;
+
 export const StyledFooterContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -41,4 +48,11 @@ export const StyledTextTitleWrapper = styled.div`
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   background-color: red;
+`;
+
+export const StyledDescriptionContainer = styled.div`
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 `;

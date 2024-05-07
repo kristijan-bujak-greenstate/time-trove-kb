@@ -2,6 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useForm } from 'react-hook-form';
 
+import { useTranslation } from '../../hooks/useTranslation';
 import { EditIcon } from '../../icons/EditIcon';
 import { ChipStatus } from '../../shared/enums/chipStatus';
 import { TaskData, taskFieldNames, taskSchema } from '../../shared/schemas/taskSchema';
@@ -41,6 +42,8 @@ const mockedSelectOptionsItems: OptionSelectPriority[] = [
 ];
 
 const StatefulTaskForm = ({ inputProps, textAreaProps, ...props }: TaskFormProps) => {
+  const { t } = useTranslation();
+
   const {
     handleSubmit,
     register,
@@ -49,7 +52,7 @@ const StatefulTaskForm = ({ inputProps, textAreaProps, ...props }: TaskFormProps
     getValues,
   } = useForm<TaskData>({
     mode: 'onChange',
-    resolver: zodResolver(taskSchema),
+    resolver: zodResolver(taskSchema(t)),
   });
 
   const onSubmit = (data: TaskData) => {
