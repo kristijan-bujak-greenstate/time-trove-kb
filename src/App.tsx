@@ -9,7 +9,14 @@ import { router } from './router/Router';
 import { defaultTheme } from './shared/theme/theme';
 import { useMaintenance } from './store/useMaintenance';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: Infinity,
+      cacheTime: Infinity,
+    },
+  },
+});
 
 function App() {
   const { isMaintenance } = useMaintenance();

@@ -1,34 +1,43 @@
-import { useEffect } from 'react';
-
 import { axiosInstance } from '../../../../api/axiosInstance';
 import { endpoints } from '../../../../api/endpoints/endpoints';
 import { TaskRequest } from '../../../../api/types/requests/task';
 import { Item } from '../../../../api/types/responses/getTasksResponse';
-import { Dialog, Modal, TaskForm } from '../../../../components';
+import { Dialog, Modal, OptionSelectPriority, TaskForm } from '../../../../components';
 import { ControlledForm } from '../../../../components/controlled-form/ControlledForm';
 import { PriorityLevel } from '../../../../components/task-card/enum';
 import { getObjectByModifiedFormFields } from '../../../../helpers/generateRequestData';
 import { useTaskForm } from '../../../../hooks/useTaskForm';
 import { EditIcon } from '../../../../icons';
-import { mockedSelectOptionsItems } from '../../../../shared/data/selectOptionsItems';
 import { QueryKeys } from '../../../../shared/enums/queryKeys';
 import { TaskData, taskFieldNames, taskSchema } from '../../../../shared/schemas/taskSchema';
 
 type EditTaskModalProps = {
   closeEditTaskModal: () => void;
-  selectedTask: Item;
+  selectedTask?: Item;
   isOpenEditTaskModal: boolean;
 };
 
-const defaultValues = {
-  title: '',
-  description: '',
-  selectedOption: undefined,
+type EditTaskFormProps = {
+  closeEditTaskModal: () => void;
+  selectedTask?: Item;
+  isOpenEditTaskModal: boolean;
+  translatedOptions: OptionSelectPriority[];
 };
 
-export const EditTaskForm = ({ closeEditTaskModal, selectedTask, isOpenEditTaskModal }: EditTaskModalProps) => {
+export const EditTaskForm = ({
+  closeEditTaskModal,
+  selectedTask,
+  isOpenEditTaskModal,
+  translatedOptions,
+}: EditTaskFormProps) => {
+  const defaultValues = {
+    title: selectedTask?.title || '',
+    description: selectedTask?.description || '',
+    selectedOption: translatedOptions.find((option) => option.value === selectedTask?.priority),
+  };
+
   return (
-    <ControlledForm schema={taskSchema} defaultValues={defaultValues}>
+    <ControlledForm schema={taskSchema} defaultValues={defaultValues} key={JSON.stringify(defaultValues)}>
       <EditTaskModal
         isOpenEditTaskModal={isOpenEditTaskModal}
         closeEditTaskModal={closeEditTaskModal}
@@ -46,8 +55,10 @@ export const EditTaskModal = ({ closeEditTaskModal, selectedTask, isOpenEditTask
       titleKey: 'editTaskToastTitleSuccess',
       descriptionKey: 'editTaskToastDescriptionSuccess',
     });
-    reset();
+
     queryClient.invalidateQueries(QueryKeys.TASKS);
+
+    reset({ title: '', description: '', selectedOption: undefined });
   };
 
   const onSubmit = (data: TaskData | Partial<TaskData>) => {
@@ -85,20 +96,10 @@ export const EditTaskModal = ({ closeEditTaskModal, selectedTask, isOpenEditTask
     dirtyFields,
     mutate,
   } = useTaskForm({
-    mutationFn: (requestData) => axiosInstance.patch(endpoints.singleTask(selectedTask.id), requestData),
+    mutationFn: (requestData) => axiosInstance.patch(endpoints.singleTask(selectedTask!.id), requestData),
     onSuccessFunction: handleOnSuccess,
     closeModal: closeEditTaskModal,
   });
-
-  useEffect(() => {
-    if (isOpenEditTaskModal) {
-      reset({
-        title: selectedTask.title,
-        description: selectedTask.description,
-        selectedOption: mockedSelectOptionsItems.find((option) => option.value === selectedTask.priority),
-      });
-    }
-  }, [isOpenEditTaskModal, selectedTask, reset]);
 
   return (
     <>

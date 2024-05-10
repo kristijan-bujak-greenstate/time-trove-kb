@@ -3,6 +3,7 @@ import { endpoints } from '../api/endpoints/endpoints';
 import { Dialog, Modal, TaskForm } from '../components';
 import { ControlledForm } from '../components/controlled-form/ControlledForm';
 import { PriorityLevel } from '../components/task-card/enum';
+import { usePagination } from '../hooks/usePagination';
 import { useTaskForm } from '../hooks/useTaskForm';
 import { EditIcon } from '../icons';
 import { QueryKeys } from '../shared/enums/queryKeys';
@@ -28,6 +29,8 @@ export const CreateTaskForm = ({ closeCreateTaskModal, isOpen }: CreateTaskModal
 };
 
 export const CreateTaskModal = ({ isOpen, closeCreateTaskModal }: CreateTaskModalProps) => {
+  const { handlePaginationCreate, queryClient } = usePagination();
+
   const handleOnSuccess = () => {
     closeCreateTaskModal();
     addToQueue({
@@ -36,7 +39,10 @@ export const CreateTaskModal = ({ isOpen, closeCreateTaskModal }: CreateTaskModa
       descriptionKey: 'createTaskToastDescriptionSuccess',
     });
     reset();
+
     queryClient.invalidateQueries(QueryKeys.TASKS);
+
+    handlePaginationCreate();
   };
 
   const onSubmit = ({ title, description, selectedOption }: TaskData) => {
@@ -63,7 +69,6 @@ export const CreateTaskModal = ({ isOpen, closeCreateTaskModal }: CreateTaskModa
     setIsOpenDiscardChangesDialog,
     reset,
     addToQueue,
-    queryClient,
     mutate,
   } = useTaskForm({
     mutationFn: (requestData) => axiosInstance.post(endpoints.tasks, requestData),

@@ -1,9 +1,6 @@
 import { useState } from 'react';
-import { useQuery } from 'react-query';
 
-import { axiosInstance } from '../../../api/axiosInstance';
-import { endpoints } from '../../../api/endpoints/endpoints';
-import { Item, TasksResponse } from '../../../api/types/responses/getTasksResponse';
+import { Item } from '../../../api/types/responses/getTasksResponse';
 import {
   TaskCard,
   FlatList,
@@ -12,21 +9,27 @@ import {
   Dropdown,
   OptionSelectList,
   DataStatus,
+  Pagination,
 } from '../../../components';
 import { DropdownOption } from '../../../components/dropdown/types';
 import { CreateTaskForm } from '../../../components-logic/CreateTask';
 import { useLanguageContext } from '../../../context/LanguageContext';
-import { getQueryKey } from '../../../helpers/getQueryKey';
+import { usePagination } from '../../../hooks/usePagination';
 import { useTranslatedOptions } from '../../../hooks/useTranslatedOptions';
 import { useTranslation } from '../../../hooks/useTranslation';
 import { NothingHereYetIcon, SomethingWentWrongIcon } from '../../../icons';
 import { languageOptions } from '../../../shared/data/languageOptions';
-import { QueryKeys } from '../../../shared/enums/queryKeys';
 
 import { CompleteTask } from './components/CompleteTask';
 import { DeleteTask } from './components/DeleteTask';
 import { EditTaskForm } from './components/EditTask';
-import { StyledHeaderContainer, StyledTitleDropdownContainer } from './home.styles';
+import {
+  StyledDropdownWrapper,
+  StyledFlatListWrapper,
+  StyledHeaderContainer,
+  StyledPaginationWrapper,
+  StyledTitleDropdownContainer,
+} from './home.styles';
 
 export const Home = () => {
   const [isOpenTaskDetailsModal, setIsOpenTaskDetailsModal] = useState(false);
@@ -42,8 +45,15 @@ export const Home = () => {
 
   const translatedOptions = useTranslatedOptions();
 
+  const { currentPage, setCurrentPage, totalPages, totalItems, taskItems, isLoadingTasks, isErrorTasks, refetch } =
+    usePagination();
+
   const handleLanguageDropdownClick = (option: DropdownOption) => {
     setCurrentLanguage(option);
+  };
+
+  const handlePaginationButtonClick = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
   };
 
   const onButtonEmptyTasksClick = () => {
@@ -81,16 +91,6 @@ export const Home = () => {
     setIsOpenDeleteTaskDialog(false);
   };
 
-  const {
-    data: tasks,
-    isLoading: isLoadingTasks,
-    isError: isErrorTasks,
-    refetch,
-  } = useQuery<TasksResponse>({
-    queryKey: getQueryKey(QueryKeys.TASKS),
-    queryFn: () => axiosInstance.get(endpoints.tasks),
-  });
-
   const renderTask = (task: Item) => {
     return (
       <TaskCard
@@ -110,14 +110,21 @@ export const Home = () => {
 
   return (
     <PageStateContainer
-      isEmpty={!tasks?.totalItems}
+      isEmpty={!totalItems}
       isError={isErrorTasks}
       isLoading={isLoadingTasks}
       t={t}
       renderCustomEmptyComponent={
         <>
           <CreateTaskForm closeCreateTaskModal={closeCreateTaskModal} isOpen={isOpenCreateTaskModal} />
-
+          <StyledDropdownWrapper>
+            <Dropdown
+              selectedOption={currentLanguage}
+              type={'textWithImage'}
+              dropdownOptions={languageOptions}
+              onOptionClick={handleLanguageDropdownClick}
+            />
+          </StyledDropdownWrapper>
           <DataStatus
             icon={NothingHereYetIcon}
             onClick={onButtonEmptyTasksClick}
@@ -131,7 +138,7 @@ export const Home = () => {
       renderCustomErrorComponent={
         <DataStatus
           icon={SomethingWentWrongIcon}
-          onClick={() => refetch()}
+          onClick={refetch}
           title={t('backendErrorTitle')}
           description={t('backendErrorDescription')}
           buttonText={t('backendErrorButtonText')}
@@ -156,6 +163,7 @@ export const Home = () => {
           closeEditTaskModal={closeEditTaskModal}
           isOpenEditTaskModal={isOpenEditTaskModal}
           selectedTask={selectedTask!}
+          translatedOptions={translatedOptions}
         />
 
         <StyledHeaderContainer>
@@ -178,13 +186,19 @@ export const Home = () => {
           />
         </StyledHeaderContainer>
 
-        <FlatList
-          data={tasks?.items}
-          renderItem={renderTask}
-          numColumns={2}
-          keyExtractor={(task) => task.id.toString()}
-          gap={'1rem'}
-        />
+        <StyledFlatListWrapper>
+          <FlatList
+            data={taskItems}
+            renderItem={renderTask}
+            numColumns={2}
+            keyExtractor={(task) => task.id}
+            gap={'1rem'}
+          />
+        </StyledFlatListWrapper>
+
+        <StyledPaginationWrapper>
+          <Pagination currentPage={currentPage} onButtonClick={handlePaginationButtonClick} totalPages={totalPages} />
+        </StyledPaginationWrapper>
       </>
     </PageStateContainer>
   );

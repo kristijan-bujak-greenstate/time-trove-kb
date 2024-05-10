@@ -85,8 +85,8 @@ export const useTaskForm = ({ mutationFn, onSuccessFunction, closeModal }: UseTa
     reset,
     addToQueue,
     queryClient,
-    dirtyFields,
     mutate,
     translatedOptions,
+    dirtyFields,
   };
 };

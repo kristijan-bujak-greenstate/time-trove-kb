@@ -7,4 +7,5 @@ export const StyledPageStateContainer = styled.div<{ $isFullPage?: boolean }>`
   justify-content: center;
   align-items: center;
   text-align: center;
+  position: relative;
 `;

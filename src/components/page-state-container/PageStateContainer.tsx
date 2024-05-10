@@ -34,16 +34,15 @@ export const PageStateContainer = ({
 
   if (isError)
     return (
-      <>
-        <StyledPageStateContainer>
-          {renderCustomErrorComponent} ||
+      <StyledPageStateContainer>
+        {renderCustomErrorComponent || (
           <DataStatus
             icon={SomethingWentWrongIcon}
             title={t('backendErrorTitle')}
             description={t('backendErrorDescription')}
           />
-        </StyledPageStateContainer>
-      </>
+        )}
+      </StyledPageStateContainer>
     );
 
   if (customComponent) {

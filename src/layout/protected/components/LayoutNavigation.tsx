@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router';
 
 import { Dialog, Navigation } from '../../../components';
 import { CreateTaskForm } from '../../../components-logic/CreateTask';
+import { usePaginationContext } from '../../../context/PaginationContext';
 import { removeToken } from '../../../helpers/tokenHelpers';
 import { useTranslation } from '../../../hooks/useTranslation';
 import { LogoutIcon } from '../../../icons';
@@ -15,6 +16,8 @@ export const LayoutNavigation = () => {
   const { t } = useTranslation();
 
   const queryClient = useQueryClient();
+
+  const { setCurrentPage } = usePaginationContext();
 
   const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
   const [isCreateTaskModalOpen, setIsCreateTaskModalOpen] = useState(false);
@@ -38,6 +41,7 @@ export const LayoutNavigation = () => {
   const handleLogout = () => {
     removeToken();
     queryClient.clear();
+    setCurrentPage(1);
     navigate(routes.login);
   };
 

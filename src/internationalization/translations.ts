@@ -317,6 +317,10 @@ export const translations: TranslationLanguages = {
     taskDetailsTitle: 'Aufgabendetails',
     taskDetailsButtonText: 'Als erledigt markieren',
 
+    /* TASK VALIDATION SCHEMA */
+    taskTitleErrorMessage: 'Titel sollte mindestens 3 Zeichen lang sein',
+    taskDescriptionErrorMessage: 'Beschreibung sollte mindestens 10 Zeichen lang sein',
+
     /* Chip text */
     chipTextDone: 'Erledigt',
     chipTextInProgress: 'In Bearbeitung',

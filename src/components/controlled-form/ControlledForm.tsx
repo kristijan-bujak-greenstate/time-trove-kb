@@ -1,28 +1,23 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ReactNode, useEffect } from 'react';
-import { useForm, FormProvider, DefaultValues, Path } from 'react-hook-form';
+import { useForm, FormProvider, FieldValues } from 'react-hook-form';
 import { ZodType } from 'zod';
 
 import { useLanguageContext } from '../../context/LanguageContext';
 import { useTranslation } from '../../hooks/useTranslation';
 
-type ControlledFormProps<T> = {
-  schema: TranslatedSchema<T>;
-  defaultValues?: DefaultValues<T>;
+type ControlledFormProps = {
+  schema: TranslatedSchema;
+  defaultValues?: FieldValues;
   children: ReactNode;
 };
 
-type TranslatedSchema<T> = (t: (key: string) => string) => ZodType<T>;
-type ErrorFieldsType<T> = Path<T> | Path<T>[];
+type TranslatedSchema = (t: (key: string) => string) => ZodType;
 
-export const ControlledForm = <T extends Record<string, unknown>>({
-  schema,
-  defaultValues,
-  children,
-}: ControlledFormProps<T>): JSX.Element => {
+export const ControlledForm = ({ schema, defaultValues, children }: ControlledFormProps): JSX.Element => {
   const { t } = useTranslation();
 
-  const formMethods = useForm<T>({
+  const formMethods = useForm({
     mode: 'onChange',
     resolver: zodResolver(schema(t)),
     defaultValues,
@@ -31,7 +26,7 @@ export const ControlledForm = <T extends Record<string, unknown>>({
   const { currentLanguage } = useLanguageContext();
 
   useEffect(() => {
-    formMethods.trigger(Object.keys(formMethods.formState.errors) as ErrorFieldsType<T>);
+    formMethods.trigger(Object.keys(formMethods.formState.errors));
   }, [currentLanguage, formMethods]);
 
   return <FormProvider {...formMethods}>{children}</FormProvider>;
