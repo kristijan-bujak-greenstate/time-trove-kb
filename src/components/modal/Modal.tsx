@@ -7,13 +7,12 @@ export type ModalProps = {
   onOverlayClick: () => void;
   children: React.ReactNode;
   maxWidth?: RemSize;
-  zIndex?: number;
 };
 
-export const Modal = ({ isOpen = false, onOverlayClick, maxWidth, children, zIndex = 1 }: ModalProps) => {
+export const Modal = ({ isOpen = false, onOverlayClick, maxWidth, children }: ModalProps) => {
   return (
-    <StyledModalOverlay $isOpen={isOpen} onClick={onOverlayClick} $zIndex={zIndex}>
-      <StyledModalContent $maxWidth={maxWidth} $isOpen={isOpen} $zIndex={zIndex} onClick={(e) => e.stopPropagation()}>
+    <StyledModalOverlay $isOpen={isOpen} onClick={onOverlayClick}>
+      <StyledModalContent $maxWidth={maxWidth} $isOpen={isOpen} onClick={(e) => e.stopPropagation()}>
         {children}
       </StyledModalContent>
     </StyledModalOverlay>

@@ -6,11 +6,11 @@ import { TaskRequest } from '../api/types/requests/task';
 import { ErrorData } from '../api/types/responses/errorResponse';
 import { TaskResponse } from '../api/types/responses/postTaskResponse';
 import { OptionSelectPriority } from '../components';
+import { useToastContext } from '../context/ToastContext';
 import { extractKey } from '../helpers/extractKeyFromServer';
 import { mockedSelectOptionsItems } from '../shared/data/selectOptionsItems';
 import { TaskData, taskFieldNames } from '../shared/schemas/taskSchema';
 
-import { useToastQueue } from './useToastQueue';
 import { useTranslatedOptions } from './useTranslatedOptions';
 import { useTranslation } from './useTranslation';
 
@@ -30,7 +30,7 @@ export const useTaskForm = ({ mutationFn, onSuccessFunction, closeModal }: UseTa
     setValue,
   } = useFormContext<TaskData>();
 
-  const { addToQueue, toastComponents } = useToastQueue();
+  const { addToQueue } = useToastContext();
 
   const queryClient = useQueryClient();
 
@@ -68,7 +68,6 @@ export const useTaskForm = ({ mutationFn, onSuccessFunction, closeModal }: UseTa
   };
 
   return {
-    toastComponents,
     handleOverlayClick,
     isDirty,
     isValid,

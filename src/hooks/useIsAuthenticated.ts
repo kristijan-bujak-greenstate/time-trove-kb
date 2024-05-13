@@ -5,17 +5,17 @@ import { axiosInstance } from '../api/axiosInstance';
 import { endpoints } from '../api/endpoints/endpoints';
 import { AuthResponse } from '../api/types/responses/getAuthResponse';
 import { getQueryKey } from '../helpers/getQueryKey';
-import { getToken, removeToken } from '../helpers/tokenHelpers';
+import { getAccessToken, removeToken } from '../helpers/tokenHelpers';
 import { routes } from '../router/routes';
 import { QueryKeys } from '../shared/enums/queryKeys';
 
 export const useIsAuthenticated = () => {
-  const token = getToken();
+  const accessToken = getAccessToken();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   const { data: loggedUser, isLoading } = useQuery<AuthResponse>({
-    enabled: !!token,
+    enabled: !!accessToken,
     retry: false,
     queryKey: getQueryKey(QueryKeys.AUTH),
     queryFn: () => axiosInstance.get(endpoints.auth),
@@ -26,5 +26,5 @@ export const useIsAuthenticated = () => {
     },
   });
 
-  return { loggedUser, isLoading };
+  return { loggedUser, isLoading, queryClient };
 };

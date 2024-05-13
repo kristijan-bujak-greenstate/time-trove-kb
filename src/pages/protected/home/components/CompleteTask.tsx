@@ -5,7 +5,7 @@ import { endpoints } from '../../../../api/endpoints/endpoints';
 import { Item } from '../../../../api/types/responses/getTasksResponse';
 import { TaskResponse } from '../../../../api/types/responses/postTaskResponse';
 import { Modal, TaskDetails } from '../../../../components';
-import { useToastQueue } from '../../../../hooks/useToastQueue';
+import { useToastContext } from '../../../../context/ToastContext';
 import { useTranslation } from '../../../../hooks/useTranslation';
 import { EditIcon } from '../../../../icons';
 import { ChipStatus } from '../../../../shared/enums/chipStatus';
@@ -18,7 +18,7 @@ type TaskDetailsModal = {
 };
 
 export const CompleteTask = ({ isOpenTaskDetailsModal, selectedTask, closeTaskDetailsModal }: TaskDetailsModal) => {
-  const { addToQueue, toastComponents } = useToastQueue();
+  const { addToQueue } = useToastContext();
 
   const { t } = useTranslation();
 
@@ -51,8 +51,6 @@ export const CompleteTask = ({ isOpenTaskDetailsModal, selectedTask, closeTaskDe
 
   return (
     <>
-      {toastComponents}
-
       <Modal maxWidth={'41.25rem'} isOpen={isOpenTaskDetailsModal} onOverlayClick={closeTaskDetailsModal}>
         {selectedTask && (
           <TaskDetails

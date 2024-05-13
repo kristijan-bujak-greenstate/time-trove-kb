@@ -2,10 +2,10 @@ import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import axiosRetry from 'axios-retry';
 
 import { environmentVariables } from '../env/environmentVariables';
-import { getToken } from '../helpers/tokenHelpers';
+import { getAccessToken } from '../helpers/tokenHelpers';
 
+import { handleAccessTokenExpired } from './response-status-handlers/handleAccessTokenExpired';
 import { handleServiceUnavailable } from './response-status-handlers/serviceUnavailableStatus';
-import { handleUnauthorizedStatus } from './response-status-handlers/unauthorizedStatus';
 
 export const axiosInstance: AxiosInstance = axios.create({
   // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -14,7 +14,7 @@ export const axiosInstance: AxiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    const accessToken = getToken();
+    const accessToken = getAccessToken();
 
     if (accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`;
@@ -35,7 +35,7 @@ axiosInstance.interceptors.response.use(
     const response = error.response!;
 
     if (response.status === 401) {
-      handleUnauthorizedStatus();
+      handleAccessTokenExpired(error);
     }
     if (response.status === 503) {
       handleServiceUnavailable();

@@ -28,30 +28,18 @@ export const SignUpForm = () => {
       descriptionKey: 'signupToastDescriptionSuccess',
     });
     reset(defaultValues);
+    navigate(routes.login);
   };
 
-  const {
-    addToQueue,
-    toastComponents,
-    navigate,
-    t,
-    errors,
-    register,
-    handleSubmit,
-    isButtonDisabled,
-    isLoading,
-    reset,
-    onSubmit,
-  } = usePublicForm({
-    mutationFn: (requestData) => axiosInstance.post(endpoints.registration, requestData),
-    action: 'signup',
-    onSuccessFunction: handleOnSuccess,
-  });
+  const { addToQueue, navigate, t, errors, register, handleSubmit, isButtonDisabled, isLoading, reset, onSubmit } =
+    usePublicForm({
+      mutationFn: (requestData) => axiosInstance.post(endpoints.registration, requestData),
+      action: 'signup',
+      onSuccessFunction: handleOnSuccess,
+    });
 
   return (
     <>
-      {toastComponents}
-
       <PublicForm
         title={t('signupTitle')}
         description={t('signupDescription')}

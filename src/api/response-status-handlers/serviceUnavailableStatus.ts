@@ -1,5 +1,5 @@
-import { useMaintenance } from '../../store/useMaintenance';
+import { useMaintenanceStore } from '../../store/useMaintenanceStore';
 
 export const handleServiceUnavailable = () => {
-  useMaintenance.getState().setIsMaintenance(true);
+  useMaintenanceStore.getState().setIsMaintenance(true);
 };

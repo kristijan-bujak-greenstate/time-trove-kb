@@ -6,13 +6,15 @@ import { useControlNavigationRoutes } from '../../hooks/useControlNavigationRout
 import { useIsAuthenticated } from '../../hooks/useIsAuthenticated';
 import { routes } from '../../router/routes';
 import { StyledSpinnerWrapperFullPage } from '../../shared/styles/fullPageWrapper.styles';
+import { useAuthStore } from '../../store/useAuthStore';
 
 type ProtectedRouteProps = {
   children: ReactNode;
 };
 
 export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
-  const { isLoading, loggedUser } = useIsAuthenticated();
+  const { isLoading, loggedUser, queryClient } = useIsAuthenticated();
+  const { isLogged } = useAuthStore();
 
   useControlNavigationRoutes();
 
@@ -24,7 +26,8 @@ export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
     );
   }
 
-  if (!loggedUser?.id) {
+  if (!loggedUser?.id || !isLogged) {
+    queryClient.clear();
     return <Navigate to={routes.login} />;
   }
 

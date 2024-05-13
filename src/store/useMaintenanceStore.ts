@@ -7,7 +7,7 @@ export type MaintenanceStore = {
   setIsMaintenance: (isMaintenance: boolean) => void;
 };
 
-export const useMaintenance = create<MaintenanceStore>()(
+export const useMaintenanceStore = create<MaintenanceStore>()(
   persist(
     immer((set) => ({
       isMaintenance: false,

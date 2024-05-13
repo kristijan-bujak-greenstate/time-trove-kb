@@ -1,10 +1,8 @@
-/* eslint-disable check-file/filename-naming-convention */
 import { nanoid } from 'nanoid';
-import { useState } from 'react';
+import { ReactNode, createContext, useContext, useState } from 'react';
 
 import { Toast, ToastProps } from '../components';
-
-import { useTranslation } from './useTranslation';
+import { useTranslation } from '../hooks/useTranslation';
 
 export type ToastQueueProp = {
   status: ToastProps['status'];
@@ -13,9 +11,22 @@ export type ToastQueueProp = {
   id?: string;
 };
 
-export const useToastQueue = () => {
-  const [queue, setQueue] = useState<ToastQueueProp[]>([]);
+type ToastContextProps = {
+  addToQueue: (toast: ToastQueueProp) => void;
+  clearQueue: () => void;
+};
 
+type ToastProviderProps = {
+  children: ReactNode;
+};
+
+const ToastContext = createContext({} as ToastContextProps);
+
+// eslint-disable-next-line react-refresh/only-export-components
+export const useToastContext = () => useContext(ToastContext);
+
+export const ToastProvider = ({ children }: ToastProviderProps) => {
+  const [queue, setQueue] = useState<ToastQueueProp[]>([]);
   const { t } = useTranslation();
 
   const addToQueue = (toast: ToastQueueProp) => {
@@ -24,6 +35,10 @@ export const useToastQueue = () => {
     if (queue.length < 3) {
       setQueue((prevQueue) => [...prevQueue, { ...toast, id }]);
     }
+  };
+
+  const clearQueue = () => {
+    setQueue([]);
   };
 
   const removeFromQueue = (idToRemove: string) => {
@@ -40,5 +55,10 @@ export const useToastQueue = () => {
     />
   ));
 
-  return { addToQueue, toastComponents };
+  return (
+    <ToastContext.Provider value={{ addToQueue, clearQueue }}>
+      {children}
+      {toastComponents}
+    </ToastContext.Provider>
+  );
 };

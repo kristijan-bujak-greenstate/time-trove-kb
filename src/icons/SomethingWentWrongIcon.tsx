@@ -1,7 +1,7 @@
 export const SomethingWentWrongIcon = () => {
   return (
     <svg width="244" height="180" viewBox="0 0 244 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <g clip-path="url(#clip0_2308_14225)">
+      <g clipPath="url(#clip0_2308_14225)">
         <path d="M54.3163 49.8522L8.56616 80.4551L53.6277 147.82L99.3779 117.218L54.3163 49.8522Z" fill="#F5F5F5" />
         <path d="M75.7372 114.027L75.2181 117.241L52.4749 113.964L52.9943 110.751L75.7372 114.027Z" fill="#E0E0E0" />
         <path d="M64.2833 102.564L67.5469 103.035L63.9286 125.427L60.665 124.957L64.2833 102.564Z" fill="#E0E0E0" />

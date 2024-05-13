@@ -36,6 +36,11 @@ export const usePagination = () => {
   };
 
   const handlePaginationDelete = () => {
+    if (currentPage < cachedTasks.totalPages) {
+      for (let i = currentPage + 1; i <= cachedTasks.totalPages; i++) {
+        queryClient.removeQueries(getQueryKey(QueryKeys.TASKS, i));
+      }
+    }
     if (cachedTasks.totalItems % limit === 1) {
       queryClient.removeQueries(getQueryKey(QueryKeys.TASKS));
       if (cachedTasks.totalPages > 1) setCurrentPage(cachedTasks.totalPages - 1);

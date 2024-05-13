@@ -6,16 +6,16 @@ import { useNavigate } from 'react-router-dom';
 import { LoginSignUpRequest } from '../api/types/requests/loginSignup';
 import { ErrorData } from '../api/types/responses/errorResponse';
 import { LoginResponse } from '../api/types/responses/loginResponse';
+import { useToastContext } from '../context/ToastContext';
 import { extractKey } from '../helpers/extractKeyFromServer';
 import { AuthData } from '../shared/schemas/authSchema';
 
-import { useToastQueue } from './useToastQueue';
 import { useTranslation } from './useTranslation';
 
 type UsePublicFormProps = {
   mutationFn: (requestData: LoginSignUpRequest) => Promise<LoginResponse>;
   action: 'login' | 'signup';
-  onSuccessFunction: (accessToken: string) => void;
+  onSuccessFunction: (accessToken: string, refreshToken: string) => void;
 };
 
 export const usePublicForm = ({ mutationFn, action, onSuccessFunction }: UsePublicFormProps) => {
@@ -31,15 +31,15 @@ export const usePublicForm = ({ mutationFn, action, onSuccessFunction }: UsePubl
 
   const navigate = useNavigate();
 
-  const { addToQueue, toastComponents } = useToastQueue();
+  const { addToQueue } = useToastContext();
 
   const { t } = useTranslation();
 
   const { mutate: mutation, isLoading } = useMutation<LoginResponse, ErrorData, LoginSignUpRequest>({
     mutationFn: mutationFn,
 
-    onSuccess: ({ accessToken }) => {
-      onSuccessFunction(accessToken);
+    onSuccess: ({ accessToken, refreshToken }) => {
+      onSuccessFunction(accessToken, refreshToken);
     },
 
     onError: ({ code: responseKeyCode }) => {
@@ -64,7 +64,6 @@ export const usePublicForm = ({ mutationFn, action, onSuccessFunction }: UsePubl
   }, [isDirty]);
 
   return {
-    toastComponents,
     t,
     navigate,
     errors,

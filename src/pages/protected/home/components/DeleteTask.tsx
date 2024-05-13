@@ -5,8 +5,8 @@ import { endpoints } from '../../../../api/endpoints/endpoints';
 import { Item } from '../../../../api/types/responses/getTasksResponse';
 import { TaskResponse } from '../../../../api/types/responses/postTaskResponse';
 import { Dialog } from '../../../../components';
+import { useToastContext } from '../../../../context/ToastContext';
 import { usePagination } from '../../../../hooks/usePagination';
-import { useToastQueue } from '../../../../hooks/useToastQueue';
 import { useTranslation } from '../../../../hooks/useTranslation';
 import { QueryKeys } from '../../../../shared/enums/queryKeys';
 
@@ -17,7 +17,7 @@ export type DeleteTaskProps = {
 };
 
 export const DeleteTask = ({ isOpenDeleteTaskDialog, closeDeleteTaskDialog, selectedTask }: DeleteTaskProps) => {
-  const { addToQueue, toastComponents } = useToastQueue();
+  const { addToQueue } = useToastContext();
 
   const { t } = useTranslation();
 
@@ -50,21 +50,17 @@ export const DeleteTask = ({ isOpenDeleteTaskDialog, closeDeleteTaskDialog, sele
   });
 
   return (
-    <>
-      {toastComponents}
-
-      <Dialog
-        isOpen={isOpenDeleteTaskDialog}
-        status={'error'}
-        title={t('deleteTaskTitleDialog')}
-        description={t('deleteTaskDescriptionDialog')}
-        primaryButtonText={t('deleteTaskPrimaryButtonText')}
-        secondaryButtonText={t('deleteTaskSecondaryButtonText')}
-        onOverlayClick={closeDeleteTaskDialog}
-        onPrimaryButtonClick={onDeleteTaskMutation}
-        onSecondaryButtonClick={closeDeleteTaskDialog}
-        isPrimaryButtonLoading={isDeleteButtonLoading}
-      />
-    </>
+    <Dialog
+      isOpen={isOpenDeleteTaskDialog}
+      status={'error'}
+      title={t('deleteTaskTitleDialog')}
+      description={t('deleteTaskDescriptionDialog')}
+      primaryButtonText={t('deleteTaskPrimaryButtonText')}
+      secondaryButtonText={t('deleteTaskSecondaryButtonText')}
+      onOverlayClick={closeDeleteTaskDialog}
+      onPrimaryButtonClick={onDeleteTaskMutation}
+      onSecondaryButtonClick={closeDeleteTaskDialog}
+      isPrimaryButtonLoading={isDeleteButtonLoading}
+    />
   );
 };

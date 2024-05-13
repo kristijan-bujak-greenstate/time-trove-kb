@@ -20,7 +20,11 @@ export const translations: TranslationLanguages = {
     loginFooterDescription: 'Don’t have an account yet?',
     loginFooterButton: 'Sign up',
 
-    // login toast
+    // login toast success
+    loginToastTitleSuccess: 'Success!',
+    loginToastDescriptionSuccess: 'Successfully logged in!',
+
+    // login toast error
     loginToastTitle: 'Error!',
     loginToastDescription: 'Something went wrong! Please try again',
 
@@ -188,6 +192,10 @@ export const translations: TranslationLanguages = {
     loginButton: 'Anmelden',
     loginFooterDescription: 'Sie haben noch kein Konto?',
     loginFooterButton: 'Registrieren',
+
+    //login toast success
+    loginToastTitleSuccess: 'Erfolg!',
+    loginToastDescriptionSuccess: 'Erfolgreich angemeldet!',
 
     // login toast
     loginToastTitle: 'Fehler!',

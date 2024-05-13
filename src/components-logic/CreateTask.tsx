@@ -54,7 +54,6 @@ export const CreateTaskModal = ({ isOpen, closeCreateTaskModal }: CreateTaskModa
   };
 
   const {
-    toastComponents,
     t,
     translatedOptions,
     handleOverlayClick,
@@ -78,8 +77,6 @@ export const CreateTaskModal = ({ isOpen, closeCreateTaskModal }: CreateTaskModa
 
   return (
     <>
-      {toastComponents}
-
       <Modal maxWidth={'41.25rem'} isOpen={isOpen} onOverlayClick={handleOverlayClick}>
         <TaskForm
           headerIcon={EditIcon}

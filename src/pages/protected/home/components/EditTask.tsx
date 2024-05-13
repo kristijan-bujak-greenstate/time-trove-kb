@@ -57,8 +57,6 @@ export const EditTaskModal = ({ closeEditTaskModal, selectedTask, isOpenEditTask
     });
 
     queryClient.invalidateQueries(QueryKeys.TASKS);
-
-    reset({ title: '', description: '', selectedOption: undefined });
   };
 
   const onSubmit = (data: TaskData | Partial<TaskData>) => {
@@ -76,7 +74,6 @@ export const EditTaskModal = ({ closeEditTaskModal, selectedTask, isOpenEditTask
   };
 
   const {
-    toastComponents,
     handleOptionSelectClick,
     handleOverlayClick,
     translatedOptions,
@@ -103,8 +100,6 @@ export const EditTaskModal = ({ closeEditTaskModal, selectedTask, isOpenEditTask
 
   return (
     <>
-      {toastComponents}
-
       <Modal maxWidth={'41.25rem'} isOpen={isOpenEditTaskModal} onOverlayClick={handleOverlayClick}>
         <TaskForm
           headerIcon={EditIcon}
