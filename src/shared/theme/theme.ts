@@ -43,6 +43,7 @@ export const defaultTheme: Theme = {
     },
     primary: {
       hue0: '#FFFFFF',
+      hue25: '#F3EDFF',
       hue50: '#9867FF',
       hue100: '#7E44F8',
       hue200: '#733CE5',

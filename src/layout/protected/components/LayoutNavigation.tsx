@@ -10,6 +10,7 @@ import { removeAccessToken, removeRefreshToken } from '../../../helpers/tokenHel
 import { useTranslation } from '../../../hooks/useTranslation';
 import { LogoutIcon } from '../../../icons';
 import { routes } from '../../../router/routes';
+import { PriorityLevel } from '../../../shared/enums/priorityLevel';
 import { useAuthStore } from '../../../store/useAuthStore';
 
 export const LayoutNavigation = () => {
@@ -22,6 +23,8 @@ export const LayoutNavigation = () => {
   const { setCurrentPage } = usePaginationContext();
 
   const { clearQueue } = useToastContext();
+
+  const { setPriority } = usePaginationContext();
 
   const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
   const [isCreateTaskModalOpen, setIsCreateTaskModalOpen] = useState(false);
@@ -49,6 +52,7 @@ export const LayoutNavigation = () => {
     useAuthStore.getState().setIsLogged(false);
     queryClient.clear();
     setCurrentPage(1);
+    setPriority(PriorityLevel.ALL_OPTIONS);
     navigate(routes.login);
   };
 

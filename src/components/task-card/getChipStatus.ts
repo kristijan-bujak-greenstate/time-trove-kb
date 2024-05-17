@@ -1,6 +1,5 @@
 import { ChipStatus } from '../../shared/enums/chipStatus';
-
-import { PriorityLevel } from './enum';
+import { PriorityLevel } from '../../shared/enums/priorityLevel';
 
 export const getChipStatus = (priority: PriorityLevel): ChipStatus => {
   switch (priority) {

@@ -4,10 +4,12 @@ import { TaskRequest } from '../../../../api/types/requests/task';
 import { Item } from '../../../../api/types/responses/getTasksResponse';
 import { Dialog, Modal, OptionSelectPriority, TaskForm } from '../../../../components';
 import { ControlledForm } from '../../../../components/controlled-form/ControlledForm';
-import { PriorityLevel } from '../../../../components/task-card/enum';
 import { getObjectByModifiedFormFields } from '../../../../helpers/generateRequestData';
+import { getQueryKey } from '../../../../helpers/getQueryKey';
+import { usePagination } from '../../../../hooks/usePagination';
 import { useTaskForm } from '../../../../hooks/useTaskForm';
 import { EditIcon } from '../../../../icons';
+import { PriorityLevel } from '../../../../shared/enums/priorityLevel';
 import { QueryKeys } from '../../../../shared/enums/queryKeys';
 import { TaskData, taskFieldNames, taskSchema } from '../../../../shared/schemas/taskSchema';
 
@@ -48,6 +50,7 @@ export const EditTaskForm = ({
 };
 
 export const EditTaskModal = ({ closeEditTaskModal, selectedTask, isOpenEditTaskModal }: EditTaskModalProps) => {
+  const { currentPage, priority } = usePagination();
   const handleOnSuccess = () => {
     closeEditTaskModal();
     addToQueue({
@@ -56,7 +59,11 @@ export const EditTaskModal = ({ closeEditTaskModal, selectedTask, isOpenEditTask
       descriptionKey: 'editTaskToastDescriptionSuccess',
     });
 
-    queryClient.invalidateQueries(QueryKeys.TASKS);
+    queryClient.invalidateQueries(getQueryKey(QueryKeys.TASKS, [currentPage, priority!]));
+
+    if (dirtyFields.selectedOption) {
+      queryClient.removeQueries(getQueryKey(QueryKeys.TASKS));
+    }
   };
 
   const onSubmit = (data: TaskData | Partial<TaskData>) => {

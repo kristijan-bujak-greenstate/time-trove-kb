@@ -2,11 +2,10 @@ import { axiosInstance } from '../api/axiosInstance';
 import { endpoints } from '../api/endpoints/endpoints';
 import { Dialog, Modal, TaskForm } from '../components';
 import { ControlledForm } from '../components/controlled-form/ControlledForm';
-import { PriorityLevel } from '../components/task-card/enum';
 import { usePagination } from '../hooks/usePagination';
 import { useTaskForm } from '../hooks/useTaskForm';
 import { EditIcon } from '../icons';
-import { QueryKeys } from '../shared/enums/queryKeys';
+import { PriorityLevel } from '../shared/enums/priorityLevel';
 import { TaskData, taskFieldNames, taskSchema } from '../shared/schemas/taskSchema';
 
 type CreateTaskModalProps = {
@@ -29,7 +28,7 @@ export const CreateTaskForm = ({ closeCreateTaskModal, isOpen }: CreateTaskModal
 };
 
 export const CreateTaskModal = ({ isOpen, closeCreateTaskModal }: CreateTaskModalProps) => {
-  const { handlePaginationCreate, queryClient } = usePagination();
+  const { handlePaginationCreate } = usePagination();
 
   const handleOnSuccess = () => {
     closeCreateTaskModal();
@@ -39,8 +38,6 @@ export const CreateTaskModal = ({ isOpen, closeCreateTaskModal }: CreateTaskModa
       descriptionKey: 'createTaskToastDescriptionSuccess',
     });
     reset();
-
-    queryClient.invalidateQueries(QueryKeys.TASKS);
 
     handlePaginationCreate();
   };

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { TaskCard } from '..';
 import { Item } from '../../api/types/responses/getTasksResponse';
 import { useTranslation } from '../../hooks/useTranslation';
-import { PriorityLevel } from '../task-card/enum';
+import { PriorityLevel } from '../../shared/enums/priorityLevel';
 
 import { FlatList, FlatListProps } from '.';
 

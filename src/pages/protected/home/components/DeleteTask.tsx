@@ -35,8 +35,6 @@ export const DeleteTask = ({ isOpenDeleteTaskDialog, closeDeleteTaskDialog, sele
         descriptionKey: 'deleteTaskToastDescriptionSuccess',
       });
 
-      queryClient.invalidateQueries(QueryKeys.TASKS);
-
       handlePaginationDelete();
     },
 
@@ -46,6 +44,9 @@ export const DeleteTask = ({ isOpenDeleteTaskDialog, closeDeleteTaskDialog, sele
         titleKey: 'deleteTaskToastTitleError',
         descriptionKey: 'deleteTaskToastDescriptionError',
       });
+      closeDeleteTaskDialog();
+
+      queryClient.invalidateQueries(QueryKeys.TASKS);
     },
   });
 

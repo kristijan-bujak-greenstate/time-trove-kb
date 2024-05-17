@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from '../../hooks/useTranslation';
 import { EditIcon } from '../../icons/EditIcon';
 import { ChipStatus } from '../../shared/enums/chipStatus';
+import { PriorityLevel } from '../../shared/enums/priorityLevel';
 import { TaskData, taskFieldNames, taskSchema } from '../../shared/schemas/taskSchema';
 import { OptionSelectPriority } from '../option-select-list/OptionSelectList';
 
@@ -27,17 +28,17 @@ const mockedSelectOptionsItems: OptionSelectPriority[] = [
   {
     id: '1',
     status: ChipStatus.SUCCESS,
-    value: 'Low',
+    value: PriorityLevel.LOW,
   },
   {
     id: '2',
     status: ChipStatus.WARNING,
-    value: 'Medium',
+    value: PriorityLevel.MEDIUM,
   },
   {
     id: '3',
     status: ChipStatus.ERROR,
-    value: 'High',
+    value: PriorityLevel.HIGH,
   },
 ];
 

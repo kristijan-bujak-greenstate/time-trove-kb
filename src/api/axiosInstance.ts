@@ -2,10 +2,19 @@ import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import axiosRetry from 'axios-retry';
 
 import { environmentVariables } from '../env/environmentVariables';
-import { getAccessToken } from '../helpers/tokenHelpers';
+import {
+  getAccessToken,
+  getRefreshToken,
+  removeAccessToken,
+  removeRefreshToken,
+  setAccessToken,
+  setRefreshToken,
+} from '../helpers/tokenHelpers';
+import { useAuthStore } from '../store/useAuthStore';
+import { useMaintenanceStore } from '../store/useMaintenanceStore';
 
-import { handleAccessTokenExpired } from './response-status-handlers/handleAccessTokenExpired';
-import { handleServiceUnavailable } from './response-status-handlers/serviceUnavailableStatus';
+import { endpoints } from './endpoints/endpoints';
+import { RefreshTokenResponse } from './types/responses/refreshTokenResponse';
 
 export const axiosInstance: AxiosInstance = axios.create({
   // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -31,14 +40,34 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   (response: AxiosResponse) => response.data,
 
-  (error: AxiosError) => {
+  async (error: AxiosError) => {
     const response = error.response!;
 
     if (response.status === 401) {
-      handleAccessTokenExpired(error);
+      try {
+        const refreshToken = getRefreshToken();
+
+        if (!refreshToken) throw new Error();
+
+        const response = await axiosInstance.post<string, RefreshTokenResponse>(endpoints.refreshToken, {
+          refreshToken,
+        });
+
+        const { accessToken, refreshToken: newRefreshToken } = response;
+
+        setAccessToken(accessToken);
+        setRefreshToken(newRefreshToken);
+
+        error!.config!.headers.Authorization = `Bearer ${accessToken}`;
+        return axiosInstance(error!.config!);
+      } catch {
+        removeAccessToken();
+        removeRefreshToken();
+        useAuthStore.getState().setIsLogged(false);
+      }
     }
     if (response.status === 503) {
-      handleServiceUnavailable();
+      useMaintenanceStore.getState().setIsMaintenance(true);
     }
 
     return Promise.reject(response.data);

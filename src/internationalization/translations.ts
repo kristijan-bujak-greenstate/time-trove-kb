@@ -160,6 +160,7 @@ export const translations: TranslationLanguages = {
     Low: 'Low',
     Medium: 'Medium',
     High: 'High',
+    AllOptions: 'All tasks',
 
     /* HOME */
     headerTitle: 'Tasks',
@@ -337,6 +338,7 @@ export const translations: TranslationLanguages = {
     Low: 'Niedrig',
     Medium: 'Mittel',
     High: 'Hoch',
+    AllOptions: 'Alle Aufgaben',
 
     /* HOME */
     headerTitle: 'Aufgaben',

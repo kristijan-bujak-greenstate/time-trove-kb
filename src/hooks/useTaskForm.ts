@@ -38,7 +38,7 @@ export const useTaskForm = ({ mutationFn, onSuccessFunction, closeModal }: UseTa
 
   const [isOpenDiscardChangesDialog, setIsOpenDiscardChangesDialog] = useState(false);
 
-  const translatedOptions = useTranslatedOptions();
+  const translatedOptions = useTranslatedOptions(mockedSelectOptionsItems);
 
   const { mutate, isLoading } = useMutation<TaskResponse, ErrorData, TaskRequest>({
     mutationFn,

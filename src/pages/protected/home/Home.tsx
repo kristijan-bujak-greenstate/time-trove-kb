@@ -10,6 +10,7 @@ import {
   OptionSelectList,
   DataStatus,
   Pagination,
+  OptionSelectPriority,
 } from '../../../components';
 import { DropdownOption } from '../../../components/dropdown/types';
 import { CreateTaskForm } from '../../../components-logic/CreateTask';
@@ -19,6 +20,7 @@ import { useTranslatedOptions } from '../../../hooks/useTranslatedOptions';
 import { useTranslation } from '../../../hooks/useTranslation';
 import { NothingHereYetIcon, SomethingWentWrongIcon } from '../../../icons';
 import { languageOptions } from '../../../shared/data/languageOptions';
+import { mockedSelectOptionsItemsForFiltering } from '../../../shared/data/selectOptionsItems';
 
 import { CompleteTask } from './components/CompleteTask';
 import { DeleteTask } from './components/DeleteTask';
@@ -43,10 +45,20 @@ export const Home = () => {
 
   const { currentLanguage, setCurrentLanguage } = useLanguageContext();
 
-  const translatedOptions = useTranslatedOptions();
+  const translatedOptions = useTranslatedOptions(mockedSelectOptionsItemsForFiltering);
 
-  const { currentPage, setCurrentPage, totalPages, totalItems, taskItems, isLoadingTasks, isErrorTasks, refetch } =
-    usePagination();
+  const {
+    currentPage,
+    setCurrentPage,
+    totalPages,
+    totalItems,
+    taskItems,
+    isLoadingTasks,
+    isErrorTasks,
+    refetch,
+    priority,
+    setPriority,
+  } = usePagination();
 
   const handleLanguageDropdownClick = (option: DropdownOption) => {
     setCurrentLanguage(option);
@@ -54,6 +66,11 @@ export const Home = () => {
 
   const handlePaginationButtonClick = (pageNumber: number) => {
     setCurrentPage(pageNumber);
+  };
+
+  const handleOptionSelectClick = (option: OptionSelectPriority) => {
+    setCurrentPage(1);
+    setPriority(option.value);
   };
 
   const onButtonEmptyTasksClick = () => {
@@ -182,7 +199,9 @@ export const Home = () => {
 
           <OptionSelectList
             selectOptionList={translatedOptions}
-            handleOptionSelectClick={() => console.log('TO DO HANDLE OPTION SELECT CLICK')}
+            handleOptionSelectClick={handleOptionSelectClick}
+            selectedOption={priority}
+            showLine={true}
           />
         </StyledHeaderContainer>
 

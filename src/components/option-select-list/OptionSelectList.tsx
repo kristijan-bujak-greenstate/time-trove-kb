@@ -1,7 +1,10 @@
+import { Fragment } from 'react';
+
 import { ChipStatus } from '../../shared/enums/chipStatus';
+import { PriorityLevel } from '../../shared/enums/priorityLevel';
 import { OptionSelect } from '../option-select/OptionSelect';
 
-import { StyledOptionSelectList } from './optionSelectList.styles';
+import { StyledOptionSelectList, StyledVerticalLine } from './optionSelectList.styles';
 
 export type OptionSelectListProps = {
   selectOptionList: OptionSelectPriority[];
@@ -9,12 +12,13 @@ export type OptionSelectListProps = {
   selectedOption?: string;
   handleOptionSelectClick: (option: OptionSelectPriority) => void;
   isDisabled?: boolean;
+  showLine?: boolean;
 };
 
 export type OptionSelectPriority = {
   id: string;
   status: ChipStatus;
-  value: string;
+  value: PriorityLevel;
   optionTextValue?: string;
 };
 
@@ -24,19 +28,22 @@ export const OptionSelectList = ({
   selectOptionList,
   hasError = false,
   isDisabled = false,
+  showLine = false,
 }: OptionSelectListProps) => {
   return (
     <StyledOptionSelectList>
-      {selectOptionList.map((option: OptionSelectPriority) => (
-        <OptionSelect
-          key={option.id}
-          chipText={option.optionTextValue!}
-          chipStatus={option.status}
-          onClick={() => handleOptionSelectClick(option)}
-          isSelected={selectedOption === option.value}
-          hasError={hasError}
-          isDisabled={isDisabled}
-        />
+      {selectOptionList.map((option: OptionSelectPriority, index: number) => (
+        <Fragment key={option.id}>
+          <OptionSelect
+            chipText={option.optionTextValue!}
+            chipStatus={option.status}
+            onClick={() => handleOptionSelectClick(option)}
+            isSelected={selectedOption === option.value}
+            hasError={hasError}
+            isDisabled={isDisabled}
+          />
+          {index === 0 && showLine && <StyledVerticalLine />}
+        </Fragment>
       ))}
     </StyledOptionSelectList>
   );

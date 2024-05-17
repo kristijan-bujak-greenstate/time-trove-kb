@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { PriorityLevel } from '../../shared/enums/priorityLevel';
+
 import { TaskCard } from './TaskCard';
-import { PriorityLevel } from './enum';
 
 const meta = {
   title: 'Example/Task Card',

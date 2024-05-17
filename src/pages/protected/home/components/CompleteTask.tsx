@@ -6,6 +6,8 @@ import { Item } from '../../../../api/types/responses/getTasksResponse';
 import { TaskResponse } from '../../../../api/types/responses/postTaskResponse';
 import { Modal, TaskDetails } from '../../../../components';
 import { useToastContext } from '../../../../context/ToastContext';
+import { getQueryKey } from '../../../../helpers/getQueryKey';
+import { usePagination } from '../../../../hooks/usePagination';
 import { useTranslation } from '../../../../hooks/useTranslation';
 import { EditIcon } from '../../../../icons';
 import { ChipStatus } from '../../../../shared/enums/chipStatus';
@@ -24,6 +26,8 @@ export const CompleteTask = ({ isOpenTaskDetailsModal, selectedTask, closeTaskDe
 
   const queryClient = useQueryClient();
 
+  const { priority, currentPage } = usePagination();
+
   const { mutate: onMarkAsDoneTaskMutation, isLoading: isButtonLoading } = useMutation<TaskResponse, unknown, string>({
     mutationFn: (id) =>
       axiosInstance.patch(endpoints.singleTask(id), {
@@ -37,7 +41,8 @@ export const CompleteTask = ({ isOpenTaskDetailsModal, selectedTask, closeTaskDe
         titleKey: 'taskDetailsToastTitleSuccess',
         descriptionKey: 'taskDetailsToastDescriptionSuccess',
       });
-      queryClient.invalidateQueries(QueryKeys.TASKS);
+
+      queryClient.invalidateQueries(getQueryKey(QueryKeys.TASKS, [currentPage, priority!]));
     },
 
     onError: () => {
@@ -46,6 +51,8 @@ export const CompleteTask = ({ isOpenTaskDetailsModal, selectedTask, closeTaskDe
         titleKey: 'taskDetailsToastTitleError',
         descriptionKey: 'taskDetailsToastDescriptionError',
       });
+
+      queryClient.invalidateQueries(getQueryKey(QueryKeys.TASKS, [currentPage, priority!]));
     },
   });
 

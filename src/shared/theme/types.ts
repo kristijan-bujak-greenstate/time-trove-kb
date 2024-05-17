@@ -62,6 +62,7 @@ export type Theme = {
     };
     primary: {
       hue0: string;
+      hue25: string;
       hue50: string;
       hue100: string;
       hue200: string;

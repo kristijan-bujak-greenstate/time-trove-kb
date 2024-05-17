@@ -1,20 +1,24 @@
+import { useState } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
 
 import { axiosInstance } from '../api/axiosInstance';
 import { endpoints } from '../api/endpoints/endpoints';
 import { TasksResponse } from '../api/types/responses/getTasksResponse';
 import { usePaginationContext } from '../context/PaginationContext';
+import { PriorityLevel } from '../shared/enums/priorityLevel';
 import { QueryKeys } from '../shared/enums/queryKeys';
 
 import { getQueryKey } from './../helpers/getQueryKey';
 
 export const usePagination = () => {
-  const { setCurrentPage, limit, currentPage } = usePaginationContext();
+  const { setCurrentPage, limit, currentPage, priority, setPriority } = usePaginationContext();
+
+  const [isNewTaskCreated, setIsNewTaskCreated] = useState<boolean>(false);
+  const [isTaskDeleted, setIsTaskDeleted] = useState<boolean>(false);
+
   const queryClient = useQueryClient();
 
   const offset = (currentPage - 1) * limit;
-
-  const cachedTasks = queryClient.getQueryData(getQueryKey(QueryKeys.TASKS, currentPage)) as TasksResponse;
 
   const {
     data: tasks,
@@ -22,29 +26,30 @@ export const usePagination = () => {
     isError: isErrorTasks,
     refetch,
   } = useQuery<TasksResponse>({
-    queryKey: getQueryKey(QueryKeys.TASKS, currentPage),
-    queryFn: () => axiosInstance.get(endpoints.tasks, { params: { offset, limit } }),
+    queryKey: getQueryKey(QueryKeys.TASKS, [currentPage, priority!]),
+    queryFn: () =>
+      axiosInstance.get(endpoints.tasks, {
+        params: { offset, limit, priority: priority === PriorityLevel.ALL_OPTIONS ? undefined : priority },
+      }),
+
+    onSuccess: ({ totalPages, page }) => {
+      if (isNewTaskCreated || isTaskDeleted) {
+        if (isNewTaskCreated || page > totalPages) setCurrentPage(totalPages);
+        isNewTaskCreated ? setIsNewTaskCreated(false) : setIsTaskDeleted(false);
+        queryClient.removeQueries(getQueryKey(QueryKeys.TASKS));
+      }
+    },
   });
 
   const handlePaginationCreate = () => {
-    if (cachedTasks && cachedTasks.totalItems % limit === 0) {
-      queryClient.removeQueries(getQueryKey(QueryKeys.TASKS));
-      setCurrentPage(cachedTasks.totalPages + 1);
-    } else {
-      setCurrentPage(cachedTasks.totalPages);
-    }
+    setIsNewTaskCreated(true);
+    queryClient.invalidateQueries(getQueryKey(QueryKeys.TASKS));
+    setPriority(PriorityLevel.ALL_OPTIONS);
   };
 
   const handlePaginationDelete = () => {
-    if (currentPage < cachedTasks.totalPages) {
-      for (let i = currentPage + 1; i <= cachedTasks.totalPages; i++) {
-        queryClient.removeQueries(getQueryKey(QueryKeys.TASKS, i));
-      }
-    }
-    if (cachedTasks.totalItems % limit === 1) {
-      queryClient.removeQueries(getQueryKey(QueryKeys.TASKS));
-      if (cachedTasks.totalPages > 1) setCurrentPage(cachedTasks.totalPages - 1);
-    }
+    setIsTaskDeleted(true);
+    queryClient.invalidateQueries(getQueryKey(QueryKeys.TASKS));
   };
 
   return {
@@ -52,7 +57,6 @@ export const usePagination = () => {
     currentPage,
     handlePaginationCreate,
     handlePaginationDelete,
-    tasks,
     isLoadingTasks,
     isErrorTasks,
     refetch,
@@ -60,5 +64,7 @@ export const usePagination = () => {
     totalPages: tasks?.totalPages || 1,
     totalItems: tasks?.totalItems,
     taskItems: tasks?.items,
+    priority,
+    setPriority,
   };
 };

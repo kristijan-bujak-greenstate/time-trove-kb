@@ -1,19 +1,19 @@
 import { useMemo } from 'react';
 
-import { mockedSelectOptionsItems } from '../shared/data/selectOptionsItems';
+import { OptionSelectPriority } from '../components';
 
 import { useTranslation } from './useTranslation';
 
-export const useTranslatedOptions = () => {
+export const useTranslatedOptions = (selectOptions: OptionSelectPriority[]) => {
   const { t } = useTranslation();
 
   const translatedOptions = useMemo(
     () =>
-      mockedSelectOptionsItems.map((option) => ({
+      selectOptions.map((option) => ({
         ...option,
         optionTextValue: t(option.value),
       })),
-    [t]
+    [t, selectOptions]
   );
 
   return translatedOptions;

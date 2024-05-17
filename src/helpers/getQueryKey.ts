@@ -1,6 +1,6 @@
 import { QueryKeys } from '../shared/enums/queryKeys';
 
-type QueryParam = string | string[] | number | Record<string, unknown>;
+type QueryParam = string | number | (string | number)[] | Record<string, unknown>;
 
 export const getQueryKey = (queryKey: QueryKeys, param?: QueryParam) => {
   if (param) {

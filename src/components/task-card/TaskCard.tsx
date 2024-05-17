@@ -1,12 +1,12 @@
 import { DeleteIcon } from '../../icons/DeleteIcon';
 import { EditIcon } from '../../icons/EditIcon';
 import { ChipStatus } from '../../shared/enums/chipStatus';
+import { PriorityLevel } from '../../shared/enums/priorityLevel';
 import { Card } from '../card/Card';
 import { Chip } from '../chip/Chip';
 import { IconButton } from '../icon-button/IconButton';
 import { Text } from '../text/Text';
 
-import { PriorityLevel } from './enum';
 import { getChipStatus } from './getChipStatus';
 import {
   StyledDescriptionContainer,
