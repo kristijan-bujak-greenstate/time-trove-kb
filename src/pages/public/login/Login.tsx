@@ -27,20 +27,14 @@ export const LoginForm = () => {
     setAccessToken(accessToken);
     setRefreshToken(refreshToken);
     useAuthStore.getState().setIsLogged(true);
-    addToQueue({
-      status: 'success',
-      titleKey: 'loginToastTitleSuccess',
-      descriptionKey: 'loginToastDescriptionSuccess',
-    });
     navigate(routes.root);
   };
 
-  const { navigate, t, errors, register, handleSubmit, onSubmit, isButtonDisabled, isLoading, addToQueue } =
-    usePublicForm({
-      mutationFn: (requestData) => axiosInstance.post(endpoints.login, requestData),
-      action: 'login',
-      onSuccessFunction: handleOnSuccess,
-    });
+  const { navigate, t, errors, register, handleSubmit, onSubmit, isButtonDisabled, isLoading } = usePublicForm({
+    mutationFn: (requestData) => axiosInstance.post(endpoints.login, requestData),
+    action: 'login',
+    onSuccessFunction: handleOnSuccess,
+  });
 
   return (
     <>

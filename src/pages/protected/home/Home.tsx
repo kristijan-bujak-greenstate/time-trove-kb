@@ -13,20 +13,20 @@ import {
   OptionSelectPriority,
 } from '../../../components';
 import { DropdownOption } from '../../../components/dropdown/types';
-import { CreateTaskForm } from '../../../components-logic/CreateTask';
 import { useLanguageContext } from '../../../context/LanguageContext';
 import { usePagination } from '../../../hooks/usePagination';
 import { useTranslatedOptions } from '../../../hooks/useTranslatedOptions';
 import { useTranslation } from '../../../hooks/useTranslation';
-import { NothingHereYetIcon, SomethingWentWrongIcon } from '../../../icons';
+import { SomethingWentWrongIcon } from '../../../icons';
 import { languageOptions } from '../../../shared/data/languageOptions';
 import { mockedSelectOptionsItemsForFiltering } from '../../../shared/data/selectOptionsItems';
+import { PriorityLevel } from '../../../shared/enums/priorityLevel';
 
 import { CompleteTask } from './components/CompleteTask';
+import { CustomEmptyTasks } from './components/CustomEmptyTasks';
 import { DeleteTask } from './components/DeleteTask';
 import { EditTaskForm } from './components/EditTask';
 import {
-  StyledDropdownWrapper,
   StyledFlatListWrapper,
   StyledHeaderContainer,
   StyledPaginationWrapper,
@@ -58,6 +58,7 @@ export const Home = () => {
     refetch,
     priority,
     setPriority,
+    searchParams,
   } = usePagination();
 
   const handleLanguageDropdownClick = (option: DropdownOption) => {
@@ -125,6 +126,8 @@ export const Home = () => {
     );
   };
 
+  const isEmptyAll = !totalItems && !searchParams && priority === PriorityLevel.ALL_OPTIONS;
+
   return (
     <PageStateContainer
       isEmpty={!totalItems}
@@ -132,25 +135,15 @@ export const Home = () => {
       isLoading={isLoadingTasks}
       t={t}
       renderCustomEmptyComponent={
-        <>
-          <CreateTaskForm closeCreateTaskModal={closeCreateTaskModal} isOpen={isOpenCreateTaskModal} />
-          <StyledDropdownWrapper>
-            <Dropdown
-              selectedOption={currentLanguage}
-              type={'textWithImage'}
-              dropdownOptions={languageOptions}
-              onOptionClick={handleLanguageDropdownClick}
-            />
-          </StyledDropdownWrapper>
-          <DataStatus
-            icon={NothingHereYetIcon}
-            onClick={onButtonEmptyTasksClick}
-            title={t('emptyTasksTitle')}
-            description={t('emptyTasksDescription')}
-            buttonText={t('emptyTasksButtonText')}
-            buttonPalette={'primary'}
-          />
-        </>
+        <CustomEmptyTasks
+          closeCreateTaskModal={closeCreateTaskModal}
+          isEmptyAll={isEmptyAll}
+          handleLanguageDropdownClick={handleLanguageDropdownClick}
+          isOpenCreateTaskModal={isOpenCreateTaskModal}
+          onButtonEmptyTasksClick={onButtonEmptyTasksClick}
+          handleOptionSelectClick={handleOptionSelectClick}
+          priority={priority}
+        />
       }
       renderCustomErrorComponent={
         <DataStatus

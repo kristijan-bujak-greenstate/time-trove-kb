@@ -23,5 +23,8 @@ export const Base: Story = {
     icon: LogoutIcon,
     onButtonClick: () => console.log('Button clicked!'),
     onIconButtonClick: () => console.log('Icon button clicked!'),
+    handleOnChangeInput: () => console.log('change input'),
+    inputPlaceholder: 'Search tasks',
+    inputValue: 'Some input value',
   },
 };

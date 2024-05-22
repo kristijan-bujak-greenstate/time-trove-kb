@@ -38,3 +38,17 @@ export const StyledDropdownWrapper = styled.div`
   top: 0;
   left: 0;
 `;
+
+export const StyledTitlePriorityWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  gap: 1rem;
+  @media ${breakpoints.tablet} {
+    flex-direction: row;
+  }
+`;

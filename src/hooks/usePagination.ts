@@ -11,7 +11,16 @@ import { QueryKeys } from '../shared/enums/queryKeys';
 import { getQueryKey } from './../helpers/getQueryKey';
 
 export const usePagination = () => {
-  const { setCurrentPage, limit, currentPage, priority, setPriority } = usePaginationContext();
+  const {
+    setCurrentPage,
+    limit,
+    currentPage,
+    priority,
+    setPriority,
+    searchParams,
+    setSearchParams,
+    setSearchInputValue,
+  } = usePaginationContext();
 
   const [isNewTaskCreated, setIsNewTaskCreated] = useState<boolean>(false);
   const [isTaskDeleted, setIsTaskDeleted] = useState<boolean>(false);
@@ -29,7 +38,12 @@ export const usePagination = () => {
     queryKey: getQueryKey(QueryKeys.TASKS, [currentPage, priority!]),
     queryFn: () =>
       axiosInstance.get(endpoints.tasks, {
-        params: { offset, limit, priority: priority === PriorityLevel.ALL_OPTIONS ? undefined : priority },
+        params: {
+          offset: Math.max(offset, 0),
+          limit,
+          priority: priority === PriorityLevel.ALL_OPTIONS ? undefined : priority,
+          title: searchParams || undefined,
+        },
       }),
 
     onSuccess: ({ totalPages, page }) => {
@@ -42,6 +56,9 @@ export const usePagination = () => {
   });
 
   const handlePaginationCreate = () => {
+    if (searchParams) queryClient.removeQueries(getQueryKey(QueryKeys.TASKS));
+    setSearchInputValue(undefined);
+    setSearchParams(undefined);
     setIsNewTaskCreated(true);
     queryClient.invalidateQueries(getQueryKey(QueryKeys.TASKS));
     setPriority(PriorityLevel.ALL_OPTIONS);
@@ -66,5 +83,6 @@ export const usePagination = () => {
     taskItems: tasks?.items,
     priority,
     setPriority,
+    searchParams,
   };
 };

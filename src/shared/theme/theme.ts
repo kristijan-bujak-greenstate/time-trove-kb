@@ -97,6 +97,14 @@ export const defaultTheme: Theme = {
         borderRadius: '0.75rem',
       },
     },
+    input: {
+      small: {
+        padding: '0.5rem 0.875rem',
+      },
+      medium: {
+        padding: '1rem 1.25rem',
+      },
+    },
     icon: {
       small: '1.25rem',
       medium: '1.5rem',

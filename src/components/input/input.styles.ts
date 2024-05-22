@@ -1,11 +1,12 @@
 import styled, { css } from 'styled-components';
 
-import { BorderRadius } from '../../shared/theme/types';
+import { BorderRadius, InputSize } from '../../shared/theme/types';
 import { StyledText } from '../text/text.styles';
 
 export const StyledInputContainer = styled.div`
   display: flex;
   flex-direction: column-reverse;
+  position: relative;
 `;
 
 export const LabelWrapper = styled.div`
@@ -20,10 +21,15 @@ export const ErrorWrapper = styled.div`
   margin-left: 0.5rem;
 `;
 
-export const inputTextAreaStyles = css<{ $hasError: boolean; $borderRadius: BorderRadius }>`
+export const inputTextAreaStyles = css<{
+  $hasError: boolean;
+  $borderRadius: BorderRadius;
+  $size: InputSize;
+  $hasIcon: boolean;
+}>`
   width: 100%;
-  height: 3.5rem;
-  padding: 1rem 1.25rem;
+  padding: ${({ theme, $size }) => theme.dimensions.input[$size].padding};
+  padding-left: ${({ $hasIcon }) => $hasIcon && '3.25rem'};
   line-height: ${({ theme }) => theme.typography.lineHeight.medium};
   font-size: ${({ theme }) => theme.typography.fontSize.medium};
   outline: none;
@@ -69,6 +75,18 @@ export const inputTextAreaStyles = css<{ $hasError: boolean; $borderRadius: Bord
   }
 `;
 
-export const StyledInput = styled.input<{ $hasError: boolean; $borderRadius: BorderRadius }>`
+export const StyledInput = styled.input<{
+  $hasError: boolean;
+  $borderRadius: BorderRadius;
+  $size: InputSize;
+  $hasIcon: boolean;
+}>`
   ${inputTextAreaStyles};
+`;
+
+export const StyledIconContainer = styled.div`
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
 `;

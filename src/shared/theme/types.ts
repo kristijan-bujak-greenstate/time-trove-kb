@@ -18,6 +18,7 @@ export type ChipSize = keyof Theme['dimensions']['chip'];
 export type LogoSize = keyof Theme['logo'];
 export type BorderRadius = keyof Theme['borderRadius'];
 export type PageWidth = keyof Theme['pageWidth'];
+export type InputSize = keyof Theme['dimensions']['input'];
 
 export type Theme = {
   typography: {
@@ -120,6 +121,14 @@ export type Theme = {
       small: RemSize;
       medium: RemSize;
       large: RemSize;
+    };
+    input: {
+      small: {
+        padding: RemSize;
+      };
+      medium: {
+        padding: RemSize;
+      };
     };
     chip: {
       large: {

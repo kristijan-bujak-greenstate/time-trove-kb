@@ -11,6 +11,7 @@ type ThemedIconProps<T extends Palette> = {
   size?: IconSize | 'fill';
   palette?: T;
   color?: Colors<T>;
+  onClick?: () => void;
 };
 
 export const ThemedIcon = <T extends Palette>({
@@ -18,11 +19,12 @@ export const ThemedIcon = <T extends Palette>({
   size = 'small',
   palette,
   color,
+  onClick,
 }: ThemedIconProps<T>) => {
   const theme = useTheme();
   const iconColor = palette && color ? (theme.colors[palette][color] as string) : theme.colors.neutrals.hue50;
   return (
-    <StyledIcon $size={size} $color={iconColor}>
+    <StyledIcon $size={size} $color={iconColor} onClick={onClick}>
       <IconComponent />
     </StyledIcon>
   );

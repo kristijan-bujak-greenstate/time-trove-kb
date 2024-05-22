@@ -138,6 +138,13 @@ export const translations: TranslationLanguages = {
     emptyTasksDescription: 'There are no tasks created',
     emptyTasksButtonText: 'Create task',
 
+    /* NO RESULTS */
+    noResultsTitle: 'No results found!',
+    noResultsDescription: 'Please try searching for something else',
+
+    //searchTasksInput
+    placeholderInputSearch: 'Search tasks',
+
     /* NOT FOUND 404 PAGE */
     notFoundPageTitle: 'Page not found',
     notFoundPageDescription:
@@ -311,6 +318,13 @@ export const translations: TranslationLanguages = {
     emptyTasksTitle: 'Hier ist noch nichts!',
     emptyTasksDescription: 'Es wurden noch keine Aufgaben erstellt',
     emptyTasksButtonText: 'Aufgabe erstellen',
+
+    /* NO RESULTS */
+    noResultsTitle: 'Keine Ergebnisse gefunden!',
+    noResultsDescription: 'Bitte versuchen Sie, nach etwas anderem zu suchen.',
+
+    //searchTasksInput
+    placeholderInputSearch: 'Aufgaben suchen',
 
     /* NOT FOUND 404 PAGE */
     notFoundPageTitle: 'Seite nicht gefunden',

@@ -4,7 +4,7 @@ import { ChipStatus } from '../../shared/enums/chipStatus';
 import { PriorityLevel } from '../../shared/enums/priorityLevel';
 import { OptionSelect } from '../option-select/OptionSelect';
 
-import { StyledOptionSelectList, StyledVerticalLine } from './optionSelectList.styles';
+import { StyledOptionSelectList, StyledLine } from './optionSelectList.styles';
 
 export type OptionSelectListProps = {
   selectOptionList: OptionSelectPriority[];
@@ -42,7 +42,7 @@ export const OptionSelectList = ({
             hasError={hasError}
             isDisabled={isDisabled}
           />
-          {index === 0 && showLine && <StyledVerticalLine />}
+          {index === 0 && showLine && <StyledLine />}
         </Fragment>
       ))}
     </StyledOptionSelectList>

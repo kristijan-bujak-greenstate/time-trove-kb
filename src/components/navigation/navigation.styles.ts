@@ -22,21 +22,16 @@ export const StyledNavigationContainer = styled.div<{
   position: relative;
 `;
 
-export const StyledNavigationContentContainer = styled.div`
-  max-width: ${({ theme }) => theme.pageWidth};
-  align-items: center;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  margin: auto;
-`;
-
-export const StyledButtonIconContainer = styled.div`
+export const StyledButtonAndIconContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+  order: 2;
   ${StyledButton} {
     flex-shrink: 0;
+  }
+  @media ${breakpoints.tablet} {
+    order: 3;
   }
 `;
 
@@ -55,4 +50,26 @@ export const StyledTitleWrapper = styled.div`
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   margin-right: 0.5rem;
+  order: 1;
+`;
+
+export const StyledSearchContainer = styled.div`
+  width: 100%;
+  margin-top: 0.75rem;
+  order: 3;
+  @media ${breakpoints.tablet} {
+    width: 26.25rem;
+    margin-top: 0;
+    order: 2;
+  }
+`;
+
+export const StyledTitleButtonContainer = styled.div`
+  max-width: ${({ theme }) => theme.pageWidth};
+  align-items: center;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  flex-wrap: wrap;
 `;

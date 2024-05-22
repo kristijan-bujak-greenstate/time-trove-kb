@@ -70,7 +70,7 @@ axiosInstance.interceptors.response.use(
       useMaintenanceStore.getState().setIsMaintenance(true);
     }
 
-    return Promise.reject(response.data);
+    return Promise.reject(error.response!);
   }
 );
 

@@ -1,13 +1,25 @@
 import styled from 'styled-components';
 
-export const StyledOptionSelectList = styled.div`
-  display: flex;
-  gap: 1rem;
-  align-items: center;
+import { breakpoints } from '../../shared/breakpoints/breakpoints';
+
+export const StyledLine = styled.div`
+  width: 100%;
+  height: 1px;
+  background-color: ${({ theme }) => `${theme.colors.neutrals.hue100}`};
+  @media ${breakpoints.mobile} {
+    width: 1px;
+    height: 2rem;
+  }
 `;
 
-export const StyledVerticalLine = styled.div`
-  width: 1px;
-  height: 2rem;
-  background-color: ${({ theme }) => `${theme.colors.neutrals.hue100}`};
+export const StyledOptionSelectList = styled.div`
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  row-gap: 0.75rem;
+  column-gap: 1rem;
+
+  @media ${breakpoints.mobile} {
+    row-gap: 0.75rem;
+  }
 `;

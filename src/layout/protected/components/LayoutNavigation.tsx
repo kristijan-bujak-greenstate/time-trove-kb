@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useQueryClient } from 'react-query';
 import { useNavigate } from 'react-router';
 
@@ -6,11 +6,15 @@ import { Dialog, Navigation } from '../../../components';
 import { CreateTaskForm } from '../../../components-logic/CreateTask';
 import { usePaginationContext } from '../../../context/PaginationContext';
 import { useToastContext } from '../../../context/ToastContext';
+import { getQueryKey } from '../../../helpers/getQueryKey';
 import { removeAccessToken, removeRefreshToken } from '../../../helpers/tokenHelpers';
+import { useDebounce } from '../../../hooks/useDebounce';
+import { usePagination } from '../../../hooks/usePagination';
 import { useTranslation } from '../../../hooks/useTranslation';
 import { LogoutIcon } from '../../../icons';
 import { routes } from '../../../router/routes';
 import { PriorityLevel } from '../../../shared/enums/priorityLevel';
+import { QueryKeys } from '../../../shared/enums/queryKeys';
 import { useAuthStore } from '../../../store/useAuthStore';
 
 export const LayoutNavigation = () => {
@@ -20,14 +24,14 @@ export const LayoutNavigation = () => {
 
   const queryClient = useQueryClient();
 
-  const { setCurrentPage } = usePaginationContext();
-
   const { clearQueue } = useToastContext();
-
-  const { setPriority } = usePaginationContext();
 
   const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
   const [isCreateTaskModalOpen, setIsCreateTaskModalOpen] = useState(false);
+
+  const { setSearchParams, setSearchInputValue, searchInputValue } = usePaginationContext();
+
+  const { setCurrentPage, setPriority } = usePagination();
 
   const openCreateTaskModal = () => {
     setIsCreateTaskModalOpen(true);
@@ -56,6 +60,21 @@ export const LayoutNavigation = () => {
     navigate(routes.login);
   };
 
+  const handleSearchParamChanged = useCallback(() => {
+    if (searchInputValue !== undefined) {
+      setSearchParams(searchInputValue);
+      setCurrentPage(1);
+      queryClient.removeQueries(getQueryKey(QueryKeys.TASKS));
+      queryClient.invalidateQueries(getQueryKey(QueryKeys.TASKS));
+    }
+  }, [searchInputValue, setSearchParams, setCurrentPage, queryClient]);
+
+  const handleOnChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchInputValue(e.target.value);
+  };
+
+  useDebounce({ delay: 650, callback: handleSearchParamChanged });
+
   return (
     <>
       <CreateTaskForm closeCreateTaskModal={closeCreateTaskModal} isOpen={isCreateTaskModalOpen} />
@@ -78,6 +97,9 @@ export const LayoutNavigation = () => {
         buttonText={t('navigationButtonText')}
         onButtonClick={openCreateTaskModal}
         onIconButtonClick={openLogoutDialog}
+        inputValue={searchInputValue}
+        inputPlaceholder={t('placeholderInputSearch')}
+        handleOnChangeInput={handleOnChangeInput}
       />
     </>
   );
