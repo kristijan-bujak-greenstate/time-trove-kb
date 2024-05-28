@@ -10,7 +10,11 @@ export const Maintenance = () => {
     <PageStateContainer
       isFullPage={true}
       customComponent={
-        <DataStatus icon={MaintenanceIcon} title={t('maintenanceTitle')} description={t('maintenanceDescription')} />
+        <DataStatus
+          icon={MaintenanceIcon}
+          title={t('pages.maintenance.title')}
+          description={t('pages.maintenance.description')}
+        />
       }
     />
   );

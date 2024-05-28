@@ -34,8 +34,8 @@ export const CreateTaskModal = ({ isOpen, closeCreateTaskModal }: CreateTaskModa
     closeCreateTaskModal();
     addToQueue({
       status: 'success',
-      titleKey: 'createTaskToastTitleSuccess',
-      descriptionKey: 'createTaskToastDescriptionSuccess',
+      titleKey: 'toast.success.create.title',
+      descriptionKey: 'toast.success.create.description',
     });
     reset();
 
@@ -77,21 +77,21 @@ export const CreateTaskModal = ({ isOpen, closeCreateTaskModal }: CreateTaskModa
       <Modal maxWidth={'41.25rem'} isOpen={isOpen} onOverlayClick={handleOverlayClick}>
         <TaskForm
           headerIcon={EditIcon}
-          headerTitle={t('createTaskModalTitle')}
-          formTitle={t('createTaskModalSubTitle')}
-          description={t('createTaskModalDescription')}
-          buttonText={t('createTaskButtonText')}
+          headerTitle={t('taskForm.create.title')}
+          formTitle={t('taskForm.base.formTitle')}
+          description={t('taskForm.create.description')}
+          buttonText={t('taskForm.create.button')}
           selectOptionList={translatedOptions}
           inputProps={{
-            label: t('editTaskModalLabelInput'),
+            label: t('taskForm.base.labelInput'),
             type: 'text',
-            placeholder: t('editTaskModalPlaceholderInput'),
+            placeholder: t('taskForm.base.placeholderInput'),
             error: errors[taskFieldNames.title]?.message,
             ...register(taskFieldNames.title),
           }}
           textAreaProps={{
-            label: t('editTaskModalLabelTextarea'),
-            placeholder: t('editTaskModalPlaceholderTextarea'),
+            label: t('taskForm.base.labelTextarea'),
+            placeholder: t('taskForm.base.placeholderTextarea'),
             error: errors[taskFieldNames.description]?.message,
             ...register(taskFieldNames.description),
           }}
@@ -99,7 +99,7 @@ export const CreateTaskModal = ({ isOpen, closeCreateTaskModal }: CreateTaskModa
           handleOptionSelectClick={handleOptionSelectClick}
           selectedOption={getValues(taskFieldNames.selectedOption)}
           isButtonDisabled={!isValid}
-          optionSelectTitle={t('createTaskOptionSelectTitle')}
+          optionSelectTitle={t('taskForm.base.optionSelectTitle')}
           isLoadingButton={isLoading}
         />
       </Modal>
@@ -107,10 +107,10 @@ export const CreateTaskModal = ({ isOpen, closeCreateTaskModal }: CreateTaskModa
       <Dialog
         isOpen={isOpenDiscardChangesDialog}
         status={'error'}
-        title={t('discardChangesDialogTitle')}
-        description={t('discardChangesDialogDescription')}
-        primaryButtonText={t('discardChangesPrimaryButtonText')}
-        secondaryButtonText={t('discardChangesSecondaryButtonText')}
+        title={t('dialog.discardChanges.title')}
+        description={t('dialog.discardChanges.description')}
+        primaryButtonText={t('dialog.discardChanges.primaryButton')}
+        secondaryButtonText={t('dialog.discardChanges.secondaryButton')}
         onOverlayClick={() => setIsOpenDiscardChangesDialog(false)}
         onPrimaryButtonClick={() => {
           setIsOpenDiscardChangesDialog(false);

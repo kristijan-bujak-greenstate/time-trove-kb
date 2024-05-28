@@ -82,23 +82,23 @@ export const LayoutNavigation = () => {
       <Dialog
         isOpen={isLogoutDialogOpen}
         status={'error'}
-        title={t('logoutDialogTitle')}
-        description={t('logoutDialogDescription')}
-        primaryButtonText={t('logoutDialogPrimaryButton')}
-        secondaryButtonText={t('logoutDialogSecondaryButton')}
+        title={t('dialog.logout.title')}
+        description={t('dialog.logout.description')}
+        primaryButtonText={t('dialog.logout.primaryButton')}
+        secondaryButtonText={t('dialog.logout.secondaryButton')}
         onOverlayClick={closeLogoutDialog}
         onPrimaryButtonClick={handleLogout}
         onSecondaryButtonClick={closeLogoutDialog}
       />
 
       <Navigation
-        title={t('navigationTitle')}
+        title={t('navigation.title')}
         icon={LogoutIcon}
-        buttonText={t('navigationButtonText')}
+        buttonText={t('navigation.buttonText')}
         onButtonClick={openCreateTaskModal}
         onIconButtonClick={openLogoutDialog}
         inputValue={searchInputValue}
-        inputPlaceholder={t('placeholderInputSearch')}
+        inputPlaceholder={t('navigation.searchInputPlaceholder')}
         handleOnChangeInput={handleOnChangeInput}
       />
     </>

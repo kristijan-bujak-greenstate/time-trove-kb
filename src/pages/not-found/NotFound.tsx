@@ -22,9 +22,9 @@ export const NotFound = () => {
         <DataStatus
           icon={Error404Icon}
           onClick={handleButtonClick}
-          title={t('notFoundPageTitle')}
-          description={t('notFoundPageDescription')}
-          buttonText={t('notFoundPageButtonText')}
+          title={t('pages.notFound.title')}
+          description={t('pages.notFound.description')}
+          buttonText={t('pages.notFound.button')}
         />
       }
     />

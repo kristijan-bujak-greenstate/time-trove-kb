@@ -2,12 +2,12 @@ import { nanoid } from 'nanoid';
 import { ReactNode, createContext, useContext, useState } from 'react';
 
 import { Toast, ToastProps } from '../components';
-import { useTranslation } from '../hooks/useTranslation';
+import { TranslationKey, useTranslation } from '../hooks/useTranslation';
 
 export type ToastQueueProp = {
   status: ToastProps['status'];
-  titleKey: string;
-  descriptionKey: string;
+  titleKey: TranslationKey;
+  descriptionKey: TranslationKey;
   id?: string;
 };
 

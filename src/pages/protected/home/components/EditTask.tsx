@@ -55,8 +55,8 @@ export const EditTaskModal = ({ closeEditTaskModal, selectedTask, isOpenEditTask
     closeEditTaskModal();
     addToQueue({
       status: 'success',
-      titleKey: 'editTaskToastTitleSuccess',
-      descriptionKey: 'editTaskToastDescriptionSuccess',
+      titleKey: 'toast.success.edit.title',
+      descriptionKey: 'toast.success.edit.description',
     });
 
     queryClient.invalidateQueries(getQueryKey(QueryKeys.TASKS, [currentPage, priority!]));
@@ -110,20 +110,20 @@ export const EditTaskModal = ({ closeEditTaskModal, selectedTask, isOpenEditTask
       <Modal maxWidth={'41.25rem'} isOpen={isOpenEditTaskModal} onOverlayClick={handleOverlayClick}>
         <TaskForm
           headerIcon={EditIcon}
-          headerTitle={t('editTaskModalTitle')}
-          formTitle={t('editTaskModalSubTitle')}
-          buttonText={t('editTaskButtonText')}
+          headerTitle={t('taskForm.edit.title')}
+          formTitle={t('taskForm.base.formTitle')}
+          buttonText={t('taskForm.edit.button')}
           selectOptionList={translatedOptions}
           inputProps={{
-            label: t('editTaskModalLabelInput'),
+            label: t('taskForm.base.labelInput'),
             type: 'text',
-            placeholder: t('editTaskModalPlaceholderInput'),
+            placeholder: t('taskForm.base.placeholderInput'),
             error: errors[taskFieldNames.title]?.message,
             ...register(taskFieldNames.title),
           }}
           textAreaProps={{
-            label: t('editTaskModalLabelTextarea'),
-            placeholder: t('editTaskModalPlaceholderTextarea'),
+            label: t('taskForm.base.labelTextarea'),
+            placeholder: t('taskForm.base.placeholderTextarea'),
             error: errors[taskFieldNames.description]?.message,
             ...register(taskFieldNames.description),
           }}
@@ -131,7 +131,7 @@ export const EditTaskModal = ({ closeEditTaskModal, selectedTask, isOpenEditTask
           handleOptionSelectClick={handleOptionSelectClick}
           selectedOption={getValues(taskFieldNames.selectedOption)}
           isButtonDisabled={!isValid || !isDirty}
-          optionSelectTitle={t('editTaskOptionSelectTitle')}
+          optionSelectTitle={t('taskForm.base.optionSelectTitle')}
           isLoadingButton={isLoading}
         />
       </Modal>
@@ -139,10 +139,10 @@ export const EditTaskModal = ({ closeEditTaskModal, selectedTask, isOpenEditTask
       <Dialog
         isOpen={isOpenDiscardChangesDialog}
         status={'error'}
-        title={t('discardChangesDialogTitle')}
-        description={t('discardChangesDialogDescription')}
-        primaryButtonText={t('discardChangesPrimaryButtonText')}
-        secondaryButtonText={t('discardChangesSecondaryButtonText')}
+        title={t('dialog.discardChanges.title')}
+        description={t('dialog.discardChanges.description')}
+        primaryButtonText={t('dialog.discardChanges.primaryButton')}
+        secondaryButtonText={t('dialog.discardChanges.secondaryButton')}
         onOverlayClick={() => setIsOpenDiscardChangesDialog(false)}
         onPrimaryButtonClick={() => {
           setIsOpenDiscardChangesDialog(false);

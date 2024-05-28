@@ -31,8 +31,8 @@ export const DeleteTask = ({ isOpenDeleteTaskDialog, closeDeleteTaskDialog, sele
 
       addToQueue({
         status: 'success',
-        titleKey: 'deleteTaskToastTitleSuccess',
-        descriptionKey: 'deleteTaskToastDescriptionSuccess',
+        titleKey: 'toast.success.delete.title',
+        descriptionKey: 'toast.success.delete.description',
       });
 
       handlePaginationDelete();
@@ -41,8 +41,8 @@ export const DeleteTask = ({ isOpenDeleteTaskDialog, closeDeleteTaskDialog, sele
     onError: () => {
       addToQueue({
         status: 'error',
-        titleKey: 'deleteTaskToastTitleError',
-        descriptionKey: 'deleteTaskToastDescriptionError',
+        titleKey: 'toast.error.default.title',
+        descriptionKey: 'toast.error.default.description',
       });
       closeDeleteTaskDialog();
 
@@ -54,10 +54,10 @@ export const DeleteTask = ({ isOpenDeleteTaskDialog, closeDeleteTaskDialog, sele
     <Dialog
       isOpen={isOpenDeleteTaskDialog}
       status={'error'}
-      title={t('deleteTaskTitleDialog')}
-      description={t('deleteTaskDescriptionDialog')}
-      primaryButtonText={t('deleteTaskPrimaryButtonText')}
-      secondaryButtonText={t('deleteTaskSecondaryButtonText')}
+      title={t('dialog.delete.title')}
+      description={t('dialog.delete.description')}
+      primaryButtonText={t('dialog.delete.primaryButton')}
+      secondaryButtonText={t('dialog.delete.secondaryButton')}
       onOverlayClick={closeDeleteTaskDialog}
       onPrimaryButtonClick={onDeleteTaskMutation}
       onSecondaryButtonClick={closeDeleteTaskDialog}

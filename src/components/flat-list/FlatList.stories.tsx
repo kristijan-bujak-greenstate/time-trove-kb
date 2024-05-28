@@ -77,9 +77,9 @@ const StatefulFlatList = ({ data, numColumns, gap }: FlatListProps<Item>) => {
         isDone={task.done}
         description={task.description}
         priority={task.priority}
-        chipText={t('taskCardChipText')}
+        chipText={t('chip.done')}
         priorityText={task.priority}
-        priorityTitle={t('taskCardPriority')}
+        priorityTitle={t('taskCard.label')}
         onEditClick={() => console.log(`Edit task ${task.id}`)}
         onDeleteClick={() => console.log(`Delete task ${task.id}`)}
         onClick={() => console.log('Card clicked')}

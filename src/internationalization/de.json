@@ -1,0 +1,177 @@
+{
+  "server": {
+    "registration": {
+      "error": {
+        "badRequest": "Benutzer existiert bereits"
+      }
+    },
+    "login": {
+      "error": {
+        "badRequest": "Ungültige Anmeldedaten"
+      }
+    }
+  },
+
+  "navigation": {
+    "searchInputPlaceholder": "Aufgaben suchen",
+    "title": "Dashboard",
+    "buttonText": "Aufgabe erstellen"
+  },
+
+  "publicForm": {
+    "base": {
+      "emailLabel": "E-Mail",
+      "emailPlaceholder": "E-Mail",
+      "passwordLabel": "Passwort",
+      "passwordPlaceholder": "Passwort",
+      "validation": {
+        "email": "Ungültige E-Mail-Adresse",
+        "password": "Passwort sollte mindestens 5 Zeichen lang sein"
+      }
+    },
+    "login": {
+      "title": "Anmelden",
+      "description": "Verwenden Sie Ihre E-Mail, um sich bei Ihrem TimeTrove-Dashboard anzumelden.",
+      "button": "Anmelden",
+      "footerDescription": "Sie haben noch kein Konto?",
+      "footerButton": "Registrieren"
+    },
+    "registration": {
+      "title": "Registrieren",
+      "description": "Verwenden Sie Ihre Arbeits-E-Mail, um sich in Ihrem Teamarbeitsbereich anzumelden.",
+      "button": "Registrieren",
+      "footerDescription": "Haben Sie bereits ein Konto?",
+      "footerButton": "Anmelden"
+    }
+  },
+
+  "toast": {
+    "success": {
+      "login": {
+        "title": "Erfolg!",
+        "description": "Erfolgreich angemeldet!"
+      },
+      "registration": {
+        "title": "Erfolg!",
+        "description": "Erfolgreich registriert! Sie können sich jetzt anmelden!"
+      },
+      "complete": {
+        "title": "Erfolg!",
+        "description": "Aufgabe erfolgreich abgeschlossen!"
+      },
+      "create": { "title": "Erfolg!", "description": "Aufgabe erfolgreich erstellt." },
+      "edit": { "title": "Erfolg!", "description": "Aufgabe erfolgreich bearbeitet." },
+      "delete": { "title": "Erfolg!", "description": "Aufgabe erfolgreich gelöscht." }
+    },
+    "error": {
+      "default": {
+        "title": "Fehler!",
+        "description": "Etwas ist schiefgelaufen! Bitte versuchen Sie es erneut"
+      },
+      "login": {
+        "title": "Fehler!",
+        "description": "Etwas ist schiefgelaufen! Bitte versuchen Sie es erneut"
+      },
+      "registration": {
+        "title": "Fehler!",
+        "description": "Registrierung fehlgeschlagen! Etwas ist schiefgelaufen!"
+      }
+    }
+  },
+
+  "taskCard": {
+    "label": "Priorität"
+  },
+
+  "chip": {
+    "done": "Erledigt",
+    "inProgress": "In Bearbeitung"
+  },
+
+  "home": {
+    "headerTitle": "Aufgaben"
+  },
+
+  "taskDetails": {
+    "headerTitle": "Aufgabendetails",
+    "button": "Als erledigt markieren"
+  },
+
+  "taskForm": {
+    "validation": {
+      "title": "Der Titel sollte mindestens 3 Zeichen lang sein",
+      "description": "Die Beschreibung sollte mindestens 10 Zeichen lang sein"
+    },
+    "base": {
+      "optionSelectTitle": "Priorität",
+      "labelInput": "Titel",
+      "labelTextarea": "Beschreibung",
+      "placeholderInput": "Titel",
+      "placeholderTextarea": "Beschreibung",
+      "formTitle": "Aufgabendetails"
+    },
+    "create": {
+      "title": "Aufgabe erstellen",
+      "description": "Bitte geben Sie die erforderlichen Details an, um die Aufgabe zu erstellen",
+      "button": "Aufgabe erstellen"
+    },
+    "edit": { "title": "Aufgabe bearbeiten", "button": "Änderungen speichern" }
+  },
+
+  "dialog": {
+    "discardChanges": {
+      "title": "Änderungen verwerfen",
+      "description": "Sind Sie sicher, dass Sie alle Änderungen verwerfen möchten?",
+      "primaryButton": "Verwerfen",
+      "secondaryButton": "Abbrechen"
+    },
+    "delete": {
+      "title": "Aufgabe löschen",
+      "description": "Sind Sie sicher, dass Sie die Aufgabe löschen möchten?",
+      "primaryButton": "Löschen",
+      "secondaryButton": "Abbrechen"
+    },
+    "logout": {
+      "title": "Abmelden",
+      "description": "Sind Sie sicher, dass Sie sich abmelden möchten?",
+      "primaryButton": "Abmelden",
+      "secondaryButton": "Abbrechen"
+    }
+  },
+
+  "pages": {
+    "serverError": {
+      "title": "Etwas ist schiefgelaufen",
+      "description": "Beim Abrufen von Daten vom Server ist ein Fehler aufgetreten",
+      "button": "Erneut versuchen"
+    },
+    "emptyResults": {
+      "title": "Keine Ergebnisse gefunden",
+      "description": "Bitte versuchen Sie, etwas anderes zu suchen"
+    },
+    "emptyAll": {
+      "title": "Hier ist noch nichts!",
+      "description": "Es wurden keine Aufgaben erstellt",
+      "button": "Aufgabe erstellen"
+    },
+    "notFound": {
+      "title": "Seite nicht gefunden",
+      "description": "Wir entschuldigen uns für die Unannehmlichkeiten, aber es scheint, dass die Seite, die Sie zu erreichen versuchen, derzeit nicht verfügbar ist. Dies könnte auf ein vorübergehendes technisches Problem oder einen veralteten Link zurückzuführen sein.",
+      "button": "Zurück zur Startseite"
+    },
+    "maintenance": {
+      "title": "Wir sind gleich zurück!",
+      "description": "Beim Abrufen von Daten vom Server ist ein Fehler aufgetreten",
+      "button": "Erneut versuchen"
+    }
+  },
+
+  "priority": {
+    "Low": "Niedrig",
+    "Medium": "Mittel",
+    "High": "Hoch",
+    "AllOptions": "Alle Aufgaben"
+  },
+
+  "translationMissing": "Übersetzung fehlt"
+}

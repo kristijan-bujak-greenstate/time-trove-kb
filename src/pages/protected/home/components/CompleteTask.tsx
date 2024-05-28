@@ -38,8 +38,8 @@ export const CompleteTask = ({ isOpenTaskDetailsModal, selectedTask, closeTaskDe
       closeTaskDetailsModal();
       addToQueue({
         status: 'success',
-        titleKey: 'taskDetailsToastTitleSuccess',
-        descriptionKey: 'taskDetailsToastDescriptionSuccess',
+        titleKey: 'toast.success.complete.title',
+        descriptionKey: 'toast.success.complete.description',
       });
 
       queryClient.invalidateQueries(getQueryKey(QueryKeys.TASKS, [currentPage, priority!]));
@@ -48,8 +48,8 @@ export const CompleteTask = ({ isOpenTaskDetailsModal, selectedTask, closeTaskDe
     onError: () => {
       addToQueue({
         status: 'error',
-        titleKey: 'taskDetailsToastTitleError',
-        descriptionKey: 'taskDetailsToastDescriptionError',
+        titleKey: 'toast.error.default.title',
+        descriptionKey: 'toast.error.default.description',
       });
 
       queryClient.invalidateQueries(getQueryKey(QueryKeys.TASKS, [currentPage, priority!]));
@@ -62,12 +62,12 @@ export const CompleteTask = ({ isOpenTaskDetailsModal, selectedTask, closeTaskDe
         {selectedTask && (
           <TaskDetails
             headerIcon={EditIcon}
-            headerTitle={t('taskDetailsTitle')}
+            headerTitle={t('taskDetails.headerTitle')}
             taskTitle={selectedTask.title}
             taskDescription={selectedTask.description}
-            chipText={selectedTask.done ? t('chipTextDone') : t('chipTextInProgress')}
+            chipText={selectedTask.done ? t('chip.done') : t('chip.inProgress')}
             chipStatus={selectedTask.done ? ChipStatus.SUCCESS : ChipStatus.WARNING}
-            buttonText={t('taskDetailsButtonText')}
+            buttonText={t('taskDetails.button')}
             onClick={() => onMarkAsDoneTaskMutation(selectedTask.id)}
             isButtonLoading={isButtonLoading}
           />

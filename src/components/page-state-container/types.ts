@@ -1,3 +1,5 @@
+import { TranslationKey } from '../../hooks/useTranslation';
+
 type PageStateContainerCustomProps = {
   t?: never;
   isEmpty?: never;
@@ -11,7 +13,7 @@ type PageStateContainerCustomProps = {
 };
 
 export type PageStateContainerNotCustomProps = {
-  t: (key: string) => string;
+  t: (key: TranslationKey) => string;
   isEmpty: boolean;
   isLoading: boolean;
   isError: boolean;

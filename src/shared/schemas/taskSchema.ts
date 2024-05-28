@@ -1,13 +1,14 @@
 import { z } from 'zod';
 
+import { TranslationKey } from '../../hooks/useTranslation';
 import { ChipStatus } from '../enums/chipStatus';
 import { PriorityLevel } from '../enums/priorityLevel';
 import { FormNames } from '../types/formNames';
 
-export const taskSchema = (t: (key: string) => string) =>
+export const taskSchema = (t: (key: TranslationKey) => string) =>
   z.object({
-    title: z.string().min(3, { message: t('taskTitleErrorMessage') }),
-    description: z.string().min(10, { message: t('taskDescriptionErrorMessage') }),
+    title: z.string().min(3, { message: t('taskForm.validation.title') }),
+    description: z.string().min(10, { message: t('taskForm.validation.description') }),
     selectedOption: z.object({
       value: z.nativeEnum(PriorityLevel),
       id: z.string(),

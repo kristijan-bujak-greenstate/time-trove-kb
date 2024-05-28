@@ -26,7 +26,11 @@ export const PageStateContainer = ({
     return (
       <StyledPageStateContainer>
         {renderCustomEmptyComponent || (
-          <DataStatus icon={NothingHereYetIcon} title={t('emptyTasksTitle')} description={t('emptyTasksDescription')} />
+          <DataStatus
+            icon={NothingHereYetIcon}
+            title={t('pages.emptyAll.title')}
+            description={t('pages.emptyAll.description')}
+          />
         )}
       </StyledPageStateContainer>
     );
@@ -38,8 +42,8 @@ export const PageStateContainer = ({
         {renderCustomErrorComponent || (
           <DataStatus
             icon={SomethingWentWrongIcon}
-            title={t('backendErrorTitle')}
-            description={t('backendErrorDescription')}
+            title={t('pages.serverError.title')}
+            description={t('pages.serverError.button')}
           />
         )}
       </StyledPageStateContainer>

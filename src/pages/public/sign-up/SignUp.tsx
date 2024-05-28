@@ -24,8 +24,8 @@ export const SignUpForm = () => {
   const handleOnSuccess = () => {
     addToQueue({
       status: 'success',
-      titleKey: 'signupToastTitleSuccess',
-      descriptionKey: 'signupToastDescriptionSuccess',
+      titleKey: 'toast.success.registration.title',
+      descriptionKey: 'toast.success.registration.description',
     });
     reset(defaultValues);
     navigate(routes.login);
@@ -34,30 +34,30 @@ export const SignUpForm = () => {
   const { addToQueue, navigate, t, errors, register, handleSubmit, isButtonDisabled, isLoading, reset, onSubmit } =
     usePublicForm({
       mutationFn: (requestData) => axiosInstance.post(endpoints.registration, requestData),
-      action: 'signup',
+      action: 'registration',
       onSuccessFunction: handleOnSuccess,
     });
 
   return (
     <>
       <PublicForm
-        title={t('signupTitle')}
-        description={t('signupDescription')}
-        buttonText={t('signupButton')}
-        footerDescriptionText={t('signupFooterDescription')}
-        footerButtonText={t('signupFooterButton')}
+        title={t('publicForm.registration.title')}
+        description={t('publicForm.registration.description')}
+        buttonText={t('publicForm.registration.button')}
+        footerDescriptionText={t('publicForm.registration.footerDescription')}
+        footerButtonText={t('publicForm.registration.footerButton')}
         onFooterButtonClick={() => navigate(routes.login)}
         firstInputProps={{
-          label: t('emailLabel'),
+          label: t('publicForm.base.emailLabel'),
           type: 'text',
-          placeholder: t('emailPlaceholder'),
+          placeholder: t('publicForm.base.emailPlaceholder'),
           error: errors[authFieldNames.email]?.message,
           ...register(authFieldNames.email),
         }}
         secondInputProps={{
-          label: t('passwordLabel'),
+          label: t('publicForm.base.passwordLabel'),
           type: 'password',
-          placeholder: t('passwordPlaceholder'),
+          placeholder: t('publicForm.base.passwordPlaceholder'),
           error: errors[authFieldNames.password]?.message,
           ...register(authFieldNames.password),
         }}

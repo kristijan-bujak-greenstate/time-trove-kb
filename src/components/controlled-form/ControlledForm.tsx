@@ -4,7 +4,7 @@ import { useForm, FormProvider, FieldValues } from 'react-hook-form';
 import { ZodType } from 'zod';
 
 import { useLanguageContext } from '../../context/LanguageContext';
-import { useTranslation } from '../../hooks/useTranslation';
+import { TranslationKey, useTranslation } from '../../hooks/useTranslation';
 
 type ControlledFormProps = {
   schema: TranslatedSchema;
@@ -12,7 +12,7 @@ type ControlledFormProps = {
   children: ReactNode;
 };
 
-type TranslatedSchema = (t: (key: string) => string) => ZodType;
+type TranslatedSchema = (t: (key: TranslationKey) => string) => ZodType;
 
 export const ControlledForm = ({ schema, defaultValues, children }: ControlledFormProps): JSX.Element => {
   const { t } = useTranslation();

@@ -30,7 +30,7 @@ export const LoginForm = () => {
     navigate(routes.root);
   };
 
-  const { navigate, t, errors, register, handleSubmit, onSubmit, isButtonDisabled, isLoading } = usePublicForm({
+  const { navigate, errors, register, handleSubmit, onSubmit, isButtonDisabled, isLoading, t } = usePublicForm({
     mutationFn: (requestData) => axiosInstance.post(endpoints.login, requestData),
     action: 'login',
     onSuccessFunction: handleOnSuccess,
@@ -39,23 +39,23 @@ export const LoginForm = () => {
   return (
     <>
       <PublicForm
-        title={t('loginTitle')}
-        description={t('loginDescription')}
-        buttonText={t('loginButton')}
-        footerDescriptionText={t('loginFooterDescription')}
-        footerButtonText={t('loginFooterButton')}
+        title={t('publicForm.login.title')}
+        description={t('publicForm.login.description')}
+        buttonText={t('publicForm.login.button')}
+        footerDescriptionText={t('publicForm.login.footerDescription')}
+        footerButtonText={t('publicForm.login.footerButton')}
         onFooterButtonClick={() => navigate(routes.signUp)}
         firstInputProps={{
-          label: t('emailLabel'),
+          label: t('publicForm.base.emailLabel'),
           type: 'text',
-          placeholder: t('emailPlaceholder'),
+          placeholder: t('publicForm.base.emailPlaceholder'),
           error: errors[authFieldNames.email]?.message,
           ...register(authFieldNames.email),
         }}
         secondInputProps={{
-          label: t('passwordLabel'),
+          label: t('publicForm.base.passwordLabel'),
           type: 'password',
-          placeholder: t('passwordPlaceholder'),
+          placeholder: t('publicForm.base.passwordPlaceholder'),
           error: errors[authFieldNames.password]?.message,
           ...register(authFieldNames.password),
         }}

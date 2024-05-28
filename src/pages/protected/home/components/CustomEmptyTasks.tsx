@@ -51,9 +51,9 @@ export const CustomEmptyTasks = ({
           <DataStatus
             icon={NothingHereYetIcon}
             onClick={onButtonEmptyTasksClick}
-            title={t('emptyTasksTitle')}
-            description={t('emptyTasksDescription')}
-            buttonText={t('emptyTasksButtonText')}
+            title={t('pages.emptyAll.title')}
+            description={t('pages.emptyAll.description')}
+            buttonText={t('pages.emptyAll.button')}
             buttonPalette={'primary'}
           />
         </>
@@ -62,7 +62,7 @@ export const CustomEmptyTasks = ({
           <StyledTitlePriorityWrapper>
             <StyledTitleDropdownContainer>
               <Text fontWeight={'extraBold'} lineHeight={'extraSmall'}>
-                {t('headerTitle')}
+                {t('home.headerTitle')}
               </Text>
               <Dropdown
                 selectedOption={currentLanguage}
@@ -78,7 +78,11 @@ export const CustomEmptyTasks = ({
               showLine={true}
             />
           </StyledTitlePriorityWrapper>
-          <DataStatus icon={NothingHereYetIcon} title={t('noResultsTitle')} description={t('noResultsDescription')} />
+          <DataStatus
+            icon={NothingHereYetIcon}
+            title={t('pages.emptyAll.title')}
+            description={t('pages.emptyAll.description')}
+          />
         </>
       )}
     </>

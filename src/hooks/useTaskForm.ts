@@ -12,7 +12,7 @@ import { mockedSelectOptionsItems } from '../shared/data/selectOptionsItems';
 import { TaskData, taskFieldNames } from '../shared/schemas/taskSchema';
 
 import { useTranslatedOptions } from './useTranslatedOptions';
-import { useTranslation } from './useTranslation';
+import { TranslationKey, useTranslation } from './useTranslation';
 
 type UseTaskFormProps = {
   mutationFn: (requestData: TaskRequest) => Promise<TaskResponse>;
@@ -48,8 +48,8 @@ export const useTaskForm = ({ mutationFn, onSuccessFunction, closeModal }: UseTa
     onError: ({ code: responseKeyCode }) => {
       addToQueue({
         status: 'error',
-        titleKey: 'editTaskToastTitleError',
-        descriptionKey: extractKey(responseKeyCode!),
+        titleKey: 'toast.error.default.title',
+        descriptionKey: extractKey(responseKeyCode!) as TranslationKey,
       });
     },
   });

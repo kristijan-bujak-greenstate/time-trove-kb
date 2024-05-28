@@ -1,0 +1,177 @@
+{
+  "server": {
+    "registration": {
+      "error": {
+        "badRequest": "User already exists"
+      }
+    },
+    "login": {
+      "error": {
+        "badRequest": "Bad credentials"
+      }
+    }
+  },
+
+  "navigation": {
+    "searchInputPlaceholder": "Search tasks",
+    "title": "Dashboard",
+    "buttonText": "Create task"
+  },
+
+  "publicForm": {
+    "base": {
+      "emailLabel": "Email",
+      "emailPlaceholder": "Email",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Password",
+      "validation": {
+        "email": "Invalid email address",
+        "password": "Password should be at least 5 characters long"
+      }
+    },
+    "login": {
+      "title": "Log in",
+      "description": "Use your email to log in to your TimeTrove Dashboard.",
+      "button": "Log in",
+      "footerDescription": "Don’t have an account yet?",
+      "footerButton": "Sign up"
+    },
+    "registration": {
+      "title": "Sign up",
+      "description": "Use your work email to log in to your team workspace.",
+      "button": "Sign up",
+      "footerDescription": "Already have an account?",
+      "footerButton": "Log in"
+    }
+  },
+
+  "toast": {
+    "success": {
+      "login": {
+        "title": "Success!",
+        "description": "Successfully logged in!"
+      },
+      "registration": {
+        "title": "Success!",
+        "description": "Succesfully registered! You can now log in!"
+      },
+      "complete": {
+        "title": "Success!",
+        "description": "Task successfully completed!"
+      },
+      "create": { "title": "Success!", "description": "Task successfully created." },
+      "edit": { "title": "Success!", "description": "Task successfully edited." },
+      "delete": { "title": "Success!", "description": "Task successfully deleted." }
+    },
+    "error": {
+      "default": {
+        "title": "Error!",
+        "description": "Something went wrong! Please try again"
+      },
+      "login": {
+        "title": "Error!",
+        "description": "Something went wrong! Please try again"
+      },
+      "registration": {
+        "title": "Error!",
+        "description": "Failed to register! Something went wrong!"
+      }
+    }
+  },
+
+  "taskCard": {
+    "label": "Priority"
+  },
+
+  "chip": {
+    "done": "Done",
+    "inProgress": "In progress"
+  },
+
+  "home": {
+    "headerTitle": "Tasks"
+  },
+
+  "taskDetails": {
+    "headerTitle": "Task details",
+    "button": "Mark as done"
+  },
+
+  "taskForm": {
+    "validation": {
+      "title": "Title should be at least 3 characters long",
+      "description": "Description should be at least 10 characters long"
+    },
+    "base": {
+      "optionSelectTitle": "Priority",
+      "labelInput": "Title",
+      "labelTextarea": "Description",
+      "placeholderInput": "Title",
+      "placeholderTextarea": "Description",
+      "formTitle": "Task details"
+    },
+    "create": {
+      "title": "Create task",
+      "description": "Please provide the required details to create the task",
+      "button": "Create task"
+    },
+    "edit": { "title": "Edit task", "button": "Save changes" }
+  },
+
+  "dialog": {
+    "discardChanges": {
+      "title": "Discard changes",
+      "description": "Are you sure you want to discard all changes?",
+      "primaryButton": "Discard",
+      "secondaryButton": "Cancel"
+    },
+    "delete": {
+      "title": "Delete task",
+      "description": "Are you sure you want to delete task?",
+      "primaryButton": "Delete",
+      "secondaryButton": "Cancel"
+    },
+    "logout": {
+      "title": "Log out",
+      "description": "Are you sure you want to log out?",
+      "primaryButton": "Log out",
+      "secondaryButton": "Cancel"
+    }
+  },
+
+  "pages": {
+    "serverError": {
+      "title": "Something went wrong",
+      "description": "Ann error occured while attempting to retrieve data from the server",
+      "button": "Try again"
+    },
+    "emptyResults": {
+      "title": "No results found",
+      "description": "Please try searching for something else"
+    },
+    "emptyAll": {
+      "title": "Nothing here yet!",
+      "description": "There are no tasks created",
+      "button": "Create task"
+    },
+    "notFound": {
+      "title": "Page not found",
+      "description": "We apologize for the inconvenience, but it appears that the page you are attempting to access is currently unavailable. This might be due to a temporary technical issue or an outdated link.",
+      "button": "Back home"
+    },
+    "maintenance": {
+      "title": "We'll be right back!",
+      "description": "Ann error occured while attempting to retrieve data from the server",
+      "button": "Try again"
+    }
+  },
+
+  "priority": {
+    "Low": "Low",
+    "Medium": "Medium",
+    "High": "High",
+    "AllOptions": "All tasks"
+  },
+
+  "translationMissing": "Translation missing"
+}

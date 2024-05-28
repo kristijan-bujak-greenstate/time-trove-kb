@@ -16,7 +16,7 @@ import { DropdownOption } from '../../../components/dropdown/types';
 import { useLanguageContext } from '../../../context/LanguageContext';
 import { usePagination } from '../../../hooks/usePagination';
 import { useTranslatedOptions } from '../../../hooks/useTranslatedOptions';
-import { useTranslation } from '../../../hooks/useTranslation';
+import { TranslationKey, useTranslation } from '../../../hooks/useTranslation';
 import { SomethingWentWrongIcon } from '../../../icons';
 import { languageOptions } from '../../../shared/data/languageOptions';
 import { mockedSelectOptionsItemsForFiltering } from '../../../shared/data/selectOptionsItems';
@@ -116,9 +116,9 @@ export const Home = () => {
         isDone={task.done}
         description={task.description}
         priority={task.priority}
-        chipText={task.done ? t('chipTextDone') : t('chipTextInProgress')}
-        priorityText={t(task.priority)}
-        priorityTitle={t('taskCardPriority')}
+        chipText={t(task.done ? 'chip.done' : 'chip.inProgress')}
+        priorityText={t(('priority.' + task.priority) as TranslationKey)}
+        priorityTitle={t('taskCard.label')}
         onEditClick={() => handleEditTaskClick(task)}
         onDeleteClick={() => handleDeleteTaskClick(task)}
         onClick={() => handleTaskClick(task)}
@@ -149,9 +149,9 @@ export const Home = () => {
         <DataStatus
           icon={SomethingWentWrongIcon}
           onClick={refetch}
-          title={t('backendErrorTitle')}
-          description={t('backendErrorDescription')}
-          buttonText={t('backendErrorButtonText')}
+          title={t('pages.serverError.title')}
+          description={t('pages.serverError.description')}
+          buttonText={t('pages.serverError.button')}
           buttonPalette={'neutrals'}
         />
       }
@@ -179,7 +179,7 @@ export const Home = () => {
         <StyledHeaderContainer>
           <StyledTitleDropdownContainer>
             <Text fontWeight={'extraBold'} lineHeight={'extraSmall'}>
-              {t('headerTitle')}
+              {t('home.headerTitle')}
             </Text>
 
             <Dropdown
