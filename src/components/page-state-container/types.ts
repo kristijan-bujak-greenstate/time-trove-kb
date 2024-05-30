@@ -1,27 +1,29 @@
 import { TranslationKey } from '../../hooks/useTranslation';
 
-type PageStateContainerCustomProps = {
-  t?: never;
-  isEmpty?: never;
-  isLoading?: never;
-  isError?: never;
-  children?: never;
-  customComponent?: JSX.Element;
-  renderCustomEmptyComponent?: never;
-  renderCustomErrorComponent?: never;
-  isFullPage?: boolean;
+export type BaseProps = {
+  shouldCenter?: boolean;
+  applyAnimation?: boolean;
+  children: JSX.Element;
 };
 
-export type PageStateContainerNotCustomProps = {
+export type StateProps = BaseProps & {
   t: (key: TranslationKey) => string;
   isEmpty: boolean;
   isLoading: boolean;
   isError: boolean;
-  children: JSX.Element;
-  customComponent?: never;
   renderCustomEmptyComponent?: JSX.Element;
   renderCustomErrorComponent?: JSX.Element;
   isFullPage?: never;
 };
 
-export type PageStateContainerProps = PageStateContainerCustomProps | PageStateContainerNotCustomProps;
+export type WrapperProps = BaseProps & {
+  t?: never;
+  isEmpty?: never;
+  isLoading?: never;
+  isError?: never;
+  renderCustomEmptyComponent?: never;
+  renderCustomErrorComponent?: never;
+  isFullPage?: boolean;
+};
+
+export type PageStateContainerProps = StateProps | WrapperProps;

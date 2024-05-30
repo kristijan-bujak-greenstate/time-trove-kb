@@ -24,6 +24,7 @@ export const PublicLayout = () => {
           onOptionClick={handleDropdownSelectClick}
         />
       </StyledDropdownWrapper>
+
       <StyledOutletWrapper>
         <Outlet />
       </StyledOutletWrapper>

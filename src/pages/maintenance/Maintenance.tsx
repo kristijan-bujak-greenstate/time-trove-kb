@@ -7,15 +7,12 @@ export const Maintenance = () => {
   const { t } = useTranslation();
 
   return (
-    <PageStateContainer
-      isFullPage={true}
-      customComponent={
-        <DataStatus
-          icon={MaintenanceIcon}
-          title={t('pages.maintenance.title')}
-          description={t('pages.maintenance.description')}
-        />
-      }
-    />
+    <PageStateContainer isFullPage={true} shouldCenter={true}>
+      <DataStatus
+        icon={MaintenanceIcon}
+        title={t('pages.maintenance.title')}
+        description={t('pages.maintenance.description')}
+      />
+    </PageStateContainer>
   );
 };

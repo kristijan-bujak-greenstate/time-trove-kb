@@ -1,6 +1,6 @@
 import { axiosInstance } from '../../../api/axiosInstance';
 import { endpoints } from '../../../api/endpoints/endpoints';
-import { PublicForm } from '../../../components';
+import { PageStateContainer, PublicForm } from '../../../components';
 import { ControlledForm } from '../../../components/controlled-form/ControlledForm';
 import { usePublicForm } from '../../../hooks/usePublicForm';
 import { LogoutIcon } from '../../../icons';
@@ -15,7 +15,9 @@ const defaultValues = {
 export const SignUp = () => {
   return (
     <ControlledForm schema={authSchema} defaultValues={defaultValues}>
-      <SignUpForm />
+      <PageStateContainer>
+        <SignUpForm />
+      </PageStateContainer>
     </ControlledForm>
   );
 };

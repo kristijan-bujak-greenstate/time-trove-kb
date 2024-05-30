@@ -5,7 +5,7 @@ import { useTranslation } from '../../hooks/useTranslation';
 import { Error404Icon } from '../../icons';
 
 import { PageStateContainer } from './PageStateContainer';
-import { PageStateContainerNotCustomProps } from './types';
+import { StateProps } from './types';
 
 const meta = {
   title: 'Example/Page State Container',
@@ -19,7 +19,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof PageStateContainer>;
 
-const StatefulPageStateContainer = ({ ...args }: PageStateContainerNotCustomProps) => {
+const StatefulPageStateContainer = ({ ...args }: StateProps) => {
   const { t } = useTranslation();
 
   return <PageStateContainer {...args} t={t} />;
@@ -32,7 +32,7 @@ export const Loading: Story = {
     isError: false,
     children: <></>,
   },
-  render: (args) => <StatefulPageStateContainer {...(args as PageStateContainerNotCustomProps)} />,
+  render: (args) => <StatefulPageStateContainer {...(args as StateProps)} />,
 };
 
 export const Empty: Story = {
@@ -40,8 +40,8 @@ export const Empty: Story = {
     ...Loading.args,
     isLoading: false,
     isEmpty: true,
-  } as PageStateContainerNotCustomProps,
-  render: (args) => <StatefulPageStateContainer {...(args as PageStateContainerNotCustomProps)} />,
+  } as StateProps,
+  render: (args) => <StatefulPageStateContainer {...(args as StateProps)} />,
 };
 
 export const SomethingWentWrong: Story = {
@@ -50,13 +50,13 @@ export const SomethingWentWrong: Story = {
     isLoading: false,
     isError: true,
     children: <></>,
-  } as PageStateContainerNotCustomProps,
-  render: (args) => <StatefulPageStateContainer {...(args as PageStateContainerNotCustomProps)} />,
+  } as StateProps,
+  render: (args) => <StatefulPageStateContainer {...(args as StateProps)} />,
 };
 
 export const CustomNotFoundPage: Story = {
   args: {
-    customComponent: (
+    children: (
       <DataStatus
         icon={Error404Icon}
         onClick={() => console.log('Button clicked')}
