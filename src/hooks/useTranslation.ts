@@ -8,7 +8,7 @@ type NestedTranslationKeys<ObjectType extends object> = {
     : `${Key}`;
 }[keyof ObjectType & (string | number)];
 
-type Translations = typeof enTranslations;
+type Translations = typeof enTranslations & typeof deTranslations;
 
 export type TranslationKey = NestedTranslationKeys<Translations>;
 
