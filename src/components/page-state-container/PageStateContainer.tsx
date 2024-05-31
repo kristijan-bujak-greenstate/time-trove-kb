@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { DataStatus, Spinner } from '..';
 import { NothingHereYetIcon, SomethingWentWrongIcon } from '../../icons';
 
-import { StyledPageStateAnimationWrapper, StyledPageStateContainer } from './pageStateContainer.styles';
+import { StyledPageStateContainer } from './pageStateContainer.styles';
 import { PageStateContainerProps } from './types';
 
 export const PageStateContainer = ({
@@ -33,45 +33,39 @@ export const PageStateContainer = ({
 
   if (isEmpty) {
     return (
-      <StyledPageStateAnimationWrapper $isStateComponent={true}>
-        <StyledPageStateContainer $isInitialLoad={isInitialLoad} $applyAnimation={applyAnimation} $shouldCenter={true}>
-          {renderCustomEmptyComponent || (
-            <DataStatus
-              icon={NothingHereYetIcon}
-              title={t('pages.emptyAll.title')}
-              description={t('pages.emptyAll.description')}
-            />
-          )}
-        </StyledPageStateContainer>
-      </StyledPageStateAnimationWrapper>
+      <StyledPageStateContainer $isInitialLoad={isInitialLoad} $applyAnimation={applyAnimation} $shouldCenter={true}>
+        {renderCustomEmptyComponent || (
+          <DataStatus
+            icon={NothingHereYetIcon}
+            title={t('pages.emptyAll.title')}
+            description={t('pages.emptyAll.description')}
+          />
+        )}
+      </StyledPageStateContainer>
     );
   }
 
   if (isError)
     return (
-      <StyledPageStateAnimationWrapper $isStateComponent={true}>
-        <StyledPageStateContainer $isInitialLoad={isInitialLoad} $applyAnimation={applyAnimation} $shouldCenter={true}>
-          {renderCustomErrorComponent || (
-            <DataStatus
-              icon={SomethingWentWrongIcon}
-              title={t('pages.serverError.title')}
-              description={t('pages.serverError.description')}
-            />
-          )}
-        </StyledPageStateContainer>
-      </StyledPageStateAnimationWrapper>
+      <StyledPageStateContainer $isInitialLoad={isInitialLoad} $applyAnimation={applyAnimation} $shouldCenter={true}>
+        {renderCustomErrorComponent || (
+          <DataStatus
+            icon={SomethingWentWrongIcon}
+            title={t('pages.serverError.title')}
+            description={t('pages.serverError.description')}
+          />
+        )}
+      </StyledPageStateContainer>
     );
 
   return (
-    <StyledPageStateAnimationWrapper>
-      <StyledPageStateContainer
-        $isInitialLoad={isInitialLoad}
-        $applyAnimation={applyAnimation}
-        $isFullPage={isFullPage}
-        $shouldCenter={shouldCenter}
-      >
-        {children}
-      </StyledPageStateContainer>
-    </StyledPageStateAnimationWrapper>
+    <StyledPageStateContainer
+      $isInitialLoad={isInitialLoad}
+      $applyAnimation={applyAnimation}
+      $isFullPage={isFullPage}
+      $shouldCenter={shouldCenter}
+    >
+      {children}
+    </StyledPageStateContainer>
   );
 };

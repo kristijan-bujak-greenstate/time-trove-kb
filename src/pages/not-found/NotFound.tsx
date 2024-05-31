@@ -20,9 +20,9 @@ export const NotFound = () => {
       <DataStatus
         icon={Error404Icon}
         onClick={handleButtonClick}
-        title={t('pages.emptyAll.title')}
-        description={t('pages.emptyAll.description')}
-        buttonText={t('pages.emptyAll.button')}
+        title={t('pages.notFound.title')}
+        description={t('pages.notFound.description')}
+        buttonText={t('pages.notFound.button')}
       />
     </PageStateContainer>
   );

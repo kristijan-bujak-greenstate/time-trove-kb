@@ -34,25 +34,26 @@ const slideIn = keyframes`
     opacity: 0;
   }
   40% {
-    transform: translateY(30px);
+    transform: translateY(0);
     opacity: 1;
   }
-  55% {
-    transform: translateY(-10px);
+  50% {
+    transform: translateY(-1rem);
+  }
+  60% {
+    transform: translateY(0);
   }
   70% {
-    transform: translateY(5px);
+    transform: translateY(-0.5rem);
   }
-  85% {
-    transform: translateY(-2px);
+  80% {
+    transform: translateY(0);
+  }
+  90% {
+    transform: translateY(-0.25rem);
   }
   100% {
     transform: translateY(0);
    
   }
-`;
-
-export const StyledPageStateAnimationWrapper = styled.div<{ $isStateComponent?: boolean }>`
-  height: ${({ $isStateComponent }) => $isStateComponent && '100%'};
-  overflow: hidden;
 `;
