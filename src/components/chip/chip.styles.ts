@@ -6,5 +6,5 @@ export const StyledChipContainer = styled.div<{ $size: NonNullable<ChipProps['si
   padding: ${({ theme, $size }) => theme.dimensions.chip[$size].padding};
   border-radius: ${({ theme, $size }) => theme.dimensions.chip[$size].borderRadius};
   background-color: ${({ theme, $status }) => theme.colors[$status].hue25};
-  width: fit-content;
+  min-width: fit-content;
 `;

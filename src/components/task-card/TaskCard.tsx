@@ -1,3 +1,6 @@
+import { useRef } from 'react';
+
+import { useIsVisible } from '../../hooks/useIsVisible';
 import { DeleteIcon } from '../../icons/DeleteIcon';
 import { EditIcon } from '../../icons/EditIcon';
 import { ChipStatus } from '../../shared/enums/chipStatus';
@@ -13,6 +16,7 @@ import {
   StyledFooterContainer,
   StyledHeaderContainer,
   StyledIconButtonsContainer,
+  StyledIconButtonsContainerMobile,
   StyledMainContainer,
   StyledPriorityContainer,
 } from './taskCard.styles';
@@ -42,6 +46,9 @@ export const TaskCard = ({
   onDeleteClick,
   onClick,
 }: TaskCardProps) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const isVisible = useIsVisible(cardRef, 0.4);
+
   const handleEditButtonClick = (event: React.MouseEvent) => {
     event.stopPropagation();
     onEditClick();
@@ -53,8 +60,8 @@ export const TaskCard = ({
   };
 
   return (
-    <Card hasHoverActiveStyles={true} onClick={onClick}>
-      <StyledMainContainer>
+    <Card hasHoverActiveStyles={true} onClick={onClick} ref={cardRef}>
+      <StyledMainContainer $isVisible={isVisible}>
         <div>
           <StyledHeaderContainer>
             <Text fontWeight={'extraBold'}>{title}</Text>
@@ -81,6 +88,10 @@ export const TaskCard = ({
           </StyledIconButtonsContainer>
         </StyledFooterContainer>
       </StyledMainContainer>
+      <StyledIconButtonsContainerMobile $isVisible={isVisible}>
+        <IconButton icon={EditIcon} onClick={handleEditButtonClick} />
+        <IconButton icon={DeleteIcon} onClick={handleDeleteButtonClick} palette={'error'} />
+      </StyledIconButtonsContainerMobile>
     </Card>
   );
 };

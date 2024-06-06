@@ -19,6 +19,7 @@ export const StyledDropdownWrapper = styled.div`
   position: absolute;
   top: 1.25rem;
   right: 1.25rem;
+  z-index: 1;
 `;
 
 export const StyledOutletWrapper = styled.div`

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { StyledButton } from '../button/button.styles';
 
 export const StyledPagination = styled.div`
