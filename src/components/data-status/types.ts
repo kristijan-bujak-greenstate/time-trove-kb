@@ -3,7 +3,7 @@ import { ComponentType } from 'react';
 import { Palette } from '../../shared/theme/types';
 
 type DataStatusBaseProps = {
-  icon: ComponentType;
+  icon?: ComponentType;
   title: string;
   description: string;
 };

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { StyledChipContainer } from '../chip/chip.styles';
+import { StyledText } from '../text/text.styles';
 export const StyledTaskDetailsContainer = styled.div`
   width: 100%;
 `;
@@ -14,10 +15,17 @@ export const StyledHeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
   margin-bottom: 1rem;
   ${StyledChipContainer} {
-    white-space: nowrap;
+    ${StyledText} {
+      max-width: 6rem;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+    }
   }
 `;
 

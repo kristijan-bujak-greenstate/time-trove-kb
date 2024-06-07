@@ -78,11 +78,7 @@ export const CustomEmptyTasks = ({
               showLine={true}
             />
           </StyledTitlePriorityWrapper>
-          <DataStatus
-            icon={NothingHereYetIcon}
-            title={t('pages.emptyResults.title')}
-            description={t('pages.emptyResults.description')}
-          />
+          <DataStatus title={t('pages.emptyResults.title')} description={t('pages.emptyResults.description')} />
         </>
       )}
     </>

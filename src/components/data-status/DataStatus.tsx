@@ -14,7 +14,7 @@ export const DataStatus = ({
 }: DataStatusProps) => {
   return (
     <StyledDataStatusContainer>
-      <IconComponent />
+      {IconComponent && <IconComponent />}
       <Text fontSize={'extraLarge'} fontWeight={'extraBold'} lineHeight={'maxLarge'}>
         {title}
       </Text>
